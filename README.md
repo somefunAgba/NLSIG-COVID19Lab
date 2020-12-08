@@ -91,3 +91,13 @@ please contact me.
 
 ## License
 This work is licensed under the [GNU AGPL](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE) 
+
+## Citation Details
+*Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
+
+*Title*: On the nlogistic-sigmoid modelling for complex growth processes: in application to the COVID-19 pandemic
+
+*Conference*: 2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop on Data Science for Solution-driven and Sustainable Response to current developing world challenges.
+
+*Date*: December 3, 2020
+
