@@ -6,13 +6,13 @@ A nlogistic-sigmoid modelling laboratory for the COVID-19 pandemic growth
 
 <img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsig_avatar.png"/>
 
-nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes.
+nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes. It features two logistic metrics (YIR and XIR) for monitoring growth from a two-dimensional (x-y axis) perspective.
 
 ## Links
 * [NLSIG Conference Presentation Slides](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
  
-* [NLSIG Preprint](https://arxiv.org/abs/2008.04210)
-
+<!--* [NLSIG Preprint](https://arxiv.org/abs/2008.04210)
+-->
 
 ## Data Source
 World Health Organization
