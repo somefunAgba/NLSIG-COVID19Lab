@@ -1,0 +1,33 @@
+function [y_sol,dy_sol,sol,fitstats,fval,exitflag,output,...
+    y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins,fitopts] ...
+    = nsligfp(x_data,y_data,dy_data,ig_opts,sbounds,lubnds,len_sol,imposeconstr,chngsolver)
+%NLSIGFP Fit data to the nlsig function and Predict with the nlsig function
+
+% initial guess
+% ig_opts structure
+% len_sol = 6;
+% imposeconstr = 0;
+% chngsolver = 0;
+% nboot = 512; % 500 - 2000 for CI
+% plotfit = 0 (dfault);
+
+% Set up fit options structure
+fitopts = struct('n', ig_opts.n,...
+    'shape', 's', 'xmin', ig_opts.xmin, 'xmax', ig_opts.xmax,...
+    'ymin', ig_opts.ymin,'ymax', ig_opts.ymax, ...
+    'xpks', ig_opts.xpks, 'plotfit', 0, ...
+    'len_sol', len_sol, 'imposeconstr', imposeconstr, ...
+    'chngsolver', chngsolver, 'nboot', 1 ...
+    );
+
+% Fit
+[sol,fval,exitflag,output,fitstats,...
+    y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins] ...
+    = set_probopts(x_data, y_data, dy_data, fitopts, sbounds,lubnds);
+
+% Predict using 'sol', the obtained 'best'-fitting solution
+% with the nlsig function
+[y_sol,dy_sol] = nlsig(x_data,0,sol);
+
+
+end

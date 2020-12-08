@@ -1,0 +1,1 @@
+run('allcc_upd.m');
