@@ -15,9 +15,9 @@ nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definit
 Running 'query_single.m' with the search_code as 'WD'
 gave the following model fit as at 6th December 2020.
 
-<img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landing_WDi.png"/>
+<img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
 
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landing_WDd.png"/>
+<img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDd.png"/>
 
 
 
