@@ -11,16 +11,6 @@ nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definit
 * [NLSIG Preprint](https://arxiv.org/abs/2008.04210)
 
 
-## Showcase
-Running 'query_single.m' with the search_code as 'WD'
-gave the following model fit as at 6th December 2020.
-
-<img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
-
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDd.png"/>
-
-
-
 ## Data Source
 World Health Organization
 
@@ -81,6 +71,17 @@ World Health Organization
 	Stores all estimated logistic metrics for infections and deaths till 
 	the last date time-stamp in the data in the 'infs' and 'dths' 
 	subfolders respectively.
+	
+	
+## Showcase
+Running 'query_single.m' with the search_code as 'WD'
+gave the following model fit as at 6th December 2020.
+
+<img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
+
+<img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDd.png"/>
+
+*Metrics Interpretation*: For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is most likely a peak period. For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time may most likely be a peak period but could also be a pre-peak period.	
  
 ## Miscellanous
 If interested in dedicating the time to port to other languages, 
