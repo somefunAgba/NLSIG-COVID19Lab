@@ -74,12 +74,14 @@ World Health Organization
 	
 	
 ## Showcase
-Running 'query_single.m' with the search_code as 'WD'
-gave the following model fit as at 6th December 2020.
-
-<img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
-
+Running 'query_single.m' with the search_code as ``WD``
+gave the following model fit for the ongoing COVID-19 pandemic as at 6th December 2020.
+<p align="center">
+ <img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
+</p>
+<p align="center">
 <img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDd.png"/>
+</p>
 
 *Metrics Interpretation*: For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is most likely a peak period. For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time may most likely be a peak period but could also be a pre-peak period.	
  
