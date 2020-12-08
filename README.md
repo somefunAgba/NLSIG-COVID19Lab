@@ -1,7 +1,7 @@
 # NLSIG COVID19Lab
 A nlogistic-sigmoid modelling laboratory for the COVID-19 pandemic growth
 
-<img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsig_avatar.png" width="150" />
+<img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsig_avatar.png"/>
 
 nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes.
 
