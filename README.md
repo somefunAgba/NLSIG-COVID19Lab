@@ -1,4 +1,7 @@
 # NLSIG COVID19Lab
+
+[![View NLSIG_COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84038-nlsig_covid19lab)
+
 A nlogistic-sigmoid modelling laboratory for the COVID-19 pandemic growth
 
 <img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsig_avatar.png"/>
