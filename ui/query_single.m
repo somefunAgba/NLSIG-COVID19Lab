@@ -5,7 +5,7 @@ clear all; %#ok<CLALL>
 rng(1);
 
 % select one country code or use 'WD' for worldwide code
-search_code = "CN";
+search_code = "WD";
 % update is either: 0 or 1
 % use to get updated data when connected to the internet
 % processing via internet may be slow for multiple countries.

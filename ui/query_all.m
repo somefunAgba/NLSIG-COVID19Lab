@@ -3,17 +3,13 @@
 %
 clear all; %#ok<CLALL>
 
-% selected country codes
-
-ccq = ["WD","GB","IT","FR","SE","TR","RU",...
-    "CN","JP","KR","IN","IL","IR","AE",...
-    "US","CA","AU","CU","MX","BR",...
-    "NG","GH","EG","ZA","ZW","KE"]';
-clen = numel(ccq);
-ccin = ccq;
+% get all country codes
+ccs = allcc_view;
+ccin = ccs;
+clen = height(ccin);
 
 for ix = 1:clen
-    search_code = ccin(ix);
+    search_code = string(ccin{ix,1});
     
     % update is either: 0 or 1
     % use to get updated data when connected to the internet
