@@ -83,6 +83,7 @@ gave the following model fit for the ongoing COVID-19 pandemic as at 6th Decembe
 <p align="center">
  <img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
 </p>
+
 #### Deaths
 <p align="center">
 <img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDd.png"/>
