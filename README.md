@@ -104,7 +104,7 @@ please contact me.
 ## License
 This work is free software under the [ISC License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/COPYING.md) 
 
-## Optional Citation Details
+## (Optional) Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
 
 *Title*: On the nlogistic-sigmoid modelling for complex growth processes: in application to the COVID-19 pandemic
