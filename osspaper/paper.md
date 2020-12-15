@@ -30,15 +30,17 @@ The growth (flow or trend) dynamics in any direction for many natural phenomena 
 adoption of new ideas can be approximately modelled by the logistic-sigmoid curve [@taylorForecastingScale2018]. 
 The scientific basis for this prevalence is given in [@bejanConstructalLawOrigin2011]. 
 Such growth-processes can be viewed as complex input--output systems that involve 
-multiple peak inflection phases withrespect to time. This is an idea that 
+multiple peak inflection phases with respect to time. An idea that 
 can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. 
 In particular, the logistic-sigmoid function with time-varying parameters 
 is the core trend model in Facebook's Prophet model for time-series growth-forecasting 
-at scale [@taylorForecastingScale2018] on big data. Consequently, we introduce a `NLSIG-COVID19Lab`, 
-a software pakage that illustrates the power of modelling 
-the COVID-19 pandemic with the nlogistic-sigmoid function (`NLSIG`), which is a modern neural-network definition for the logistic-sigmoid function. 
+at scale [@taylorForecastingScale2018] on big data. 
 
-`NLSIG-COVID19Lab` is a nlogistic-sigmoid playground for modelling the COVID-19 pandemic growth. It is useful as a quick real-time monitoring tool for the COVID-19 pandemic, and, 
+Consequently, a modern neural-network definition for the logistic-sigmoid function
+which considers restricted growth from a two-dimensional perspective is the nlogistic-sigmoid function (`NLSIG`).
+
+In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for modelling the COVID-19 pandemic growth. 
+It is useful as a quick real-time monitoring tool for the COVID-19 pandemic, and, 
 was designed to be used by humans, both researchers and non-reserachers. This work won the best paper at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
 
 # Statement of need
@@ -66,7 +68,8 @@ The development of `NLSIG-COVID19Lab` was motivated largely by research needs to
 Notably, instead of engaging in false prophecy or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020] on the contrary, for the logistic curve we instead make projections by means of:
 
 - two metrics for robust projective measurements of the modelled time-evolution of a growth-process in an area or locale of interest. 
-- adapt the DKW inequality for the KS test for constructing a confidence interval of uncertainty on the model given by the nlogistic-sigmoid curve. 
+
+- adapt the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test for constructing a confidence interval of uncertainty on the model given by the nlogistic-sigmoid curve with a with a 99% (1-0.01) probability. 
 
 
 The UI (both scripts and graphical) for the `NLSIG-COVID19Lab` package was designed to provide a user-friendly interface for modelling the time-series
@@ -74,7 +77,12 @@ growth of the COVID-19 epidemic through the `NLSIG` by using official datasets. 
  
 
 # Core Data Source
-World Health Organization
+As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
+
+* World Health Organization
+
+* Center for Systems Science and Engineering at the Johns Hopkins University.
+
 
 <!-- # Mathematics
 
