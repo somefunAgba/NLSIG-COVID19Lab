@@ -26,8 +26,8 @@ bibliography: paper.bib
 
 # Summary
 
-The growth (flow or trend) dynamics in any direction for many natural phenomena such as epidemic spreads, population growths, 
-adoption of new ideas can be approximately modelled by the logistic-sigmoid curve [@taylorForecastingScale2018]. 
+The growth (flow or trend) dynamics in any direction for most natural phenomena such as epidemic spreads, population growths, 
+adoption of new ideas can be approximately modelled by the logistic-sigmoid curve. 
 In particular, the logistic-sigmoid function with time-varying parameters is the core trend 
 model in Facebook's Prophet model for time-series growth-forecasting 
 at scale [@taylorForecastingScale2018] on big data. 
@@ -40,52 +40,52 @@ A unified, modern logistic-sigmoid function definition which considers restricte
 a two-dimensional perspective is the nlogistic-sigmoid function 
 [@somefunLogisticsigmoidNlogisticsigmoidModelling2020] (`NLSIG`) or logistic neural-network (`LNN`) pipeline. 
 In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for modelling 
-of the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
+the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
 
 
 # Statement of need
 
 Admittedly, epidemiological models such as the SEIRD variants 
 [@leeEstimationCOVID19Spread2020;@okabeMathematicalModelEpidemics2020] are just another form of representing sigmoidal growth [@xsRichardsModelRevisited2012]. It has been noted in 
-[@christopoulosNovelApproachEstimating2020] that the SEIRD-variant models yield largely exaggerated forecasts on the final cumulative growth number. This can also be said of the results 
-of various application of logistic modelling as regards the current state of the COVID-19 pandemic [@batistaEstimationStateCorona2020;@wuGeneralizedLogisticGrowth2020]
-which have largely resulted in erroneous identification of the epidemic's progress and its future projection , hence leading policymakers astray [@matthewWhyModelingSpread2020]. 
+[@christopoulosNovelApproachEstimating2020] that the SEIRD-variant models yield largely exaggerated forecasts. 
+Observing the current state of the COVID-19 pandemic, this is also true, as regards, 
+the results of various applications of logistic modelling [@batistaEstimationStateCorona2020;@wuGeneralizedLogisticGrowth2020]
+which have largely resulted in erroneous identification of the epidemic's progress and its future projection, hence leading policymakers astray [@matthewWhyModelingSpread2020]. 
 
-Notably, two recurring limitations of the logistic definitions in the literature and other software packages exist. A trend that has continued since the first logistic-sigmoid function introduction. First is that, the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. Second, estimation of the hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
+Notably, two recurring limitations of the logistic definitions in the literature and other software packages exist. A trend that has continued since the first logistic-sigmoid function introduction [@bacaerVerhulstLogisticEquation2011]. 
+
+First is that, the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. Second, the estimation of the logistic hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
 considered in the sum increases, regression analysis becomes more cumbersome and complicated as can be observed in these works [@leeEstimationCOVID19Spread2020;@batistaEstimationStateCorona2020;
 @hsiehRealtimeForecastMultiphase2006;@wuGeneralizedLogisticGrowth2020;
 @chowellNovelSubepidemicModeling2019;@taylorForecastingScale2018]. 
-These limitations are efficiently overcome by the nlogistic-sigmoid function (or logistic neural-network pipeline) `NLSIG` for describing logistic growth.
 
-
-The `NLSIG` is a logistic neural-network machine-learning tool under active development. The logistic growth benefits are:
-
- - retains functional simplicity
+These limitations are efficiently overcome by the nlogistic-sigmoid function (or logistic neural-network pipeline) `NLSIG` for describing logistic growth. The `NLSIG` is a logistic neural-network machine-learning tool under active development. The benefits it provides at a functional level:
 	
  - unified function definition
+ 
+ - retains functional simplicity and efficient computation
 	
  - improved nonlinear modelling power
-	
-	
-The development of the `NLSIG-COVID19Lab` was motivated largely by research needs to illustrate the power of the nlogistic-sigmoid neural pipeline. 
-
-Notably, instead of engaging in false prophecy or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020] on the contrary, in this software package we instead make projections by means of:
+		
+The development of the `NLSIG-COVID19Lab` was motivated largely by research needs to 
+illustrate the power of the nlogistic-sigmoid neural pipeline. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling the COVID-19 pandemic easy and reliable. Notably, instead of engaging in false prophecy 
+or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and 
+complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], on the contrary, in this software package we instead make projections by means of:
 
 - two metrics for robust projective measurements of the modelled time-evolution of a growth-process in an area or locale of interest. 
 
 - adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% (1-0.01) probability. 
 
-`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling the COVID-19 pandemic easy and reliable.
+`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
-The UIfor the `NLSIG-COVID19Lab` (both scripts and graphical interface) for was designed to provide a user-friendly interface for the `NLSIG`modelling the time-series growth of the COVID-19 pandemic from official datasets. 
+The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and graphical user interface) are designed to 
+provide a user-friendly interface to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
-
 * World Health Organization
-
 * Center for Systems Science and Engineering at the Johns Hopkins University.
 
 
@@ -118,8 +118,9 @@ Figure sizes can be customized by adding an optional second parameter:
 
 # Related research and software
 
-To the best of knowledge, we are not aware of other software packages or tool with a similar purpose.
-The application of the `NLSIG` to modelling the COVID-19 pandemic won the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
+To the best of knowledge, we are unaware of other software packages or tool with a similar purpose.
+
+This application of the `NLSIG` to modelling the COVID-19 pandemic was selected as the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
 
 
 # Acknowledgements
