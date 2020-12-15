@@ -55,10 +55,10 @@ Notably, two recurring limitations of the logistic definitions in the literature
 considered in the sum increases, regression analysis becomes more cumbersome and complicated as can be observed in these works [@leeEstimationCOVID19Spread2020;@batistaEstimationStateCorona2020;
 @hsiehRealtimeForecastMultiphase2006;@wuGeneralizedLogisticGrowth2020;
 @chowellNovelSubepidemicModeling2019;@taylorForecastingScale2018]. 
-These limitations are efficiently overcome by the nlogistic-sigmoid function (or logistic neural-network pipeline) for describing logistic growth.
+These limitations are efficiently overcome by the nlogistic-sigmoid function (or logistic neural-network pipeline) `NLSIG` for describing logistic growth.
 
 
-The Logistic-growth benefits are:
+The `NLSIG` is a logistic neural-network machine-learning tool under active development. The logistic growth benefits are:
 
  - retains functional simplicity
 	
@@ -67,26 +67,23 @@ The Logistic-growth benefits are:
  - improved nonlinear modelling power
 	
 	
-The development of `NLSIG-COVID19Lab` was motivated largely by research needs to illustrate the power of the nlogistic-sigmoid neural pipeline. 
+The development of the `NLSIG-COVID19Lab` was motivated largely by research needs to illustrate the power of the nlogistic-sigmoid neural pipeline. 
 
-Notably, instead of engaging in false prophecy or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020] on the contrary, for the logistic curve we instead make projections by means of:
+Notably, instead of engaging in false prophecy or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020] on the contrary, in this software package we instead make projections by means of:
 
 - two metrics for robust projective measurements of the modelled time-evolution of a growth-process in an area or locale of interest. 
 
-- adapt the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the model given by the nlogistic-sigmoid curve with a with a 99% (1-0.01) probability. 
-
-
-The UI (both scripts and graphical) for the `NLSIG-COVID19Lab` package was designed to provide a user-friendly interface for modelling the time-series
-growth of the COVID-19 epidemic through the `NLSIG` by using official datasets. 
+- adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% (1-0.01) probability. 
 
 `NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
 
-This work demonstrating `NLSIG` to COVID-19 modelling won the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
+The application of the `NLSIG` to modelling the COVID-19 pandemic won the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
 
-The `NLSIG` is a logistic neural-network machine-learning tool under active development. `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
+`NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
+The UIfor the `NLSIG-COVID19Lab` (both scripts and graphical interface) for was designed to provide a user-friendly interface for the `NLSIG`modelling the time-series growth of the COVID-19 pandemic from official datasets. 
 
-# Core Data Source
+### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
 
 * World Health Organization
