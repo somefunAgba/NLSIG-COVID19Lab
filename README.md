@@ -1,8 +1,8 @@
 # NLSIG COVID19Lab
 
-[![View NLSIG_COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
+[![View NLSIG-COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
-[![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG_COVID19Lab)](https://github.com/somefunAgba/NLSIG_COVID19Lab/issues)
+[![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG-COVID19Lab)](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues)
 
 <!--[![License: ISC-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://opensource.org/licenses/ISC)-->
 
@@ -10,12 +10,12 @@
 
 A playground for modelling the COVID-19 pandemic growth with the nlogistic-sigmoid function
 
-<img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsig_avatar.png"/>
+<img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/nlsig_avatar.png"/>
 
 nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes. It features two logistic metrics (YIR and XIR) for monitoring growth from a two-dimensional (x-y axis) perspective.
 
 ## Links
-* [NLSIG Conference Presentation Slides](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
+* [NLSIG Conference Presentation Slides](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
  
 * [NLSIG Preprint](https://arxiv.org/abs/2008.04210)
 
@@ -87,12 +87,12 @@ gave the following model fit for the ongoing COVID-19 pandemic as at 6th Decembe
 
 #### Infections
 <p align="center">
- <img alt="WDi" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDi.png"/>
+ <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/landingWDi.png"/>
 </p>
 
 #### Deaths
 <p align="center">
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/landingWDd.png"/>
+<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/landingWDd.png"/>
 </p>
 
 <!--#### Recovered-->
@@ -104,7 +104,7 @@ If interested in dedicating the time to port to other languages,
 please contact me.
 
 ## License
-This work is free software under the [ISC License](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE.txt) 
+This work is free software under the [ISC License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE.txt) 
 
 ## Optional Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
