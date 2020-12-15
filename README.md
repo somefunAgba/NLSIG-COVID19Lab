@@ -4,7 +4,7 @@
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
 
-[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![License: ISC-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://opensource.org/licenses/ISC)
 
 A playground for modelling the COVID-19 pandemic growth with the nlogistic-sigmoid function
 
@@ -102,7 +102,7 @@ If interested in dedicating the time to port to other languages,
 please contact me.
 
 ## License
-This work is frees software licensed under the [3-Clause-BSD](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE.md) 
+This work is frees software licensed under the [ISC License](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE.txt) 
 
 ## Optional Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
