@@ -80,8 +80,12 @@ complex to be encoded in current mathematical models [@christopoulosEfficientIde
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
-The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and graphical user interface) are designed to 
+The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and graphical user interface, see \autoref{fig:wgui1;fig:wgui2]) are designed to 
 provide a user-friendly interface to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
+
+
+![GUI Demo A.\label{fig:wgui1]](wdc_gui.png){ width=20% ] 
+![GUI Demo B.\label{fig:wgui2]](wdi_gui.png){ width=50% ] 
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
@@ -106,15 +110,6 @@ You can also use plain \LaTeX for equations
 \end{equation]
 and refer to \autoref{eq:fourier] from text.
  -->
-
-<!-- # Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example]](figure.png)
-and referenced from text using \autoref{fig:example].
-
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% ] -->
 
 # Related research and software
 
