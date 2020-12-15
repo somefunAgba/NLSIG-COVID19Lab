@@ -4,7 +4,7 @@ Copyright (c) 2020 Oluwasegun A. Somefun.
 All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the `3-Clause BSD License`.
+it under the terms of the `ISC License`.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -22,6 +22,6 @@ modification, are permitted provided that the following conditions are met:
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file named `LICENSE.md` 
-in the same directory as this file for the standard copy of the `3-Clause BSD License`.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file named `LICENSE.txt` 
+in the same directory as this file for the standard copy of the `ISC License`.
 
