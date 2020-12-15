@@ -17,15 +17,19 @@ for ix = 1:clen
     update = 0;
     
     % optional
-    %number of bootstrap samples to take
-    nboot = 70;
+    finer = true; 
+    boots = true;% irrelevant if finer is true
+    % number of bootstrap samples to take
+    nboot = 30;
+   
+
     focus = {'i','d'};
     idx = 1:2;
     for id = idx
         % focus is either: 'i' or 'd'
         try
             [sol,fitstats,ymets,xmets,new_mts] = ...
-                cov19_nlsigquery(search_code,update,focus{id},nboot);
+                cov19_nlsigquery(search_code,update,focus{id},nboot,boots,finer);
             
         catch ME
             cid = find(ccs{:,1}==search_code);

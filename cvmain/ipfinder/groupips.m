@@ -32,14 +32,15 @@ if ~isempty(iplist_idx)
             break;
         end
     end  
-    if numel(ips_valley) == numel(ips_peak) && count > 0
+
+    if numel(iplist_idx) > 1 && numel(ips_valley) == numel(ips_peak) && count > 0
         ips_valley(end+1) = mkid;
         iplist_idx(end) = mkid;
 %         if ips_peak(end) >= mkid
 %             ips_peak(end) = round(0.5*(mkid + ips_valley(end-1)));
 %             iplist_idx(end-1) = ips_peak(end);
 %         end
-    elseif numel(ips_valley) > numel(ips_peak) && count > 0
+    elseif numel(iplist_idx) > 1 && numel(ips_valley) > numel(ips_peak) && count > 0
         ips_valley(end) = mkid;
         iplist_idx(end) = mkid;
         

@@ -11,19 +11,22 @@ search_code = "WD";
 % processing via internet may be slow for multiple countries.
 update = 0;
 % optional
+finer = true;
+boots = true; % irrelevant if finer is true
 % number of bootstrap samples to take
-nboot = 70;
+nboot = 30;
 
-idx = 2:2;
+
+% idx = 2:2;
 % idx = 1:2;
-% idx = 1:1;
+idx = 1:1;
 
 focus = {'i','d'};
 for id = idx
     % focus is either: 'i' or 'd'
     try
         [sol,fitstats,ymets,xmets,new_mts] = ...
-            cov19_nlsigquery(search_code,update,focus{id},nboot);
+            cov19_nlsigquery(search_code,update,focus{id},nboot,boots,finer);
         fprintf("R_2 = %g\n", fitstats.R2);
         fprintf("R_2a = %g\n", fitstats.R2a);
         fprintf("YIR = %g [%g, %g]\n",...

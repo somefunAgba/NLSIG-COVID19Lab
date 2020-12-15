@@ -1,4 +1,4 @@
-function goodfit_stats = calc_stats(y_data,y_est,p,n_ips)
+function goodfit_stats = calc_stats(y_data,y_est,dy_data,dy_dx_est,p,n_ips)
 %CALC_STATS Compute goodness of fit (coefficient of determination) stats.
 %
 % Inputs:
@@ -8,7 +8,6 @@ function goodfit_stats = calc_stats(y_data,y_est,p,n_ips)
 %
 % Output:
 %   goodfit_stats structure
-%
 
 p = p*n_ips;
 
@@ -23,7 +22,7 @@ SST = sum((tots.^2));
 % sum of squares for the regression model
 regs = y_est - y_mean;
 SSM =  sum((regs.^2));
-% sum of squares for the residuals
+% sum of squares for the residuals (errors)
 res = y_data - y_est;
 SSE = sum((res.^2));
 
@@ -45,14 +44,16 @@ end
 % p, number of regression parameters          
 
 % adjusted R2
-R2a = (numel(y_data) - 1)/(numel(y_data) - p);
-R2a = 1 - ((1 - R2)*R2a);
+% R2a = (numel(y_data) - 1)/(numel(y_data) - p);
+% R2a = 1 - ((1 - R2)*R2a);
+
 % Degrees of Freedom for Model Variance
 dfm = p - 1; % p > 1
 % Degrees of Freedom for Error Variance or residuals
 dfe = numel(y_data) - p;
 % Degrees of Freedom for Total Variance
 dft = numel(y_data) - 1; % or  dfm + dfe
+
 % mean of squares
 % for (explained) variance of the regression model
 MSM = SSM/dfm;
@@ -60,6 +61,9 @@ MSM = SSM/dfm;
 MSE = SSE/dfe;
 % for variance of the total data samples
 MST = SST/dft;
+
+% adjusted R2
+R2a = 1 - (MSE/MST);
 
 % root mean square error: standard error of estimate
 RMSE = sqrt(MSE);
@@ -69,15 +73,41 @@ Fval = MSM/MSE;
 
 % 95% CI on (dfm, dfe)
 % good fit has < 0.05 confidence level p-value 
-pval = fcdf(1./max(0,Fval),dfe,dfm);
 % Significance probability for regression
+pval = fcdf(1./max(0,Fval),dfe,dfm);
+
+% calculate D statistics
+Nres = numel(res); 
+De = vecnorm(res,2);
+Dc = vecnorm(res,Inf);
+Dr = rms(res); % vecnorm(res,2)/sqrt(Nres)
+
+% DKW Inequality CI Constant
+alphalvl = 0.01;
+valE = sqrt((1/(2*Nres))*log(2/alphalvl));%#ok<*NASGU>
+
+% Modified CI Constant
+valEe = sqrt((1/(2))*log(2/alphalvl))*De;
+valEi = sqrt((1/(1))*log(2/alphalvl))*Dc;
+valEr = valE*Dr;
+
+ciE = valEi;
+
+% DY sum of squares for the residuals (errors)
+dres = dy_data - dy_dx_est;
+dSSE = sum((dres.^2));
+dDc = vecnorm(dres,Inf);
+dvalEi = sqrt((1/(1))*log(2/alphalvl))*dDc;
+dciE = dvalEi;
 
 % Set up GOF structure
-goodfit_stats = struct('residuals', res,...
+goodfit_stats = struct('residuals', res,'dresiduals', dres,...
     'SSE', SSE, 'RMSE', RMSE, 'MST', MST,...
     'R2', R2,'R2a', R2a, ...
     'dfe', dfe, ...
-    'Fval', Fval, 'pval', pval ...
+    'Fval', Fval, 'pval', pval, ...
+    'ciE', ciE, 'valEi', valEi, 'valEe', valEe, ...
+    'dciE', dciE ...
     );
 
 % %... set logaritmic scale
@@ -85,6 +115,5 @@ goodfit_stats = struct('residuals', res,...
 % 
 % tx1 = sprintf('%s: Covid-19 epidemic %s',...
 %     country,datestr(time0+length(length(C))-1));
-
 
 end

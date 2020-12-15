@@ -1,5 +1,5 @@
 function [x_data,y_data,ig_opts,ips_adata,ips_vdata,ips_pdata, time_data] ...
-    = xy_ipsort(x,y,n_ips,iplist_idx,ips_valley,ips_peak,time)
+    = xy_ipsort(spass,x,y,n_ips,iplist_idx,ips_valley,ips_peak,time)
 %XY_IPSORT sort peak and valley inflection points to their x and y values
 %  
 %   Transfer Inflection points to represent
@@ -51,11 +51,13 @@ for id = 1:n_ips
         catch
             % CASE 3.
             try
-                xpks(id) = x(end);
-                ymaxs(id) = (2.^1)*y(end) - y(ips_valley(id));
-%                 xmaxs(id) = xpks(id)*ymaxs(id)/(y(end));
+                xpks(id) = x(end)+5;
+                ypk = 2*y(end);
+               % ypk = (1/(2*0.2))*(y(end) - y(ips_valley(id))) + y(ips_valley(id));
+                ymaxs(id) = (2.^1)*ypk - y(ips_valley(id));
+               %  xmaxs(id) = xpks(id)*ymaxs(id)/(ypk);
                 xmaxs(id) =  xmins(id) + ...
-                    ((x(end)-xmins(id))*(ymaxs(id)-ymins(id))/(y(end)-ymins(id)));
+                    ((xpks(id)-xmins(id))*(ymaxs(id)-ymins(id))/(ypk-ymins(id)));
             catch
                 error("Bad...something wrong occured!")
             end
@@ -76,12 +78,26 @@ ig_opts = struct('n', n_ips, 'xmin', xmins, 'xmax', xmaxs,...
     );
 
 % readjust x-axis: to start from 0.
+if spass == false
 x_data = x(ips_valley(1):end)- ips_valley(1);
+
 y_data = y(ips_valley(1):end);
 ips_vdata = ips_valley - (ips_valley(1)-1);
 ips_pdata = ips_peak - (ips_valley(1)-1);
 ips_adata = iplist_idx - (ips_valley(1)-1);
+
 time_data = datetime(datestr(time(1) + x-1));
 time_data = time_data(ips_valley(1):end);
+else
+x_data = x(ips_valley(1):end);
+
+y_data = y(ips_valley(1):end);
+ips_vdata = ips_valley;
+ips_pdata = ips_peak;
+ips_adata = iplist_idx;
+
+time_data = datetime(datestr(time(1) + x-1));          
+end
+
 
 end

@@ -2,7 +2,11 @@
 
 [![View NLSIG_COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 
-A nlogistic-sigmoid modelling workflow for the COVID-19 pandemic growth
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
+
+[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+A playground for modelling the COVID-19 pandemic growth with the nlogistic-sigmoid function
 
 <img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/nlsig_avatar.png"/>
 
@@ -98,9 +102,9 @@ If interested in dedicating the time to port to other languages,
 please contact me.
 
 ## License
-This work is licensed under the [GNU AGPL](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE) 
+This work is frees software licensed under the [3-Clause-BSD](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE) 
 
-## Citation Details
+## Optional Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
 
 *Title*: On the nlogistic-sigmoid modelling for complex growth processes: in application to the COVID-19 pandemic

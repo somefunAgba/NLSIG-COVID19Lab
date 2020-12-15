@@ -1,1 +1,2 @@
-run('allcc_upd.m');
+% run the update all function
+allcc_upd;

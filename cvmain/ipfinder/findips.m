@@ -1,4 +1,4 @@
-function [iplist_idx] = findips(y,dys,d2ys,cpt_dists)
+function [iplist_idx] = findips(y,dy,dys,d2ys,cpt_dists,finer)
 %FINDIPS Find possible inflection points (peaks and valleys)
 %   Uses the mathematical necessary condition for
 %   finding inflection points (ips)
@@ -8,7 +8,7 @@ function [iplist_idx] = findips(y,dys,d2ys,cpt_dists)
 %
 %   Inputs:
 %   y:  data
-%   dy: first derivative
+%   dy,dys: first derivative
 %   d2ys: second derivative
 %   cpt_dists: (2-by-1 array) realistic consecutive difference bounds
 
@@ -25,6 +25,9 @@ k = 1;
 
 % realistic start-point of curve
 z = find(y==0);
+if isempty(z)
+    z = 1;
+end
 % this is the first valley ip
 firstip = z(end);
 iplist_idx(k) = firstip;
@@ -40,35 +43,31 @@ for J = 2:numel(d2ys)
     % deafult here is 25 days.
     % that is, we expect that no significant ip change 
     % can occur during this period.
-    if k > 1 && (mod(k,2)==0) % and k is even
-        cpt_dists2 = cpt_dists(2);
-    else %else: and k is odd
-        cpt_dists2 = cpt_dists(2); % same as when k is even, can be made different
-    end
+    cpt_dists2 = cpt_dists(2);
     if (sgns(J)~=sgns(J-1)) && (abs(y(J)) > 1) && (J - firstip > cpt_dists2)
 %         fprintf('possible id: %g\n',J);
         
         % peak check
-        if (k > 2) && (J <= numel(dys)-4) && (mod(k,2)==0)
-            % 1. check if possible detected peak point J is less than
-            % the last immediate detected valley point in the list:
-            % useful for points relatively close to each other.
-            % ACTION: this cannot be a peak point,
-            % remove the last point, which is also the last valley point
-            if (mean(dys(J-3:J+3)) - mean(dys(lastin-3:lastin+3)) <= 0)
-                k = k - 1;
-                % debug
-%                 disp(num2str(iplist_idx(k)) + " removed");
-                iplist_idx(k) = [];
-                lastin = iplist_idx(k-1);
-            end
-            % 2. check if possible detected peak is less than
-            % previous detected peak in the list
-            if ( mean(dys(J-3:J+3)) - mean(dys(lastin-3:lastin+3)) <= 0)
-                % debug:
-%                 disp(num2str(J)+' cannot be a peak');
-                continue;
-            end
+        if (k > 2) && (J <= numel(dys)-4) && (mod(k,2)==0) && ~finer
+%             % 1. check if possible detected peak point J is less than
+%             % the last immediate detected valley point in the list:
+%             % useful for points relatively close to each other.
+%             % ACTION: this cannot be a peak point,
+%             % remove the last point, which is also the last valley point
+%             if (mean(dys(J-3:J+3)) - mean(dys(lastin-3:lastin+3)) <= 0)
+%                 k = k - 1;
+%                 % debug
+%                 % disp(num2str(iplist_idx(k)) + " removed");
+%                 iplist_idx(k) = [];
+%                 lastin = iplist_idx(k-1);
+%             end
+%             % 2. check if possible detected peak is less than
+%             % previous detected peak in the list
+%             if ( mean(dys(J-3:J+3)) - mean(dys(lastin-3:lastin+3)) <= 0)
+%                 % debug:
+% %                 disp(num2str(J)+' cannot be a peak');
+%                 continue;
+%             end
         end       
         % valley check
         if (k > 2) && (J <= numel(dys)-4) && (mod(k,2)~=0)
@@ -79,7 +78,7 @@ for J = 2:numel(d2ys)
             % remove the last point, which is also the last peak point
             if (mean(dys(J-3:J+3)) - mean(dys(lastin-3:lastin+3)) > 0 )
                 k = k - 1;
-%                 disp(num2str(iplist_idx(k)) + " removed");
+                % disp(num2str(iplist_idx(k)) + " removed");
                 iplist_idx(k) = [];
                 lastin = iplist_idx(k-1);
             end
@@ -130,24 +129,38 @@ for J = 2:numel(d2ys)
         end
     end
 end
-%
+
 % Deal with Last detected point
-% CHECK: 
-% if last detected point is a peak (means the value of k is odd), 
+% CHECK: if last detected point is a peak (means the value of k is odd), 
 % but the d2ys value at the end points is bigger.
 % ACTION: remove that peak point.
 if (mod(k,2)~=0) && ...
-        (mean(dys(J-4:J)) - dys(iplist_idx(k-1)) > 0)
+        (mean(dy(J-2:J)) - dys(iplist_idx(k-1)) > 0)
     k = k - 1;
-%     disp(num2str(iplist_idx(k-1)) + " point removed. Can't be a peak!");
+%     disp(num2str(iplist_idx(k)) + " point removed. Can't be a peak!");
     iplist_idx(k) = [];
 end
 
-%% check for: no motion
+if (mod(k,2)~=0) && ...
+        (mean(dy(J-2:J)) - dys(iplist_idx(k-1)) > 0)
+    k = k - 1;
+%     disp(num2str(iplist_idx(k)) + " point removed. Can't be a peak!");
+    iplist_idx(k) = [];
+end
 
+% check if last valley point (max/min) was detected while plot is still
+% increasing.
+
+if (mod(k,2)==0) && (numel(y) - iplist_idx(end) <= 7) && ~finer
+    k = k - 1;
+%     disp(num2str(iplist_idx(k)) + " point removed. Can't be a valley!");
+    iplist_idx(k) = [];
+end
+
+% check for possible end, that is a saturation at the end.
 ed = numel(y);
 count = 0;
-for idx = ed:ed-7
+for idx = ed:iplist_idx(end)
     if y(idx) == y(idx-1)
         count = count + 1;
         if (mod(k,2)==0)

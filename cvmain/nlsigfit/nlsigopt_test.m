@@ -1,6 +1,6 @@
 
 %% Data
-clc;
+clc;close all;
 
 iopts.check_constraints = 0;
 iopts.shape = 's';
@@ -23,7 +23,7 @@ x_data = -1+xmin:dx:1+xmax;
 [y_real,dy_dx_data] = nlsig(x_data,0,iopts);
 rng default;
 y_data = y_real + rand(size(y_real));
-
+dy_data = gradient(y_data,1);
 %%
 clc; 
 opengl software;
@@ -50,7 +50,7 @@ lubnds = false;
 [sol,fval,exitflag,output,fitstats,...
     y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins] ...
     = set_probopts(x_data, y_data, dy_dx_data, nlsigfit_opts,sbounds,lubnds);
-[y_sol] = nlsig(x_data,0,sol);
+[y_sol,dy_sol] = nlsig(x_data,0,sol);
 
 % Bootstrap uncertainty CI bounds 
 % on finding a best fit solution
@@ -58,34 +58,43 @@ nboot = nlsigfit_opts.nboot;
 len_sol = nlsigfit_opts.len_sol;
 imposeconstr = nlsigfit_opts.imposeconstr;
 chngsolver = nlsigfit_opts.chngsolver;
+
+% boots = true;
+boots = false;
+if boots == true
 [y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
     fitstatslb,fitstatsub] ...
-    = nsligfp_bootstrap(x_data,y_data,sol,y_sol,len_sol,...
+    = nsligfp_bootstrap(x_data,y_data,dy_data,sol,y_sol,dy_sol,len_sol,...
     imposeconstr,chngsolver,nboot,fitstats,...
-    y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins); %#ok<ASGLU>
-
+    y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins);
+else
+[y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
+    best_fitstatslb,best_fitstatsub] ...
+    = nsligfp_dkw(x_data,y_data,dy_data,sol,y_sol,dy_sol,len_sol,...
+    imposeconstr,chngsolver,fitstats,... 
+    y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins);
+end
 %% 
 % Predict using 'sol', the obtained 'best'-fitting solution 
 % with the nlsig function
-[y_sollb] = nlsig(x_data,0,sol_lb);
-[y_solub] = nlsig(x_data,0,sol_ub);
+% [y_sollb] = nlsig(x_data,0,sol_lb);
+% [y_solub] = nlsig(x_data,0,sol_ub);
+
 % Colours
-khaki1 = [0.7 0.7 0.2]; %#ok<*NASGU>
-khaki2 = [0.7 0.7 0.5];
-khaki3 = [0.5 0.5 0.2];
-khaki4 = [0.22 0.7 0.7];
-darkgrey1 = [0.5 0.5 0.5];
-darkgrey2 = [0.7 0.7 0.7];
-lightgrey1 = [0.8 0.8 0.8];
-lightgrey2 = [0.9 0.9 0.9];
-red1 = [0.9 0.2 0.2];
-red2 = [0.9 0.2 0.5];
-red3 = [0.9 0.5 0.5];
+pick_colours;
+
 figure;
 plot(x_data,y_data,'+','MarkerSize',3,'Color',lightgrey1); 
 hold on;
 plot(x_data,y_sollb,'-.','Color',khaki4,'LineWidth',1); 
 plot(x_data,y_solub,'-.','Color',khaki3,'LineWidth',1); 
 plot(x_data,y_sol);
+plot(x_data,y_real,'+','MarkerSize',3,'Color',lightgrey1); 
 
-
+figure;
+plot(x_data,dy_data,'+','MarkerSize',3,'Color',lightgrey1); 
+hold on;
+plot(x_data,dy_sollb,'-.','Color',khaki4,'LineWidth',1); 
+plot(x_data,dy_solub,'-.','Color',khaki3,'LineWidth',1); 
+plot(x_data,dy_sol);
+plot(x_data,dy_dx_data,'+','MarkerSize',3,'Color',lightgrey1);

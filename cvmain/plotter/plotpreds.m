@@ -5,7 +5,7 @@ function fig = plotpreds(fig,country_code,time_data,x_data,y_data,dy_data,...
 
 try
     opengl software; % safety  
-    run('pick_colours.m');
+    pick_colours;
     chkfig = exist('fig','var');
     if chkfig==1 
         close(fig);
@@ -24,20 +24,27 @@ tmsg = " \fontsize{8} \fontname{Consolas}"+country_code+": \color[rgb]{0.5 0.7 0
 
 
 fig = figure('Name','FitCmp','NumberTitle','off');
+fig.Visible = 'off';
+fig.WindowState = 'minimized';
 t2 = tiledlayout(2,1);
 ax_t2 = nexttile(t2);
 
 title(tmsg);
 hold(ax_t2,'on');box on;
 
-plot(time_data,y_data,'MarkerSize',3,'Color',lightgrey1,'LineWidth',3);
-hold on;
+plot(time_data(iplines), y_data,'LineWidth',0.1, 'Color',[0.9 0.9 0.9]);
+iplines = (ips_adata(1))'*ones(size(y_data))';
+plot(time_data(iplines), y_data,'k','LineWidth',0.1);
+plot(time_data(ips_vdata),y_data(ips_vdata),'s')
+plot(time_data(ips_pdata),y_data(ips_pdata),'+')
+
+plot(time_data,y_data,'MarkerSize',3,'Color',lightgrey1,'LineWidth',0.5);
 plot(time_data,y_sollb,'-.','Color',khaki4,'LineWidth',1);
 plot(time_data,y_solub,'-.','Color',khaki3,'LineWidth',1);
 plot(time_data,y_sol,'Color',red2,'LineWidth',1.2);
-plot(time_data(ips_vdata),y_data(ips_vdata),'s')
-plot(time_data(ips_pdata),y_data(ips_pdata),'+')
-plot(time_data(iplines), y_data,'k:','LineWidth',0.15);
+
+
+
 
 ax_t2.XTickLabelRotation = 60;
 ax_t2.FontName = 'Consolas';
@@ -58,13 +65,15 @@ hold(ax_t2,'on');box(ax_t2,'on');
 
 area(ax_t2, dy_data,'EdgeColor',0.8*ones(1,3),...
     'FaceColor',0.9*ones(1,3),'FaceAlpha',0,'AlignVertexCenters','on');
-bar(ax_t2, dy_data,0.5,...
+bar(ax_t2, dy_data,0.5,'EdgeColor','none',...
     'FaceColor',0.65*ones(1,3),'FaceAlpha',0.1);
+
+plot(iplines,dy_data,'LineWidth',0.1, 'Color',[0.9 0.9 0.9]);
 
 plot(x_data, dy_sollb,'-.','Color',khaki4,'LineWidth',1);
 plot(x_data, dy_solub,'-.','Color',khaki3,'LineWidth',1);
 plot(x_data, dy_sol,'Color',red2,'LineWidth',1.2);
-plot(iplines,dy_data,'k:','LineWidth',0.15);
+
 hold(ax_t2,'off');
 axis(ax_t2,'tight')
 

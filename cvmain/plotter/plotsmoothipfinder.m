@@ -7,9 +7,9 @@ try
     opengl software; % safety
     run('pick_colours.m');
     chkfig = exist('fig','var');
-    if chkfig==1 
-        close(fig);
-    end   
+%     if chkfig==1 
+%         close(fig);
+%     end   
 catch
 end
 

@@ -68,7 +68,7 @@ nlsigfit_opts.lambda = 0.5*ones(n_ips,1);
 elseif trys == 5
 nlsigfit_opts.lambda = 6*ones(n_ips,1); 
 elseif trys == 6
-nlsigfit_opts.lambda = 12*ones(n_ips,1); 
+nlsigfit_opts.lambda = 12*ones(n_ips,1);  
 end
 x0.lambda = nlsigfit_opts.lambda;
 
@@ -190,8 +190,8 @@ end
 
 % Convert objfun to an optimization expression
 % to an explicit sum of squares of the fitting error
-objsse = sum((y_mdlfun - y_data).^2);
-atmp = sum((dy_dx_mdlfun - dy_data).^2); %#ok<NASGU> unused
+objsse = sum((y_mdlfun - y_data).^2) + sum((dy_dx_mdlfun - dy_data).^2); 
+% dfobjsse =  sum((dy_dx_mdlfun - dy_data).^2); %#ok<NASGU> unused
 
 % Create an optimization problem with objsse
 % as the explicit objective function.
@@ -262,7 +262,7 @@ y_est = evaluate(y_mdlfun,sol);
 dy_dx_est = evaluate(dy_dx_mdlfun, sol);
 
 % Compute residuals and other gof statistics
-fitstats = calc_stats(y_data,y_est,len_sol,n_ips);
+fitstats = calc_stats(y_data,y_est,dy_data,dy_dx_est,len_sol,n_ips);
 
 % check for best fit by using an ensemble of lambdas.
 if trys == 1
