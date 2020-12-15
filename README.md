@@ -4,7 +4,6 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
 [![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG_COVID19Lab)](https://github.com/somefunAgba/NLSIG_COVID19Lab/issues)
 
-
 <!--[![License: ISC-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://opensource.org/licenses/ISC)-->
 
 
