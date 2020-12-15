@@ -28,18 +28,20 @@ bibliography: paper.bib
 
 The growth (flow or trend) dynamics in any direction for many natural phenomena such as epidemic spreads, population growths, 
 adoption of new ideas can be approximately modelled by the logistic-sigmoid curve [@taylorForecastingScale2018]. 
+In particular, the logistic-sigmoid function with time-varying parameters is the core trend 
+model in Facebook's Prophet model for time-series growth-forecasting 
+at scale [@taylorForecastingScale2018] on big data. 
 The scientific basis for this prevalence is given in [@bejanConstructalLawOrigin2011]. 
 Such growth-processes can be viewed as complex input--output systems that involve 
 multiple peak inflection phases with respect to time. An idea that 
 can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. 
-In particular, the logistic-sigmoid function with time-varying parameters is the core trend model in Facebook's Prophet model for time-series growth-forecasting 
-at scale [@taylorForecastingScale2018] on big data. 
 
-Consequently, a unified, modern logistic-sigmoid function definition which considers restricted growth from a two-dimensional perspective is the nlogistic-sigmoid function [@somefunLogisticsigmoidNlogisticsigmoidModelling2020] (`NLSIG`) or logistic neural-network (`LNN`) pipeline.
+A unified, modern logistic-sigmoid function definition which considers restricted growth from 
+a two-dimensional perspective is the nlogistic-sigmoid function 
+[@somefunLogisticsigmoidNlogisticsigmoidModelling2020] (`NLSIG`) or logistic neural-network (`LNN`) pipeline. 
+In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for modelling 
+of the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
 
-In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for modelling of the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
-
-It is useful as a quick real-time monitoring tool for the COVID-19 pandemic. `NLSIG-COVID19Lab` was designed to be used by humans, both researchers and non-reserachers. This work won the best paper at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
 
 # Statement of need
 
@@ -55,6 +57,16 @@ considered in the sum increases, regression analysis becomes more cumbersome and
 @chowellNovelSubepidemicModeling2019;@taylorForecastingScale2018]. 
 These limitations are efficiently overcome by the nlogistic-sigmoid function (or logistic neural-network pipeline) for describing logistic growth.
 
+
+The Logistic-growth benefits are:
+
+ - retains functional simplicity
+	
+ - unified function definition
+	
+ - improved nonlinear modelling power
+	
+	
 The development of `NLSIG-COVID19Lab` was motivated largely by research needs to illustrate the power of the nlogistic-sigmoid neural pipeline. 
 
 Notably, instead of engaging in false prophecy or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020] on the contrary, for the logistic curve we instead make projections by means of:
@@ -66,6 +78,8 @@ Notably, instead of engaging in false prophecy or predictions of the cumulative 
 
 The UI (both scripts and graphical) for the `NLSIG-COVID19Lab` package was designed to provide a user-friendly interface for modelling the time-series
 growth of the COVID-19 epidemic through the `NLSIG` by using official datasets. 
+
+It is useful as a quick real-time monitoring tool for the COVID-19 pandemic. `NLSIG-COVID19Lab` was designed to be used by humans, both researchers and non-reserachers. This work won the best paper at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
