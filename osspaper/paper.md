@@ -79,9 +79,11 @@ Notably, instead of engaging in false prophecy or predictions of the cumulative 
 The UI (both scripts and graphical) for the `NLSIG-COVID19Lab` package was designed to provide a user-friendly interface for modelling the time-series
 growth of the COVID-19 epidemic through the `NLSIG` by using official datasets. 
 
-It is useful as a quick real-time monitoring tool for the COVID-19 pandemic. `NLSIG-COVID19Lab` was designed to be used by humans, both researchers and non-reserachers. This work won the best paper at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
+`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
 
-`NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
+This work demonstrating `NLSIG` to COVID-19 modelling won the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
+
+The `NLSIG` is a logistic neural-network machine-learning tool under active development. `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
 
 # Core Data Source
