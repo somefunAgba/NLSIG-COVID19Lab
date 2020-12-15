@@ -75,9 +75,7 @@ Notably, instead of engaging in false prophecy or predictions of the cumulative 
 
 - adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% (1-0.01) probability. 
 
-`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
-
-The application of the `NLSIG` to modelling the COVID-19 pandemic won the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
+`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling the COVID-19 pandemic easy and reliable.
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
@@ -117,6 +115,12 @@ and referenced from text using \autoref{fig:example].
 
 Figure sizes can be customized by adding an optional second parameter:
 ![Caption for example figure.](figure.png){ width=20% ] -->
+
+# Related research and software
+
+To the best of knowledge, we are not aware of other software packages or tool with a similar purpose.
+The application of the `NLSIG` to modelling the COVID-19 pandemic won the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
+
 
 # Acknowledgements
 
