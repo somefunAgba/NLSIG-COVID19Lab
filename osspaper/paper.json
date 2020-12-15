@@ -1,0 +1,23 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "http://orcid.org/0000-0002-5171-8026",
+      "@type": "Person",
+      "email": "oasomefun@futa.edu.ng",
+      "name": "Oluwasegun A. Somefun",
+      "affiliation": "Federal University of Technology Akure."
+    }
+  ],
+  "identifier": ,
+  "codeRepository": "https://github.com/somefunAgba/NLSIG_COVID19Lab",
+  "datePublished": "2020-12-8",
+  "dateModified": "2020-12-16",
+  "dateCreated": "2020-12-8",
+  "description": "A modern logistic-growth tool (nlogistic-sigmoid) for modelling the dynamics of the COVID-19 pandemic process",
+  "keywords": "software, machine learning, neural-network, COVID-19",
+  "license": "MIT",
+  "title": "nlsig",
+  "version": "v1.1.0"
+}
