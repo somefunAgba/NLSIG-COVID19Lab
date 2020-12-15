@@ -1,6 +1,8 @@
 NLSIG-COVID19Lab: A nlogistic-sigmoid modelling laboratory 
                   for the COVID-19 pandemic growth
+				  
 Copyright (c) 2020, Oluwasegun Somefun
+
 All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
