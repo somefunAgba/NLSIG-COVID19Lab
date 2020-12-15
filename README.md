@@ -102,7 +102,7 @@ If interested in dedicating the time to port to other languages,
 please contact me.
 
 ## License
-This work is frees software licensed under the [3-Clause-BSD](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE) 
+This work is frees software licensed under the [3-Clause-BSD](https://github.com/somefunAgba/NLSIG_COVID19Lab/blob/main/LICENSE.md) 
 
 ## Optional Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
