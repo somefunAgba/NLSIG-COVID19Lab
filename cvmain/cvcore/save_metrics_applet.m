@@ -21,9 +21,17 @@ if ~(ismcc || isdeployed)
         try
             cd(fullfile(rootfp,'measures','infs'))
         catch
-            cd(fullfile(rootfp,'measures'));
-            mkstore("infs");
-            cd(fullfile(rootfp,'measures','infs'));
+            try
+                cd(fullfile(rootfp,'measures'))
+                mkstore("infs");
+                cd(fullfile(rootfp,'measures','infs'));               
+            catch
+                cd(fullfile(rootfp));
+                mkstore("measures");
+                cd(fullfile(rootfp,'measures'));
+                mkstore("infs");
+                cd(fullfile(rootfp,'measures','infs'));
+            end
         end
         mkstore(datefd);
         metricsfile = fullfile(rootfp, 'measures', 'infs', ...
@@ -32,9 +40,17 @@ if ~(ismcc || isdeployed)
         try
             cd(fullfile(rootfp,'measures','dths'))
         catch
-            cd(fullfile(rootfp,'measures'));
-            mkstore("infs");
-            cd(fullfile(rootfp,'measures','dths'));
+            try
+                cd(fullfile(rootfp,'measures'))
+                mkstore("dths");
+                cd(fullfile(rootfp,'measures','dths'));               
+            catch
+                cd(fullfile(rootfp));
+                mkstore("measures");
+                cd(fullfile(rootfp,'measures'));
+                mkstore("dths");
+                cd(fullfile(rootfp,'measures','dths'));
+            end
         end
         mkstore(datefd);
         metricsfile = fullfile(rootfp, 'measures', 'dths', ...
