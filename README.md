@@ -78,7 +78,7 @@ World Health Organization
 	subfolders respectively.
 	
 	
-## Showcase
+## Example
 Running 'query_single.m' with the search_code as ``WD``
 gave the following model fit for the ongoing COVID-19 pandemic as at 6th December 2020.
 
@@ -92,16 +92,20 @@ gave the following model fit for the ongoing COVID-19 pandemic as at 6th Decembe
 <img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/landingWDd.png"/>
 </p>
 
+*Metrics Interpretation*: For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is most likely a peak period. For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time may most likely be a peak period but could also be a pre-peak period.
+
 <!--#### Recovered-->
 
-*Metrics Interpretation*: For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is most likely a peak period. For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time may most likely be a peak period but could also be a pre-peak period.	
+## GUI
+
+
  
 ## Miscellanous
 If interested in dedicating the time to port to other languages, 
 please contact me.
 
 ## License
-This work is free software under the [BSD 3-Clause "New" or "Revised" License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/COPYING.md) 
+This work is free software under the [BSD 3-Clause "New" or "Revised" License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE) 
 
 ## (Optional) Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
