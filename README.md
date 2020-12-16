@@ -96,9 +96,11 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 <!--#### Recovered-->
 
 ## GUI
-![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png){ width=70% } 
+Alternatively, using Matlab's GUI application
 
-![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](osspaper/wdigui.png){ width=70% }
+![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png)
+
+![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](osspaper/wdigui.png)
 
  
 ## Miscellanous
