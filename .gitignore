@@ -5,3 +5,5 @@
 /extrafigs/*
 /osspaper/n*.txt
 /osspaper/n*.md
+/applet/*.prj
+/applet/*.mlapp

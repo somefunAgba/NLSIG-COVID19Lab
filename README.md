@@ -59,7 +59,6 @@ World Health Organization
 	Query COVID-19 pandemic for all country codes.
 
 
-
 3.	To view saved model fit results and logistic metrics for infections and deaths. 
 	Open the 'assets' folder and 'measures' folder
 
@@ -80,7 +79,7 @@ World Health Organization
 	
 ## Example
 Running 'query_single.m' with the search_code as ``WD``
-gave the following model fit for the ongoing COVID-19 pandemic as at 6th December 2020.
+gave the following model fit for the ongoing COVID-19 pandemic with respect to the last updated date of the data.
 
 #### Infections
 <p align="center">
@@ -97,7 +96,9 @@ gave the following model fit for the ongoing COVID-19 pandemic as at 6th Decembe
 <!--#### Recovered-->
 
 ## GUI
+![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png){ width=70% } 
 
+![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](osspaper/wdigui.png){ width=70% }
 
  
 ## Miscellanous

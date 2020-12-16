@@ -7,8 +7,14 @@ datefd =  string(time_data(end));
 if ~(ismcc || isdeployed)
     [thisfp,thisfn,~]= fileparts(which('exportplots_applet.m'));
     rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'plotter'], '');
-    if isfile(fullfile(thisfp,thisfn+".m"))      
+    if isfile(fullfile(thisfp,thisfn+".m"))
+        try           
         cd(fullfile(rootfp,'assets'));
+        catch
+            cd(fullfile(rootfp));
+            mkstore("assets");
+            cd(fullfile(rootfp,'assets'));
+        end
         mkstore(datefd);
         ffname = fullfile(rootfp,'assets',datefd);
     end

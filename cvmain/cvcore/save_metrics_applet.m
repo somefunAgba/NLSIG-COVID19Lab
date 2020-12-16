@@ -18,12 +18,24 @@ datefd =  string(time_data(end));
 %% 2. File name for metrics
 if ~(ismcc || isdeployed)
     if focus == 'i'
-        cd(fullfile(rootfp,'measures','infs'))
+        try
+            cd(fullfile(rootfp,'measures','infs'))
+        catch
+            cd(fullfile(rootfp,'measures'));
+            mkstore("infs");
+            cd(fullfile(rootfp,'measures','infs'));
+        end
         mkstore(datefd);
         metricsfile = fullfile(rootfp, 'measures', 'infs', ...
             datefd,'imetrics_df.xlsx');
     elseif focus == 'd'
-        cd(fullfile(rootfp,'measures','dths'))
+        try
+            cd(fullfile(rootfp,'measures','dths'))
+        catch
+            cd(fullfile(rootfp,'measures'));
+            mkstore("infs");
+            cd(fullfile(rootfp,'measures','dths'));
+        end
         mkstore(datefd);
         metricsfile = fullfile(rootfp, 'measures', 'dths', ...
             datefd,'dmetrics_df.xlsx');

@@ -75,7 +75,7 @@ complex to be encoded in current mathematical models [@christopoulosEfficientIde
 
 - adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a non-parametric confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% probability ($\alpha=0.01$) by default. 
 
-`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
+`NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-researchers. 
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
