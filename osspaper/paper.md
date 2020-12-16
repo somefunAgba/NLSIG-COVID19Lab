@@ -85,9 +85,9 @@ see \autoref{fig:wgui1},\autoref{fig:wgui2}) are designed to provide a user-frie
 to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
 
 
-![GUI Demo A. \label{fig:wgui1}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdc_gui.png){ width=40% } 
+![GUI Demo A. \label{fig:wgui1}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdcgui.png){ width=40% } 
 
-![GUI Demo B. \label{fig:wgui2}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdi_gui.png){ width=40% }
+![GUI Demo B. \label{fig:wgui2}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdigui.png){ width=40% }
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
