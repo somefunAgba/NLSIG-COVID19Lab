@@ -5,7 +5,7 @@
 [![View NLSIG-COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
 
-A playground for modelling the COVID-19 pandemic growth with the nlogistic-sigmoid function
+A playground for modelling and monitoring the time-series COVID-19 pandemic growth with the nlogistic-sigmoid function
 
 <img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/nlsig_avatar.png"/>
 
@@ -20,6 +20,18 @@ nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definit
 World Health Organization
 
 ## Getting Started : MATLAB
+
+
+### GUI
+First, provided is a MATLAB APP to allow easy use.
+
+![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png)
+
+![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](osspaper/wdigui.png)
+
+
+### API 
+Although, uses the same source as the GUI, this is a script-based application-interface and entirely distinct from the MATLAB APP. Procedure for use are outlined as follows:
 
 1. Run 'su.m' to add all the project folders and files to MATLAB's path
    or type ``su`` in the command window
@@ -118,13 +130,6 @@ For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are
 For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period.
 
 <!--#### Recovered-->
-
-## GUI
-Alternatively, using Matlab's GUI application
-
-![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png)
-
-![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](osspaper/wdigui.png)
 
  
 ## Miscellanous
