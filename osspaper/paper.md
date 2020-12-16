@@ -84,9 +84,9 @@ The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and gra
 provide a user-friendly interface to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
 
 
-![GUI Demo A. \label{fig:wgui}](wdc_gui.png){width=20%} 
+![GUI Demo A. \label{fig:wgui}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdc_gui.png){width=20%} 
 
-![GUI Demo B. \label{fig:wgui2}](wdi_gui.png){width=50%}
+![GUI Demo B. \label{fig:wgui2}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdi_gui.png){width=50%}
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
