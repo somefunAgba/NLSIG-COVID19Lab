@@ -53,7 +53,7 @@ which have largely resulted in erroneous identification of the epidemic's progre
 Notably, two recurring limitations of the logistic definitions in the literature and other software packages exist. A trend that has continued since the first logistic-sigmoid function introduction [@bacaerVerhulstLogisticEquation2011]. 
 
 First is that, the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. 
-Second is that, during optimization, the estimation of the logistic hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
+Second is that, during optimization, estimation of the logistic hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
 considered in the sum increases, regression analysis becomes more cumbersome and complicated as can be observed in these works [@leeEstimationCOVID19Spread2020;@batistaEstimationStateCorona2020;
 @hsiehRealtimeForecastMultiphase2006;@wuGeneralizedLogisticGrowth2020;
 @chowellNovelSubepidemicModeling2019;@taylorForecastingScale2018]. 
@@ -66,14 +66,14 @@ These limitations are efficiently overcome by the nlogistic-sigmoid function (or
 	
  - improved nonlinear modelling power
 		
-The development of the `NLSIG-COVID19Lab` was motivated largely by research needs to 
-illustrate the power of the nlogistic-sigmoid neural pipeline. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling and monitoring the COVID-19 pandemic easier and reliable. Notably, instead of engaging in false prophecy 
+Ultimately, the development of the `NLSIG-COVID19Lab` was motivated by research needs, in that, it 
+illustrates the power of the nlogistic-sigmoid neural pipeline. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling and monitoring the COVID-19 pandemic easier and reliable. Notably, instead of engaging in false prophecy 
 or predictions on the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and 
-complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], on the contrary, this software package make projections by means of:
+complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], on the contrary, this software package makes projections by means of:
 
--  a two-dimensional perspective in form of two metrics (YIR and XIR) for robust monitoring of the growth-process being modelled in an area or locale of interest. 
+-  two-dimensional perspective metrics (YIR and XIR) for robust monitoring of the growth-process being modelled in an area or locale of interest. 
 
-- adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% (1-0.01) probability by default. 
+- adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a non-parametric confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% probability ($\alpha=0.01$) by default. 
 
 `NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
 
