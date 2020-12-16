@@ -23,7 +23,7 @@ World Health Organization
 
 
 ### GUI
-First, provided is a MATLAB APP to allow easy use.
+First, provided is a MATLAB APP to allow for easy use.
 
 ![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png)
 
