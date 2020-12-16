@@ -26,19 +26,17 @@ bibliography: paper.bib
 
 # Summary
 
-The growth (flow or trend) dynamics in any direction for most natural phenomena such as epidemic spreads, population growths, 
-adoption of new ideas can be approximately modelled by the logistic-sigmoid curve. 
+The growth (flow or trend) dynamics in any direction for most natural phenomena such as: epidemic spreads, population growths, 
+adoption of new ideas, and many more, can be approximately modelled by the logistic-sigmoid curve. 
 In particular, the logistic-sigmoid function with time-varying parameters is the core trend 
 model in Facebook's Prophet model for time-series growth-forecasting 
 at scale [@taylorForecastingScale2018] on big data. 
 The scientific basis for this prevalence is given in [@bejanConstructalLawOrigin2011]. 
 Such growth-processes can be viewed as complex input--output systems that involve 
 multiple peak inflection phases with respect to time. An idea that 
-can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. 
+can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. A modern definition for the logistic-sigmoid growth which considers restricted growth from  a two-dimensional perspective is the nlogistic-sigmoid function (`NLSIG`) [@somefunLogisticsigmoidNlogisticsigmoidModelling2020] 
+or logistic neural-network (`LNN`) pipeline. 
 
-A unified, modern logistic-sigmoid function definition which considers restricted growth from 
-a two-dimensional perspective is the nlogistic-sigmoid function 
-[@somefunLogisticsigmoidNlogisticsigmoidModelling2020] (`NLSIG`) or logistic neural-network (`LNN`) pipeline. 
 In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for modelling 
 the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
 
@@ -54,7 +52,8 @@ which have largely resulted in erroneous identification of the epidemic's progre
 
 Notably, two recurring limitations of the logistic definitions in the literature and other software packages exist. A trend that has continued since the first logistic-sigmoid function introduction [@bacaerVerhulstLogisticEquation2011]. 
 
-First is that, the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. Second, the estimation of the logistic hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
+First is that, the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. 
+Second is that, during optimization, the estimation of the logistic hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
 considered in the sum increases, regression analysis becomes more cumbersome and complicated as can be observed in these works [@leeEstimationCOVID19Spread2020;@batistaEstimationStateCorona2020;
 @hsiehRealtimeForecastMultiphase2006;@wuGeneralizedLogisticGrowth2020;
 @chowellNovelSubepidemicModeling2019;@taylorForecastingScale2018]. 
@@ -63,35 +62,36 @@ These limitations are efficiently overcome by the nlogistic-sigmoid function (or
 	
  - unified function definition
  
- - retains functional simplicity and efficient computation
+ - functional simplicity and efficient computation
 	
  - improved nonlinear modelling power
 		
 The development of the `NLSIG-COVID19Lab` was motivated largely by research needs to 
-illustrate the power of the nlogistic-sigmoid neural pipeline. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling the COVID-19 pandemic easy and reliable. Notably, instead of engaging in false prophecy 
-or predictions of the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and 
-complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], on the contrary, in this software package we instead make projections by means of:
+illustrate the power of the nlogistic-sigmoid neural pipeline. `NLSIG-COVID19Lab` provides an optimization workflow with functions to make modelling and monitoring the COVID-19 pandemic easier and reliable. Notably, instead of engaging in false prophecy 
+or predictions on the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and 
+complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], on the contrary, this software package make projections by means of:
 
-- two metrics for robust projective measurements of the modelled time-evolution of a growth-process in an area or locale of interest. 
+-  a two-dimensional perspective in form of two metrics (YIR and XIR) for robust monitoring of the growth-process being modelled in an area or locale of interest. 
 
-- adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% (1-0.01) probability. 
+- adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% (1-0.01) probability by default. 
 
 `NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans, both researchers and non-reserachers. 
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
-The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and graphical user interface, 
-see \autoref{fig:wdcgui},\autoref{fig:wdigui}) are designed to provide a user-friendly interface 
-to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
+The user-client end (both user application scripts and graphical user interface) of the `NLSIG-COVID19Lab` 
+is designed to provide a user-friendly interface demonstrating the `NLSIG` modelling power for time-series growth processes from data. 
+In this case, the growth-process is the time-series COVID-19 pandemic growth from official datasets (see \autoref{fig:wdcgui} and \autoref{fig:wdigui}).
 
+![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](wdcgui.png){ width=70% } 
 
-![GUI Layout (World Cummulative Infections). \label{fig:wdcgui}](wdcgui.png){ width=40% } 
-
-![GUI Layout (World Incident Infections). \label{fig:wdigui}](wdigui.png){ width=40% }
+![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](wdigui.png){ width=70% }
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
+
 * World Health Organization
+
 * Center for Systems Science and Engineering at the Johns Hopkins University.
 
 
