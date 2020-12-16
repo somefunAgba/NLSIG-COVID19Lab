@@ -80,13 +80,14 @@ complex to be encoded in current mathematical models [@christopoulosEfficientIde
 
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
-The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and graphical user interface, see \autoref{fig:wgui1;fig:wgui2}) are designed to 
-provide a user-friendly interface to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
+The API and UI for the `NLSIG-COVID19Lab` (both user application scripts and graphical user interface, 
+see \autoref{fig:wgui1},\autoref{fig:wgui2}) are designed to provide a user-friendly interface 
+to demonstrate the `NLSIG` modelling of the time-series COVID-19 pandemic growth from official datasets. 
 
 
-![GUI Demo A. \label{fig:wgui}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdc_gui.png){width=20%} 
+![GUI Demo A. \label{fig:wgui}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdc_gui.png){ width=20% } 
 
-![GUI Demo B. \label{fig:wgui2}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdi_gui.png){width=50%}
+![GUI Demo B. \label{fig:wgui2}](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/osspaper/wdi_gui.png){ width=20% }
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
