@@ -80,7 +80,7 @@ complex to be encoded in current mathematical models [@christopoulosEfficientIde
 `NLSIG-COVID19Lab` is currently written in MATLAB but will be implemented in other languages in the future. 
  
 The user-client end (both user application scripts and graphical user interface) of the `NLSIG-COVID19Lab` 
-is designed to provide a user-friendly interface demonstrating the `NLSIG` modelling power for time-series growth processes from data. 
+is designed to provide a friendly interface demonstrating the `NLSIG` modelling power for time-series growth processes from data. 
 In this case, the growth-process is the time-series COVID-19 pandemic growth from official datasets (see \autoref{fig:wdcgui} and \autoref{fig:wdigui}).
 
 ![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](wdcgui.png){ width=70% } 
