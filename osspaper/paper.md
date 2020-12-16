@@ -85,6 +85,7 @@ provide a user-friendly interface to demonstrate the `NLSIG` modelling of the ti
 
 
 ![GUI Demo A.\label{fig:wgui1]](wdc_gui.png){ width=20% ] 
+
 ![GUI Demo B.\label{fig:wgui2]](wdi_gui.png){ width=50% ] 
 
 ### Core Data Source

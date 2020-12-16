@@ -89,6 +89,7 @@ try
     if update == 1
         % Go online or fall back to last local copy.
         url="https://covid19.who.int/WHO-COVID-19-global-data.csv";
+        
         try
             websave("tmp.csv",url);
             % convert csv file to table structure,
@@ -128,6 +129,13 @@ try
                 end
             end
         end
+        
+%         try
+%            repo = "csse_covid_19_data/csse_covid_19_time_series/...
+%            time_series_covid19_recovered_global.csv";
+%            url = https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv
+%         catch
+%         end
         
         % Read country code and name from extracted WHO global data
         if state 
