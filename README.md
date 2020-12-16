@@ -3,7 +3,7 @@
 [![View NLSIG-COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
 [![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG-COVID19Lab)](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues)
-[![License: BSD-3-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://opensource.org/licenses/ISC)
+[![License: BSD-3-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE)
 
 
 A playground for modelling the COVID-19 pandemic growth with the nlogistic-sigmoid function
@@ -102,7 +102,7 @@ If interested in dedicating the time to port to other languages,
 please contact me.
 
 ## License
-This work is free software under the [ISC License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/COPYING.md) 
+This work is free software under the [BSD 3-Clause "New" or "Revised" License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/COPYING.md) 
 
 ## (Optional) Citation Details
 *Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
