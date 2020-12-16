@@ -115,7 +115,7 @@ and refer to \autoref{eq:fourier] from text.
 
 # Related research and software
 
-To the best of knowledge, we are unaware of other software packages or tool with a similar purpose.
+To the best of knowledge, we are unaware of any other software packages or tool providing a similar purpose or functionality for describing the logistic growth of the COVID-19 pandemic from a realistic finite two-dimensional perspective of natural growth.
 
 This application of the `NLSIG` to modelling the COVID-19 pandemic was selected as the best paper at the *2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop, December 3-4, 2020*.
 
