@@ -92,7 +92,7 @@ As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is source
 
 * World Health Organization
 
-* Center for Systems Science and Engineering at the Johns Hopkins University.
+* Johns Hopkins University Center for Systems Science and Engineering
 
 
 <!-- # Mathematics
