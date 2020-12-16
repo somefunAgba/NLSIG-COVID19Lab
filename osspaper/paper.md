@@ -18,7 +18,7 @@ authors:
   - name: Folasade M. Dahunsi
     affiliation: 1
 affiliations:
- - name: Federal University of Technology Akure
+ - name: Federal University of Technology Akure, Nigeria
    index: 1
 date: 15 December 2020
 bibliography: paper.bib
