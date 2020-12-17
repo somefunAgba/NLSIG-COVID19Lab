@@ -26,6 +26,11 @@ SSM =  sum((regs.^2));
 res = y_data - y_est;
 SSE = sum((res.^2));
 
+% normalized residuals to values between 0 and 1
+res_normcdf = normalize(y_data,'range') - normalize(y_est,'range');
+
+%% R2 and F-stats
+
 % coefficient of determination / goodness of fit
 % compute R-squared, but avoid divide by zero warning
 if ~isequal(SST,0)
@@ -42,10 +47,6 @@ else % SST==0 && SSE ~== 0
 end
 
 % p, number of regression parameters          
-
-% adjusted R2
-% R2a = (numel(y_data) - 1)/(numel(y_data) - p);
-% R2a = 1 - ((1 - R2)*R2a);
 
 % Degrees of Freedom for Model Variance
 dfm = p - 1; % p > 1
@@ -76,28 +77,53 @@ Fval = MSM/MSE;
 % Significance probability for regression
 pval = fcdf(1./max(0,Fval),dfe,dfm);
 
-% calculate D statistics
+%% KS and DKW stats
+
+% calculate D statistic(s)
+% number of samples
 Nres = numel(res); 
+% euclidean distance or 2-norm
 De = vecnorm(res,2);
+% chebyschev distance or max-norm or sup-norm
 Dc = vecnorm(res,Inf);
-Dr = rms(res); % vecnorm(res,2)/sqrt(Nres)
+% average 2-norm or RMS distance
+% Dr = rms(res); % vecnorm(res,2)/sqrt(Nres)
+
+% normalized D statistic
+normDc = vecnorm(res_normcdf,Inf);
+
+% alpha-level of significance
+alphalvl = 0.01; 
 
 % DKW Inequality CI Constant
-alphalvl = 0.01;
-valE = sqrt((1/(2*Nres))*log(2/alphalvl));%#ok<*NASGU>
+C = exp(1);
+% C = 2;
 
-% Modified CI Constant
-valEe = sqrt((1/(2))*log(2/alphalvl))*De;
-valEi = sqrt((1/(1))*log(2/alphalvl))*Dc;
-valEr = valE*Dr;
+% Critical value at alpha-level of the 
+% one-sample Kolmogorov-Smirnov test for samples of size n
+% valE1 = sqrt((1/(2*Nres))*log(C/alphalvl));
+% two-sample Kolmogorov-Smirnov test for samples of size n
+valE2 = sqrt((1/(Nres))*log(C/alphalvl));
 
+if normDc > valE2
+    KSgof = alphalvl;
+elseif normDc <= valE2
+    KSgof = 1-alphalvl;
+end
+
+% Modified CI Constants
+valEe = sqrt((1/(2))*log(C/alphalvl))*De;
+valEi = sqrt((1/(1))*log(C/alphalvl))*Dc;
+% CI value for Y
 ciE = valEi;
 
 % DY sum of squares for the residuals (errors)
 dres = dy_data - dy_dx_est;
-dSSE = sum((dres.^2));
+%dSSE = sum((dres.^2));
+
 dDc = vecnorm(dres,Inf);
-dvalEi = sqrt((1/(1))*log(2/alphalvl))*dDc;
+dvalEi = sqrt((1/(1))*log(C/alphalvl))*dDc;
+% CI value for DY
 dciE = dvalEi;
 
 % Set up GOF structure
@@ -107,7 +133,7 @@ goodfit_stats = struct('residuals', res,'dresiduals', dres,...
     'dfe', dfe, ...
     'Fval', Fval, 'pval', pval, ...
     'ciE', ciE, 'valEi', valEi, 'valEe', valEe, ...
-    'dciE', dciE ...
+    'dciE', dciE, 'KSgof', KSgof, 'normDc', normDc ...
     );
 
 % %... set logaritmic scale
