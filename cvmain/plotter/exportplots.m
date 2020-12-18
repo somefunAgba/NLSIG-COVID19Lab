@@ -22,6 +22,7 @@ end
 
 exportgraphics(gcf, country_code+focus+".eps",'Resolution',300)
 exportgraphics(gcf, country_code+focus+".pdf",'Resolution',300)
+exportgraphics(gcf, country_code+focus+".png",'Resolution',300)
 cd(old_dir);
 
 end

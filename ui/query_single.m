@@ -5,7 +5,7 @@ clear all; %#ok<CLALL>
 rng(1);
 
 % select one country code or use 'WD' for worldwide code
-search_code = "WD";
+search_code = "US";
 % update is either: 0 or 1
 % use to get updated data when connected to the internet
 % processing via internet may be slow for multiple countries.
@@ -18,8 +18,8 @@ nboot = 30;
 
 
 % idx = 2:2;
-% idx = 1:2;
-idx = 1:1;
+idx = 1:2;
+% idx = 1:1;
 
 focus = {'i','d'};
 for id = idx

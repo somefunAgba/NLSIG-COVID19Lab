@@ -81,11 +81,15 @@ complex to be encoded in current mathematical models [@christopoulosEfficientIde
  
 The user-client end (both user application scripts and graphical user interface) of the `NLSIG-COVID19Lab` 
 is designed to provide a friendly interface demonstrating the `NLSIG` modelling power for time-series growth processes from data. 
-In this case, the growth-process is the time-series COVID-19 pandemic growth from official datasets (see \autoref{fig:wdcgui} and \autoref{fig:wdigui}).
+In this case, the growth-process is the time-series COVID-19 pandemic growth from official datasets (see \autoref{fig:iwdcgui} and \autoref{fig:iwdigui}).
 
-![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](wdcgui.png){ width=70% } 
+![GUI Layout showing the Total Cummulative COVID-19 Infections in the World. \label{fig:iwdcgui}](inf_wd_c_gui.png){ width=70% } 
 
-![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](wdigui.png){ width=70% }
+![GUI Layout showing the Total Incident COVID-19 Infections in the World. \label{fig:iwdigui}](inf_wd_i_gui.png){ width=70% }
+
+![GUI Layout showing the Total Cummulative COVID-19 Deaths in the USA. \label{fig:dwdcgui}](dth_wd_c_gui.png){ width=70% } 
+
+![GUI Layout showing the Total Incident COVID-19 Deaths in the USA. \label{fig:dwdigui}](dth_wd_i_gui.png){ width=70% }
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:

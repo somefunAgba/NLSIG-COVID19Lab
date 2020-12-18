@@ -25,9 +25,9 @@ World Health Organization
 ### GUI
 First, provided is a MATLAB APP to allow for easy use.
 
-![GUI Layout showing the Total Cummulative Infections of the World. \label{fig:wdcgui}](osspaper/wdcgui.png)
+![GUI Layout showing the Total Cummulative COVID-19 Infections of the World. \label{fig:wdcgui}](osspaper/inf_wd_c_gui.png)
 
-![GUI Layout showing the Total Incident Infections of the World. \label{fig:wdigui}](osspaper/wdigui.png)
+![GUI Layout showing the Total Incident COVID-19 Infections of the World. \label{fig:wdigui}](osspaper/inf_wd_i_gui.png)
 
 
 ### API 
@@ -93,15 +93,36 @@ Although, uses the same source as the GUI, this is a script-based application-in
 Running 'query_single.m' with the search_code as ``WD``
 gave the following model fit for the ongoing COVID-19 pandemic with respect to the last updated date of the data.
 
-#### Infections
+#### WORLD COVID-19 Infections
 <p align="center">
- <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/landingWDi.png"/>
+ <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/WDi.png"/>
 </p>
 
-#### Deaths
+#### WORLD COVID-19 Deaths
 <p align="center">
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/landingWDd.png"/>
+<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/WDd.png"/>
 </p>
+
+#### CHINESE COVID-19 Infections
+<p align="center">
+ <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/CNi.png"/>
+</p>
+
+#### CHINESE COVID-19 Deaths
+<p align="center">
+<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/CNd.png"/>
+</p>
+
+#### USA COVID-19 Infections
+<p align="center">
+ <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/USi.png"/>
+</p>
+
+#### USA COVID-19 Deaths
+<p align="center">
+<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/USd.png"/>
+</p>
+
 
 #### Metrics Interpretation: 
 

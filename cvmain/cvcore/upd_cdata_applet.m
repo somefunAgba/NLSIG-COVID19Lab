@@ -66,7 +66,9 @@ else
         e_msg = sprintf("Nothing to do.");
         app.StatusLabel.Text = e_msg;
         app.StatusLabel.FontColor = [0.5, 0.5, 0.5];
-        cd(old_dir);
+        if ~(ismcc || isdeployed)
+            cd(old_dir);
+        end
         return
     end
     
