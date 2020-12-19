@@ -23,9 +23,9 @@ World Health Organization
 
 
 ### GUI
-First, provided is a MATLAB APP to allow for easy use.
+First, provided is a MATLAB APP to allow for easy use. See the screenshots below
 
-![GUI Layout showing the Total Cummulative COVID-19 Infections of the World. \label{fig:wdcgui}](osspaper/inf_wd_c_gui.png)
+![GUI Layout showing the Total Cummulative COVID-19 Infections of the World. \label{fig:wdcgui}](osspaper/inf_wd_c_gui.png){ width=10% } 
 
 ![GUI Layout showing the Total Incident COVID-19 Infections of the World. \label{fig:wdigui}](osspaper/inf_wd_i_gui.png)
 
@@ -93,34 +93,34 @@ Although, uses the same source as the GUI, this is a script-based application-in
 Running 'query_single.m' with the search_code as ``WD``
 gave the following model fit for the ongoing COVID-19 pandemic with respect to the last updated date of the data.
 
-#### WORLD COVID-19 Infections
+**WORLD COVID-19 Infections**
 <p align="center">
- <img alt="WDi" src="/WDi.png" width=500px/>
+ <img alt="WDi" src="WDi.png" width=500px/>
 </p>
 
-#### WORLD COVID-19 Deaths
+**WORLD COVID-19 Deaths**
 <p align="center">
-<img alt="WDd" src="/WDd.png" width=500px/>
+<img alt="WDd" src="WDd.png" width=500px/>
 </p>
 
-#### CHINESE COVID-19 Infections
+**CHINESE COVID-19 Infections**
 <p align="center">
- <img alt="CNi" src="/CNi.png" width=500px/>
+ <img alt="CNi" src="CNi.png" width=500px/>
 </p>
 
-#### CHINESE COVID-19 Deaths
+**CHINESE COVID-19 Deaths**
 <p align="center">
-<img alt="CNd" src="/CNd.png" width=500px/>
+<img alt="CNd" src="CNd.png" width=500px/>
 </p>
 
-#### USA COVID-19 Infections
+**USA COVID-19 Infections**
 <p align="center">
- <img alt="USi" src="/USi.png" width=500px/>
+ <img alt="USi" src="USi.png" width=500px/>
 </p>
 
-#### USA COVID-19 Deaths
+**USA COVID-19 Deaths**
 <p align="center">
-<img alt="USd" src="/USd.png" width=500px/>
+<img alt="USd" src="USd.png" width=500px/>
 </p>
 
 
@@ -144,7 +144,7 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 
 `XIR ~= 0` indicates either a post-peak period or an early pre-peak. 
 
-**Example**
+**Toy Example**
 
 For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is close to a peak period. 
 
