@@ -95,7 +95,7 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 
 #### WORLD COVID-19 Infections
 <p align="center">
- <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/WDi.png" width=100px/>
+ <img alt="WDi" src="/WDi.png" width=300px/>
 </p>
 
 #### WORLD COVID-19 Deaths
