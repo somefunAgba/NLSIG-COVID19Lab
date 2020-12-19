@@ -30,7 +30,7 @@ First, provided is a MATLAB APP to allow for easy use. See the screenshots below
 ![GUI Layout showing the Total Incident COVID-19 Infections of the World. \label{fig:wdigui}](osspaper/inf_wd_i_gui.png)
 
 
-### API 
+### SCRIPT API 
 Although, uses the same source as the GUI, this is a script-based application-interface and entirely distinct from the MATLAB APP. Procedure for use are outlined as follows:
 
 1. Run 'su.m' to add all the project folders and files to MATLAB's path
@@ -89,7 +89,7 @@ Although, uses the same source as the GUI, this is a script-based application-in
 	subfolders respectively.
 	
 	
-## Example
+#### Example
 Running 'query_single.m' with the search_code as ``WD``
 gave the following model fit for the ongoing COVID-19 pandemic with respect to the last updated date of the data.
 
