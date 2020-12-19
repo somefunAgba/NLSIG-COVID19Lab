@@ -100,27 +100,27 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 
 #### WORLD COVID-19 Deaths
 <p align="center">
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/WDd.png"/>
+<img alt="WDd" src="/WDd.png" width=500px/>
 </p>
 
 #### CHINESE COVID-19 Infections
 <p align="center">
- <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/CNi.png"/>
+ <img alt="CNi" src="/CNi.png" width=500px/>
 </p>
 
 #### CHINESE COVID-19 Deaths
 <p align="center">
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/CNd.png"/>
+<img alt="CNd" src="/CNd.png" width=500px/>
 </p>
 
 #### USA COVID-19 Infections
 <p align="center">
- <img alt="WDi" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/USi.png"/>
+ <img alt="USi" src="/USi.png" width=500px/>
 </p>
 
 #### USA COVID-19 Deaths
 <p align="center">
-<img alt="WDd" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/USd.png"/>
+<img alt="USd" src="/USd.png" width=500px/>
 </p>
 
 
