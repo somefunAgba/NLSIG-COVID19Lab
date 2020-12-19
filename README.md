@@ -25,7 +25,7 @@ World Health Organization
 ### GUI
 First, provided is a MATLAB APP to allow for easy use. See the screenshots below
 
-![GUI Layout showing the Total Cummulative COVID-19 Infections of the World. \label{fig:wdcgui}](osspaper/inf_wd_c_gui.png){ width=10% } 
+![GUI Layout showing the Total Cummulative COVID-19 Infections of the World. \label{fig:wdcgui}](osspaper/inf_wd_c_gui.png)
 
 ![GUI Layout showing the Total Incident COVID-19 Infections of the World. \label{fig:wdigui}](osspaper/inf_wd_i_gui.png)
 

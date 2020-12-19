@@ -87,9 +87,9 @@ In this case, the growth-process is the time-series COVID-19 pandemic growth fro
 
 ![GUI Layout showing the Total Incident COVID-19 Infections in the World. \label{fig:iwdigui}](inf_wd_i_gui.png){ width=70% }
 
-![GUI Layout showing the Total Cummulative COVID-19 Deaths in the USA. \label{fig:dwdcgui}](dth_wd_c_gui.png){ width=70% } 
+![GUI Layout showing the Total Cummulative COVID-19 Deaths in the World. \label{fig:dwdcgui}](dth_wd_c_gui.png){ width=70% } 
 
-![GUI Layout showing the Total Incident COVID-19 Deaths in the USA. \label{fig:dwdigui}](dth_wd_i_gui.png){ width=70% }
+![GUI Layout showing the Total Incident COVID-19 Deaths in the World. \label{fig:dwdigui}](dth_wd_i_gui.png){ width=70% }
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:
