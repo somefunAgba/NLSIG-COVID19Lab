@@ -7,5 +7,6 @@
 /osspaper/n*.md
 /applet/*.prj
 /applet/*.mlapp
+/applet/nlsiglab
 /assets/*
 /measures/*
