@@ -46,11 +46,13 @@ Kolmogorov-Smirnov Distance Statistic
 
 **YIR**
 
-`YIR < 0.5` indicates generally increasing motion
+`YIR < 0.5` indicates generally increasing motion of growth
 
 `YIR ~= 0.5` indicates generally that the increase has peaked. 
 
-`YIR > 0.5` indicates generally reducing motion
+`YIR > 0.5` indicates generally reducing motion of growth
+
+`YIR ~= 0` indicates either that the growth is flattening or could be increasing. 
 
 **XIR**
 
