@@ -30,6 +30,44 @@ First, provided is a MATLAB APP to allow for easy use. See the screenshots below
 ![GUI Layout showing the Total Incident COVID-19 Infections of the World. \label{fig:wdigui}](osspaper/inf_wd_i_gui.png)
 
 
+#### Metrics Interpretation: 
+
+**R2GoF**
+
+R2 Goodness of Fit
+
+**KSGoF**
+
+Kolmogorov-Smirnov Goodness of Fit 
+
+**KSdist**
+
+Kolmogorov-Smirnov Distance Statistic
+
+**YIR**
+
+`YIR < 0.5` indicates generally increasing motion
+
+`YIR ~= 0.5` indicates generally that the increase has peaked. 
+
+`YIR > 0.5` indicates generally reducing motion
+
+**XIR**
+
+`XIR < 1` indicates a pre-peak period
+
+`XIR ~= 1` indicates a peak-period. 
+
+`XIR > 1` indicates a post-peak period.
+
+`XIR ~= 0` indicates either a post-peak period or an early pre-peak. 
+
+**Toy Example**
+
+For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is close to a peak period. 
+
+For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period.
+
 ### SCRIPT API 
 Although, uses the same source as the GUI, this is a script-based application-interface and entirely distinct from the MATLAB APP. Procedure for use are outlined as follows:
 
@@ -123,32 +161,6 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 <img alt="USd" src="USd.png" width=500px/>
 </p>
 
-
-#### Metrics Interpretation: 
-
-**YIR**
-
-`YIR < 0.5` indicates generally increasing motion
-
-`YIR ~= 0.5` indicates generally that the increase has peaked. 
-
-`YIR > 0.5` indicates generally reducing motion
-
-**XIR**
-
-`XIR < 1` indicates a pre-peak period
-
-`XIR ~= 1` indicates a peak-period. 
-
-`XIR > 1` indicates a post-peak period.
-
-`XIR ~= 0` indicates either a post-peak period or an early pre-peak. 
-
-**Toy Example**
-
-For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is close to a peak period. 
-
-For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period.
 
 <!--#### Recovered-->
 
