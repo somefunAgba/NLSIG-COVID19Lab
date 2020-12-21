@@ -182,7 +182,7 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
  
 ## Miscellanous
 If interested in dedicating the time to port to other languages, 
-please contact me.
+please contact me, by creating a [new issue](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues/new/choose).
 
 ## License
 This work is free software under the [BSD 3-Clause "New" or "Revised" License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE) 
