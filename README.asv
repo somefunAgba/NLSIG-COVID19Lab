@@ -7,14 +7,14 @@
 
 A playground for modelling and monitoring the time-series COVID-19 pandemic growth with the nlogistic-sigmoid function
 
-<img alt="NLSIG_COVID19LAB" src="nlsig_avatar.png"/>
+<img alt="NLSIG_COVID19LAB" src="https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/nlsig_avatar.png"/>
 
 nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes. It features two logistic metrics (YIR and XIR) for monitoring growth from a two-dimensional (x-y axis) perspective.
 
 ## Links
 * [NLSIG-COVID19Lab Paper Draft](osspaper/10.21105.joss.02913.pdf)
 
-* [NLSIG Conference Presentation Slides](nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
+* [NLSIG Conference Presentation Slides](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
  
 * [NLSIG Preprint](https://arxiv.org/abs/2008.04210)
 
@@ -137,33 +137,12 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 
 **WORLD COVID-19 Infections**
 <p align="center">
- <img alt="WDi" src="landing/WDi.png" width=500px/>
+ <img alt="WDi" src="WDi.png" width=500px/>
 </p>
 
 **WORLD COVID-19 Deaths**
 <p align="center">
-<img alt="WDd" src="landing/WDd.png" width=500px/>
-</p>
-
-**UK COVID-19 Infections**
-<p align="center">
- <img alt="USi" src="landing/GBi.png" width=500px/>
-</p>
-
-**UK COVID-19 Deaths**
-<p align="center">
-<img alt="USd" src="landing/GBd.png" width=500px/>
-</p>
-
-
-**USA COVID-19 Infections**
-<p align="center">
- <img alt="USi" src="landing/USi.png" width=500px/>
-</p>
-
-**USA COVID-19 Deaths**
-<p align="center">
-<img alt="USd" src="landing/USd.png" width=500px/>
+<img alt="WDd" src="WDd.png" width=500px/>
 </p>
 
 **CHINESE COVID-19 Infections**
@@ -174,6 +153,16 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 **CHINESE COVID-19 Deaths**
 <p align="center">
 <img alt="CNd" src="landing/CNd.png" width=500px/>
+</p>
+
+**USA COVID-19 Infections**
+<p align="center">
+ <img alt="USi" src="landing/USi.png" width=500px/>
+</p>
+
+**USA COVID-19 Deaths**
+<p align="center">
+<img alt="USd" src="landing/USd.png" width=500px/>
 </p>
 
 
