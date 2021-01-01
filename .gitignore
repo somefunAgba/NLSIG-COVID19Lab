@@ -10,3 +10,7 @@
 /applet/nlsiglab
 /assets/*
 /measures/*
+*.asm
+*.hex
+*.obj
+*.asv
