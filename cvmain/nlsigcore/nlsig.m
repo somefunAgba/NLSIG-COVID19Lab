@@ -110,10 +110,14 @@ end
         % 
         % for ERROR:
         % for pel = 1:p
-        % jacob_ie_d(:,pel,:) = e.*reshape(jacob_iy_d(pel,:,:),[],veclen_x);
+        % if iscolumn(e)
+        % jacob_ie_d(:,pel,:) = e'.*reshape(jacob_iy_d(:,pel,:),[],veclen_x);
+        % else
+        % jacob_ie_d(:,pel,:) = e.*reshape(jacob_iy_d(:,pel,:),[],veclen_x);
         % end
-        % jacobe = sum(jacob_ie_d,3);
-        % hesse = jacobe'*jacobe;
+        % end
+        % jacobe(j,n,p) = sum(jacob_ie_d,3);
+        % hesse(j,n,p,p) = jacobe'*jacobe;
         
         % Copyright:
         % |oasomefun@futa.edu.ng| 2020.
@@ -305,9 +309,9 @@ end
         fpdy_db_i = zeros(n,veclen_x);
         
         p = 7;
-        jacob_iy_d = zeros(p,n,veclen_x);
+        jacob_iy_d = zeros(n,p,veclen_x);
         % jacoby = zeros(n,p);
-        % hessy = zeros(p,p);
+        hessy = zeros(n,p,p);
         
         for i=1:n
             % input to base exponential-function
@@ -360,18 +364,20 @@ end
                 else
                     fpdy_db_i(i,:) = (fpdy_db_i(i,:)./(exp(1)));
                 end
-                jacob_iy_d(:,i,:) = [fpdy_db_i(i,:); fpdy_dlambda_i(i,:); ...
+                jacob_iy_d(i,:,:) = [fpdy_db_i(i,:); fpdy_dlambda_i(i,:); ...
                     fpdy_dxmax_i(i,:); fpdy_dxmin_i(i,:); fpdy_ddelta_x_i(i,:); ...
                     fpdy_dymax_i(i,:); fpdy_dymin_i(i,:)];
             end
         end
         
         if nargout > 4
-            jacoby = sum(jacob_iy_d,3)';
+            jacoby = sum(jacob_iy_d,3);
         end
         
         if nargout > 5
-            hessy = jacoby'*jacoby;
+            for i =1:n
+                hessy(i,:,:) = jacoby(i,:)'*jacoby(i,:);
+            end
         end    
         
         % convert to column-vector: n*1,
@@ -617,9 +623,9 @@ end
         fpdy_dalpha_i = zeros(size(veclen_x));
         
         p = 7;
-        jacob_iy_d = zeros(p,n,veclen_x);
+        jacob_iy_d = zeros(n,p,veclen_x);
         % jacoby = zeros(n,p);
-        % hessy = zeros(p,p);
+        hessy = zeros(n,p,p);
         
         for i=1:n
             delta_x_i(i,1) = xmin + (Dx*(i-0.5));
@@ -682,7 +688,7 @@ end
             end
             
             for i =1:n
-                jacob_iy_d(:,i,:) = [fpdy_db_i; fpdy_dlambda_i; ...
+                jacob_iy_d(i,:,:) = [fpdy_db_i; fpdy_dlambda_i; ...
                     fpdy_dxmax; fpdy_dxmin; fpdy_ddelta_x_i(i,:); ...
                     fpdy_dymax; fpdy_dymin];
             end
@@ -690,11 +696,13 @@ end
         end
                
         if nargout > 4
-            jacoby = sum(jacob_iy_d,3)';
+            jacoby = sum(jacob_iy_d,3);
         end
         
         if nargout > 5
-            hessy = jacoby'*jacoby;
+            for i =1:n
+                hessy(i,:,:) = jacoby(i,:)'*jacoby(i,:);
+            end
         end    
          
         % convert to column-vector: n*1,
