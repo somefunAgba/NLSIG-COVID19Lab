@@ -5,7 +5,7 @@
 [![View NLSIG-COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
 
-A playground for modelling and monitoring the time-series COVID-19 pandemic growth with the nlogistic-sigmoid function
+A playground for descriptive modelling and monitoring the time-series COVID-19 pandemic growth with the nlogistic-sigmoid function
 
 <img alt="NLSIG_COVID19LAB" src="nlsig_avatar.png"/>
 
@@ -22,6 +22,17 @@ nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definit
 World Health Organization
 
 ## Getting Started : MATLAB
+
+**Matlab Toolbox Requirements**
+- Optimization Toolbox
+- Statistics and Machine Learning Toolbox
+
+**MATLAB Release Compatibility**
+- Created with R2020a
+- Compatible with R2019b and later releases
+
+**External Dependencies**
+- None
 
 
 ### GUI
