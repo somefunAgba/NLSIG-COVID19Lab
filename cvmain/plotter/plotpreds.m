@@ -24,7 +24,7 @@ tmsg = " \fontsize{8} \fontname{Consolas}"+country_code+": \color[rgb]{0.5 0.7 0
 
 
 fig = figure('Name','FitCmp','NumberTitle','off');
-fig.Visible = 'off';
+% fig.Visible = 'off';
 fig.WindowState = 'minimized';
 t2 = tiledlayout(2,1);
 ax_t2 = nexttile(t2);
@@ -42,9 +42,6 @@ plot(time_data,y_data,'MarkerSize',3,'Color',lightgrey1,'LineWidth',0.5);
 plot(time_data,y_sollb,'-.','Color',khaki4,'LineWidth',1);
 plot(time_data,y_solub,'-.','Color',khaki3,'LineWidth',1);
 plot(time_data,y_sol,'Color',red2,'LineWidth',1.2);
-
-
-
 
 ax_t2.XTickLabelRotation = 60;
 ax_t2.FontName = 'Consolas';

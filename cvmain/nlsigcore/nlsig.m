@@ -1,4 +1,4 @@
-function [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig(x,eq,iopts)
+function [y,dydx_np,JH] = nlsig(x,eq,iopts,np,ry)
 %nLOGISTIC-SIGMOID function
 % logistic-sigmoid function for
 % multiple peak inflection points, i = 1, ..., n.
@@ -6,12 +6,14 @@ function [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig(x,eq,iopts)
 %
 %% Syntax
 %
-% [y,dy_dx] = nlsig(x,eq,iopts)
+% [y,dydx_np,JH] = nlsig(x,eq,iopts,np,ry)
 %
 % Inputs:
 % x: scalar | vector
 % eq: 0 or 1
 % iopts: struct,
+% derivative order to compute from 1:np
+% np: min: 1 max: large number
 %
 % if eq = 1 : all struct elements are scalar
 % else :
@@ -27,6 +29,7 @@ function [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig(x,eq,iopts)
 % iopts.xmin
 % iopts.ymax
 % iopts.ymin
+% iopts.p; number of est. params to vary
 %
 % Outputs:
 % y: scalar | vector
@@ -35,33 +38,32 @@ function [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig(x,eq,iopts)
 % Copyright:
 % |oasomefun@futa.edu.ng| 2020.
 
+if nargin < 4
+    np = 1; % min. first-order output-derivative
+    ry = false;
+end
+assert(isnumeric(np) && (np > 0),...
+    "You should make np > 0 and an integer.");
+if nargin < 5
+    ry = false;
+end
+
+
 if eq == 1
     if nargout == 1
-        y = nlsig_eq(x,iopts);
+        y = nlsig_eq(x,iopts,np,ry);
     elseif nargout == 2
-        [y,dy_dx] = nlsig_eq(x,iopts);
+        [y,dydx_np] = nlsig_eq(x,iopts,np,ry);
     elseif nargout == 3
-        [y,dy_dx,d2y_dx2] = nlsig_eq(x,iopts);
-    elseif nargout == 4
-        [y,dy_dx,d2y_dx2,jacob_iy_d] = nlsig_eq(x,iopts);
-    elseif nargout == 5
-        [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby] = nlsig_eq(x,iopts);
-    elseif nargout == 6
-        [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig_eq(x,iopts);
+        [y,dydx_np,JH] = nlsig_eq(x,iopts,np,ry);
     end
 elseif eq == 0
     if nargout == 1
-        y = nlsig(x,iopts);
+        y = nlsig(x,iopts,np,ry);
     elseif nargout == 2
-        [y,dy_dx] = nlsig(x,iopts);
+        [y,dydx_np] = nlsig(x,iopts,np,ry);
     elseif nargout == 3
-        [y,dy_dx,d2y_dx2] = nlsig(x,iopts);
-    elseif nargout == 4
-        [y,dy_dx,d2y_dx2,jacob_iy_d] = nlsig(x,iopts);
-    elseif nargout == 5
-        [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby] = nlsig(x,iopts);
-    elseif nargout == 6
-        [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig(x,iopts);
+        [y,dydx_np,JH] = nlsig(x,iopts,np,ry);
     end
 else
     err_msg = sprintf("Try again! syntax: [y,dy_dx] = nlsig(x,eq,iopts),\n"+...
@@ -70,7 +72,7 @@ else
 end
 
 %% general (equal|unequal) interval
-    function [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig(x,iopts)
+    function [y,dydx_np,JH] = nlsig(x,iopts,np,ry)
         %nLOGISTIC-SIGMOID
         % logistic-sigmoid function for
         % multiple inflection points, i = 1, ..., n.
@@ -78,7 +80,7 @@ end
         %
         %% Syntax
         %
-        % [y,dy_dx] = nlsig(x,iopts)
+        % [y,dydx_np,JH] = nlsig(x,iopts,np,ry)
         %
         % Inputs:
         % x: scalar | vector
@@ -86,9 +88,10 @@ end
         %
         % scalar size: 1 by 1
         % iopts.n = 1;
-        % iopts.shape = 's';
+        % 
         %
         % vector size: n by 1
+        % iopts.shape = 's';
         % iopts.base
         % iopts.lambda
         % iopts.xmax
@@ -98,31 +101,33 @@ end
         % iopts.ymin
         %
         % Outputs:
-        % y: scalar | vector, veclen_x x 1
-        % dy_dx: scalar | vector, veclen_x x 1
-        % d2y_dx2 : scalar | vector, veclen_x x 1
+        % y: scalar | vector, veclen_x (d) x 1
+        % dy_dx: scalar | vector, d x 1
+        % d2y_dx2 : scalar | vector, d x 1
         %
-        % jacob_iy_d | tensor, p x n x veclen_x
-        % jacoby | matrix, n x p
-        % hessy | matrix, p x p
+        % JH: Jacobian-Hessian dat. structure
         % jacobian ordering structure
-        % [dbase_i; dlambda_i; dxmax_i; dxmin_i; ddelta_x_i; dymax_i; dymin_i];
-        % 
-        % for ERROR:
-        % for pel = 1:p
-        % if iscolumn(e)
-        % jacob_ie_d(:,pel,:) = e'.*reshape(jacob_iy_d(:,pel,:),[],veclen_x);
-        % else
-        % jacob_ie_d(:,pel,:) = e.*reshape(jacob_iy_d(:,pel,:),[],veclen_x);
-        % end
-        % end
-        % jacobe(j,n,p) = sum(jacob_ie_d,3);
-        % hesse(j,n,p,p) = jacobe'*jacobe;
+        % [dbase_i dlambda_i dxmax_i dxmin_i ddelta_x_i dymax_i dymin_i];
+        %
+        % jacob_i[y,e,E]_d | tensor, (d x p x n)
+        % jacob[y,e,E] | matrix, (n x p)
+        % hess[y,e,E] | tensor (n x p x p)
         
         % Copyright:
         % |oasomefun@futa.edu.ng| 2020.
         
+        errcomp = true;
+        if ry == false
+            ry = 0;
+            errcomp = false;
+        end
+        
+        if isrow(x)
+            % make it column vector
+            x = x';
+        end
         veclen_x = numel(x);
+        vecsize_x = size(x);
         % fixed parameters, always unity
         cigma = 1;
         % beta = 1;
@@ -141,21 +146,33 @@ end
         end
         try % shape
             shape = iopts.shape;
+            assert(isnumeric(shape),...
+                "shape should be of value: either increasing (1) or decreasing (-1).");
             % exponential input direction logic
-            if (shape=='z')
-                c = 1;
-            elseif (shape == 's')
-                c = -1;
-            else
-                warning('invalid sigmoid shape.');
+            if numel(shape) == 1
+                shape = shape.*ones(n,1);
             end
+            c = zeros(n,1);
+            for id = 1:n
+                if shape(id) >= 0
+                    shape(id) = 1; % shape == 's'
+                else
+                    shape(id) = -1; % shape == 'z'
+                end
+                c(id) = -shape(id);
+            end 
+            req_size = [n, 1];
+            % do they meet the expected vector size
+            reqsz_msg = "Hi! correct your inputs."+...
+                "Array size for shape"+...
+                "and lambda should be "+num2str(n)+" by 1.";
+            assert(isequal(size(c),req_size), reqsz_msg)
         catch
             % "s" (default), "z"
-            e_msg = "sigmoid shape undefined. falling back to shape = 's'.\n";
-            fprintf(e_msg);
-            
-            shape = 's'; %#ok<NASGU>
-            c = -1;
+            e_msg = "sigmoid shape erroneous. falling back to increasing shape.\n";
+            fprintf(e_msg);         
+            % shape = 's';
+            c = -1*ones(n,1);
         end
         try % base
             base = iopts.base;
@@ -294,28 +311,43 @@ end
         % dv_i = zeros(n,veclen_x);
         
         % output and derivative of each i w.r.t x
-        y = ymin_i(1)*ones(size(veclen_x)); %ymin_i(1)*ones(1,veclen_x);
-        dy_dx = zeros(size(veclen_x));
-        d2y_dx2 = zeros(size(veclen_x));
+        y = ymin_i(1)*ones(vecsize_x); %ymin_i(1)*ones(veclen_x,1);
+        if errcomp == true
+            e = zeros(vecsize_x);
+        end
+        dy_dx = zeros(vecsize_x);
         
+        % output-derivatives array
+        dydx_np = zeros(veclen_x,np);
         
-        fpdy_dymax_i = zeros(n,veclen_x);
-        fpdy_dymin_i  = zeros(n,veclen_x);
-        fpdy_ddelta_x_i = zeros(n,veclen_x);
-        fpdy_dalpha_i = zeros(n,veclen_x);
-        fpdy_dlambda_i = zeros(n,veclen_x);
-        fpdy_dxmax_i = zeros(n,veclen_x);
-        fpdy_dxmin_i = zeros(n,veclen_x);
-        fpdy_db_i = zeros(n,veclen_x);
+        fpdy_dymax_i = zeros(veclen_x,n);
+        fpdy_dymin_i  = zeros(veclen_x,n);
+        fpdy_ci = zeros(veclen_x,n);
+        fpdy_ddelta_x_i = zeros(veclen_x,n);
+        fpdy_dalpha_i = zeros(veclen_x,n);
+        fpdy_dlambda_i = zeros(veclen_x,n);
+        fpdy_dxmax_i = zeros(veclen_x,n);
+        fpdy_dxmin_i = zeros(veclen_x,n);
+        fpdy_db_i = zeros(veclen_x,n);
         
-        p = 7;
-        jacob_iy_d = zeros(n,p,veclen_x);
-        % jacoby = zeros(n,p);
+        p = iopts.p;
+        assert( p<=8 && p>=6, 'p is either 6,7 or 8 params.' )
+        
+        jacob_iy_d = zeros(veclen_x,p,n);
+        if errcomp == true
+            jacob_ie_d = zeros(veclen_x,p,n);
+            jacob_iess_d = zeros(veclen_x,p,n);
+        end
+        jacoby = zeros(n,p);
+        jacobe = jacoby;
+        jacobess = jacoby;
         hessy = zeros(n,p,p);
+        hesse = hessy;
+        hessess = hessy;
         
         for i=1:n
             % input to base exponential-function
-            u_i = c.*alpha_i(i,1).*(x - delta_x_i(i,1));
+            u_i = c(i,1).*alpha_i(i,1).*(x - delta_x_i(i,1));
             
             % output = sum of each ith partial outputs
             if base == "nat"
@@ -326,66 +358,130 @@ end
                 v = Dy_i(i,1)./(cigma + gamma.*b_i(i).^(u_i));
             end
             y = y + v;
+            if errcomp == true
+                % error = true - estimated
+                e = ry - y;
+            end
             
             if nargout > 1
                 % output-derivative = sum of each ith partial output-derivatives
-                dv = c.*alpha_i(i,1).*v.*( (v./Dy_i(i,1)) - 1 );
+                ki = c(i,1).*alpha_i(i,1);
                 if base~="nat"
-                    dv = log(b_i(i)).*dv;
+                    ki = log(b_i(i)).*ki;
                 end
+                
+                % output 1st to np-th derivatives
+                % pacakage Output-Derivatives
+                
+                % First output-derivative
+                pd = 1;
+                vDyi = (v./Dy_i(i,1));
+                dv = ki.*v.*( vDyi  - 1 );
                 dy_dx = dy_dx + dv;
+                % de_dx = de_dx - dv;
+                
+                dv_np = dv;
+                dydx_np(:,pd) = dydx_np(:,pd) + dv_np;
+                
+                % output-second-derivatives
+                %d2v = ki.*dv.*( 2.*vDyi - 1 );
+                %d2y_dx2 = d2y_dx2 + d2v;
+                %d2e_dx2 = d2e_dx2 - d2v;
+                
+                if np > 1
+                    % output 2nd to np-th derivatives
+                    dv_np_min_one = dv;
+                    for pd = 2:np
+                        px = (pd-2);
+                        tx = ((2.*(v+px))./Dy_i(i,1));
+                        dv_np = ki.*dv_np_min_one.*( tx  - 1);
+                        dydx_np(:,pd) = dydx_np(:,pd) + dv_np;
+                        dv_np_min_one = dv_np;
+                    end
+                end
             end
             
             if nargout > 2
-                % output-second-derivatives
-                d2v = c.*alpha_i(i,1).*dv.*( ((2.*v)./Dy_i(i,1)) - 1 );
-                if base~="nat"
-                    d2v = log(b_i(i)).*d2v;
-                end
-                d2y_dx2 = d2y_dx2 + d2v;
-            end
-            
-            if nargout > 3
                 % first-order partial derivatives
-                fpdy_dymax_i(i,:) = v./Dy_i(i,1);
-                fpdy_dymin_i(i,:)  = 1 - fpdy_dymax_i(i,:);
-                ti = c.*v.*(v./Dy_i(i,1) - 1);
+                fpdy_dymax_i(:,i) = v./Dy_i(i,1);
+                fpdy_dymin_i(:,i)  = -v./Dy_i(i,1);
+                if i == 1
+                    fpdy_dymin_i(:,i)  = 1 - (v./Dy_i(i,1));
+                end
+                ri = c(i,1).*v.*((v./Dy_i(i,1)) - 1);
+                ti = ri;
                 if base~="nat"
                     ti = log(b_i(i)).*ti;
                 end
-                fpdy_ddelta_x_i(i,:) = -1.*alpha_i(i,1).*ti;
-                fpdy_dalpha_i(i,:) = (x - delta_x_i(i,1)).*ti;
-                fpdy_dlambda_i(i,:) = (2./Dx_i(i,1)).*fpdy_dalpha_i(i,:);
-                fpdy_dxmax_i(i,:) = -1.*(alpha_i(i,1)./Dx_i(i,1)).*fpdy_dalpha_i(i,:);
-                fpdy_dxmin_i(i,:) = -1.*fpdy_dxmax_i(i,:);
-                fpdy_db_i(i,:) = alpha_i(i,1).*fpdy_dxmax_i(i,:);
+                ai = (x - delta_x_i(i,1)).*ti;
+                fpdy_ci(:,i) = c(i,1).*ai;
+                fpdy_ddelta_x_i(:,i) = -alpha_i(i,1).*ti;
+                fpdy_dalpha_i(:,i) = ai;
+                fpdy_dlambda_i(:,i) = (2./Dx_i(i,1)).*ai;
+                fpdy_dxmax_i(:,i) = (-alpha_i(i,1)./Dx_i(i,1)).*ai;
+                fpdy_dxmin_i(:,i) = (alpha_i(i,1)./Dx_i(i,1)).*ai;
                 if base~="nat"
-                    fpdy_db_i(i,:) = (fpdy_db_i(i,:)./(b_i(i).*log(b_i(i))));
+                    fpdy_db_i(:,i) = (alpha_i(i,1).*ri)./b_i(i);
                 else
-                    fpdy_db_i(i,:) = (fpdy_db_i(i,:)./(exp(1)));
+                    fpdy_db_i(:,i) = (alpha_i(i,1).*ri)./exp(1);
                 end
-                jacob_iy_d(i,:,:) = [fpdy_db_i(i,:); fpdy_dlambda_i(i,:); ...
-                    fpdy_dxmax_i(i,:); fpdy_dxmin_i(i,:); fpdy_ddelta_x_i(i,:); ...
-                    fpdy_dymax_i(i,:); fpdy_dymin_i(i,:)];
+                if p == 8
+                jacob_iy_d(:,:,i) = [fpdy_ci(:,i) fpdy_db_i(:,i) fpdy_dlambda_i(:,i) ...
+                    fpdy_dxmax_i(:,i) fpdy_dxmin_i(:,i) fpdy_ddelta_x_i(:,i) ...
+                    fpdy_dymax_i(:,i) fpdy_dymin_i(:,i)];
+                elseif p == 7
+                    jacob_iy_d(:,:,i) = [fpdy_db_i(:,i) fpdy_dlambda_i(:,i) ...
+                        fpdy_dxmax_i(:,i) fpdy_dxmin_i(:,i) fpdy_ddelta_x_i(:,i) ...
+                        fpdy_dymax_i(:,i) fpdy_dymin_i(:,i)];
+                elseif p == 6
+                    jacob_iy_d(:,:,i) = [fpdy_dlambda_i(:,i) ...
+                        fpdy_dxmax_i(:,i) fpdy_dxmin_i(:,i) fpdy_ddelta_x_i(:,i) ...
+                        fpdy_dymax_i(:,i) fpdy_dymin_i(:,i)];
+                end
+            end
+        end
+        if errcomp == true
+            for i = 1:n
+                jacob_ie_d(:,:,i) = -jacob_iy_d(:,:,i);
+                jacob_iess_d(:,:,i) = (e).* jacob_ie_d(:,:,i);
             end
         end
         
-        if nargout > 4
-            jacoby = sum(jacob_iy_d,3);
-        end
-        
-        if nargout > 5
+        if nargout > 2
+            % 1 x p x n = n x p
+            tmpy = sum(jacob_iy_d);
+            tmpe = sum(jacob_ie_d);
+            tmpess = sum(jacob_iess_d);
+            for i = 1:n
+                jacoby(i,:) = tmpy(1,:,i);
+                jacobe(i,:) = tmpe(1,:,i);
+                jacobess(i,:) = tmpess(1,:,i);
+            end
+            
+            %n: p x p == n x p x p
             for i =1:n
                 hessy(i,:,:) = jacoby(i,:)'*jacoby(i,:);
+                hesse(i,:,:) = jacobe(i,:)'*jacobe(i,:);
+                hessess(i,:,:) = jacobess(i,:)'*jacobess(i,:);
             end
-        end    
+            
+            % pacakage Jacobians and Hessians
+            JH.e = e;
+            JH.jacob_iy_d = jacob_iy_d;
+            JH.jacob_ie_d = jacob_ie_d;
+            JH.jacob_iess_d = jacob_iess_d;
+            JH.jacoby = jacoby;
+            JH.jacobe = jacobe;
+            JH.jacobess = jacobess;
+            JH.hessy = hessy;
+            JH.hesse = hesse;
+            JH.hessess = hessess;
+        end
         
-        % convert to column-vector: n*1,
+        % convert to column-vector: n x 1,
         % if in row-vector form
         if isrow(y)
             y = y';
-            dy_dx = dy_dx';
-            d2y_dx2 = d2y_dx2';
         end
         
         
@@ -393,7 +489,7 @@ end
     end
 
 %% equal Interval
-    function [y,dy_dx,d2y_dx2,jacob_iy_d,jacoby,hessy] = nlsig_eq(x,iopts)
+    function [y,dydx_np,JH] = nlsig_eq(x,iopts,np,ry)
         %nLOGISTIC-SIGMOID
         % logistic-sigmoid function for
         % multiple inflection points, i = 1, ..., n.
@@ -405,12 +501,15 @@ end
         %
         % Inputs:
         % x: scalar | vector
-        % iopts: struct, each element is scalar
+        % iopts: struct, each element can be scalar
         %
-        % iopts.shape = 's';
-        % iopts.base = "nat";
+        % vector
+        % iopts.shape = 1;
+        % iopts.lambda = 6; 
+        % 
+        % scalar
         % iopts.n = 1;
-        % iopts.lambda = 6;
+        % iopts.base = "nat";
         % iopts.epsil = 0;
         % iopts.xmax =  1;
         % iopts.xmin = -1;
@@ -422,46 +521,78 @@ end
         % dy_dx: scalar | vector, veclen_x x 1
         % d2y_dx2 : scalar | vector, veclen_x x 1
         %
-        % jacob_iy_d | tensor, p x n x veclen_x
-        % jacoby | matrix, n x p
-        % hessy | matrix, p x p
+        % JH: Jacobian-Hessian dat. structure
         % jacobian ordering structure
-        % [dbase_i; dlambda_i; dxmax_i; dxmin_i; ddelta_x_i; dymax_i; dymin_i];
-        % 
-        % for ERROR:
-        % for pel = 1:p
-        % jacob_ie_d(:,pel,:) = e.*reshape(jacob_iy_d(pel,:,:),[],veclen_x);
-        % end
-        % jacobe = sum(jacob_ie_d,3);
-        % hesse = jacobe'*jacobe;
+        % [dbase_i dlambda_i dxmax_i dxmin_i ddelta_x_i dymax_i dymin_i];
+        %
+        % jacob_i[y,e,E]_d | tensor, (d x p xn)
+        % jacob[y,e,E] | matrix, (n x p)
+        % hess[y,e,E] | tensor (n x p x p)
+        
         
         % Copyright:
         % |oasomefun@futa.edu.ng| 2020.
         
+        errcomp = true;
+        if nargin < 4
+            ry = 0;
+            errcomp = false;
+        end
+        
+        if isrow(x)
+            % make it column vector
+            x = x';
+        end
         veclen_x = numel(x);
+        vecsize_x = size(x);
+        
         % fixed parameters, always unity
         cigma = 1;
         % beta = 1;
         gamma =  1; % 2^beta - cigma;
         
         %% Validate Arguments
-        try % shape
-            shape = iopts.shape;
-            % exponential input direction logic
-            if (shape=='z')
-                c = 1;
-            elseif (shape == 's')
-                c = -1;
-            else
-                warning('invalid sigmoid shape.');
-            end
+        
+        try % number of peak inflection points
+            n = iopts.n;
+            assert(isnumeric(n) && (n > 0), "You should make n > 0 and an integer.");
         catch
-            % "s" (default), "z"
-            e_msg = "sigmoid shape undefined. falling back to shape = 's'.\n";
+            % >=1, 1 (default)
+            e_msg = "n undefined. falling back to n = 1.\n";
             fprintf(e_msg);
             
-            shape = 's'; %#ok<NASGU>
-            c = -1;
+            n = 1;
+        end
+        
+        try % shape
+            shape = iopts.shape;
+            assert(isnumeric(shape),...
+                "shape is either increasing(1) or decreasing(-1).");
+            if numel(shape) == 1
+                shape = shape.*ones(n,1);
+            end
+            % exponential input direction logic
+            c = zeros(n,1);
+            for id = 1:n
+                if shape(id) >= 0
+                    shape(id) = 1; % shape == 's'
+                else
+                    shape(id) = -1; % shape == 'z'
+                end
+                c(id) = -shape(id);
+            end
+            req_size = [n, 1];
+            % do they meet the expected vector size
+            reqsz_msg = "Hi! correct your inputs."+...
+                "Array size for shape"+...
+                "and lambda should be "+num2str(n)+" by 1.";
+            assert(isequal(size(c),req_size), reqsz_msg)
+        catch
+            % "s" (default), "z"
+            e_msg = "sigmoid shape erroneous. falling back to increasing shape.\n";
+            fprintf(e_msg);
+            % shape = 's';
+            c = -1*ones(n,1);
         end
         try % base
             base = iopts.base;
@@ -504,19 +635,13 @@ end
             % hex = hexadecimal or merindinlogun, base 16
             % vig = vigesimal, or ogun, base 20
         end
-        try % number of peak inflection points
-            n = iopts.n;
-            assert(isnumeric(n) && (n > 0), "You should make n > 0 and an integer.");
-        catch
-            % >=1, 1 (default)
-            e_msg = "n undefined. falling back to n = 1.\n";
-            fprintf(e_msg);
-            
-            n = 1;
-        end
+
         
         try % fixed/adaptive growth-rate constant
             lambda = iopts.lambda;
+            if numel(lambda) == 1
+                lambda = lambda*ones(n,1);
+            end
         catch
             % > 0, 6 (default)
             e_msg = "lambda undefined. falling back to lambda = 6.\n";
@@ -573,6 +698,7 @@ end
         
         % Assert conditions
         req_size = [1 1];
+        req_size2 = [n 1];
         constrchk = iopts.check_constraints;
         % do they meet the expected vector size
         reqsz_msg = "Hi! correct your inputs."+...
@@ -583,7 +709,8 @@ end
         assert(isequal(size(iopts.xmax),req_size), reqsz_msg)
         assert(isequal(size(iopts.ymin),req_size), reqsz_msg)
         assert(isequal(size(iopts.xmin),req_size), reqsz_msg)
-        assert(isequal(size(iopts.lambda),req_size), reqsz_msg)
+        assert(isequal(size(iopts.lambda),req_size)...
+            || isequal(size(iopts.lambda),req_size2), reqsz_msg)
         % are they numbers?
         isnum_msg = "Hi! check your 'ymax', 'ymin', "+...
             "'xmax', 'xmin', 'lambda' and 'xpks' inputs."+...
@@ -603,7 +730,7 @@ end
         Dx =(xmax-xmin)/n; % = Dx_i
         
         % set alpha and delta as a function of input space
-        alpha = lambda.*(2/Dx);
+        alpha_i = lambda.*(2/Dx);
         
         % x inflection points (peak) of each i
         delta_x_i=zeros(n,1);
@@ -613,25 +740,43 @@ end
         % dv_i = zeros(n,veclen_x);
         
         % output and derivative of each i w.r.t x
-        y = ymin*ones(size(veclen_x)); %ymin_i(1)*ones(1,veclen_x);
-        dy_dx = zeros(size(veclen_x));
-        d2y_dx2 = zeros(size(veclen_x));
+        y = ymin*ones(vecsize_x); %ymin_i(1)*ones(veclen_x,1);
+        if errcomp == true
+            e = zeros(vecsize_x);
+        end
+        dy_dx = zeros(vecsize_x);
+        % output-derivatives array
+        dydx_np = zeros(veclen_x,np);
         
+        fpdy_dymax = zeros(vecsize_x);
+        fpdy_dymin = zeros(vecsize_x); %#ok<PREALL>
+        fpdy_ddelta_x_i = zeros(veclen_x,n);
+        fpdy_dalpha_i = zeros(veclen_x,n);
+        fpdy_ci = zeros(veclen_x,n);
+        fpdy_dlambda_i = zeros(veclen_x,n);
+        fpdy_db = zeros(vecsize_x);
+        fpdy_dxmax = zeros(vecsize_x);
+        fpdy_dxmin = zeros(vecsize_x); %#ok<PREALL>
         
-        fpdy_dymax = zeros(size(veclen_x));
-        fpdy_ddelta_x_i = zeros(n,veclen_x);
-        fpdy_dalpha_i = zeros(size(veclen_x));
-        
-        p = 7;
-        jacob_iy_d = zeros(n,p,veclen_x);
-        % jacoby = zeros(n,p);
+        p = iopts.p;
+        assert( p<=7 && p>=5, 'p is either 5, 6 or 7 params.' )
+        jacob_iy_d = zeros(veclen_x,p,n);
+        if errcomp == true
+            jacob_ie_d = zeros(veclen_x,p,n);
+            jacob_iess_d = zeros(veclen_x,p,n);
+        end
+        jacoby = zeros(n,p);
+        jacobe = jacoby;
+        jacobess = jacoby;
         hessy = zeros(n,p,p);
+        hesse = hessy;
+        hessess = hessy;
         
         for i=1:n
             delta_x_i(i,1) = xmin + (Dx*(i-0.5));
             
             % input to base exponential-function
-            u_i = c.*alpha.*(x-delta_x_i(i,1));
+            u_i = c(i,1).*alpha_i(i,1).*(x-delta_x_i(i,1));
             
             % output = sum of each ith partial outputs
             if base == "nat"
@@ -642,74 +787,140 @@ end
             % debug
             % fprintf("%g\n",v);
             y = y + v;
+            if errcomp == true
+                e = ry - y;
+            end
             
             if nargout > 1
                 % output-derivative = sum of each ith partial output-derivatives
-                dv = c.*alpha.*( v .* ((v./Dy) - 1) );
+                ki = c(i,1).*alpha_i(i,1);
                 if base~="nat"
-                    dv = log(b_i).*dv;
+                    ki = log(b_i).*ki;
                 end
+                
+                % output 1st to np-th derivatives
+                % pacakage Output-Derivatives
+                
+                % First output-derivative
+                pd = 1;
+                vDy = (v./Dy);
+                dv = ki.*v.*( vDy  - 1 );
                 dy_dx = dy_dx + dv;
+                % de_dx = de_dx - dv;
+                
+                dy_dx = dy_dx + dv;
+                dv_np = dv;
+                dydx_np(:,pd) = dydx_np(:,pd) + dv_np;
+                
+                % output-second-derivatives
+                %d2v = ki.*dv.*( 2.*vDy - 1 );
+                %d2y_dx2 = d2y_dx2 + d2v;
+                %d2e_dx2 = d2e_dx2 - d2v;
+                
+                if np > 1
+                    % output 2nd to np-th derivatives
+                    dv_np_min_one = dv;
+                    for pd = 2:np
+                        px = (np-2);
+                        tx = ((2.*(v+px))./Dy);
+                        dv_np = ki.*dv_np_min_one.*( tx  - 1);
+                        dydx_np(:,pd) = dydx_np(:,pd) + dv_np;
+                        dv_np_min_one = dv_np;
+                    end
+                end
             end
             
             if nargout > 2
-                % output-second-derivatives
-                d2v = c.*alpha.*dv.*( ((2.*v)./Dy) - 1 );
-                if base~="nat"
-                    d2v = log(b_i).*d2v;
-                end
-                d2y_dx2 = d2y_dx2 + d2v;
-            end
-            
-            if nargout > 3
                 % first-order partial derivatives
-                fpdy_dymax = fpdy_dymax + (v./Dy);
-                ti = c.*v.*((v./Dy) - 1);
+                fpdy_dymax = fpdy_dymax + (v);
+                % fpdy_dymin = fpdy_dymin + -(v./Dy);
+                ri = c(i,1).*v.*((v./Dy) - 1);
+                ti = ri;
                 if base~="nat"
                     ti = log(b_i).*ti;
                 end
-                fpdy_ddelta_x_i(i,:) = -1.*alpha.*ti;
-                fpdy_dalpha_i = fpdy_dalpha_i + ((x - delta_x_i(i,1)).*ti);            
+                ai = (x - delta_x_i(i,1)).*ti;
+                
+                fpdy_ci(:,i) = c(i,1).*ai; 
+                fpdy_ddelta_x_i(:,i) = -1.*alpha_i(i,1).*ti;
+                fpdy_dalpha_i(:,i) = ai;
+                fpdy_dlambda_i(:,i) = (2./Dx).*ai;
+                
+                fpdy_dxmax = fpdy_dxmax  +  ...
+                    ((-1).*(alpha_i(i,1)).*ai);
+                % fpdy_dxmin = fpdy_dxmin + ...
+                % ((1).*(alpha_i(i,1)./(n.*Dx)).*ai);
+                
+                fpdy_db = fpdy_db + (alpha_i(i,1).*ai);
+                
             end
             
         end
         
-        if nargout > 3
-            fpdy_dymax = fpdy_dymax./n;
+        if nargout > 2
+            fpdy_dymax = fpdy_dymax./(n*Dy);
             fpdy_dymin  = 1 - fpdy_dymax;
-            fpdy_dlambda_i = (2./Dx).*fpdy_dalpha_i;
-            fpdy_dxmax = -1.*(alpha./(n.*Dx)).*fpdy_dalpha_i;
-            fpdy_dxmin = -1.*fpdy_dxmax;
-            fpdy_db_i = alpha.*fpdy_dxmax;
+            fpdy_dxmax =  fpdy_dxmax./(n*Dx);
+            fpdy_dxmin =  -fpdy_dxmax;
             if base~="nat"
-                fpdy_db_i = (fpdy_db_i./(b_i.*log(b_i)));
+                fpdy_db = (fpdy_db./(b_i.*log(b_i)));
             else
-                fpdy_db_i = (fpdy_db_i./(exp(1)));
+                fpdy_db = (fpdy_db./(exp(1)));
             end
             
             for i =1:n
-                jacob_iy_d(i,:,:) = [fpdy_db_i; fpdy_dlambda_i; ...
-                    fpdy_dxmax; fpdy_dxmin; fpdy_ddelta_x_i(i,:); ...
-                    fpdy_dymax; fpdy_dymin];
+                if p == 7
+                    jacob_iy_d(:,:,i) = [fpdy_ci(:,i) fpdy_db fpdy_dlambda_i(:,i) ...
+                        fpdy_dxmax fpdy_dxmin ...
+                        fpdy_dymax fpdy_dymin];
+                elseif p == 6
+                    jacob_iy_d(:,:,i) = [fpdy_db fpdy_dlambda_i(:,i) ...
+                        fpdy_dxmax fpdy_dxmin ...
+                        fpdy_dymax fpdy_dymin];
+                elseif p == 5
+                    jacob_iy_d(:,:,i) = [fpdy_dlambda_i(:,i) ...
+                        fpdy_dxmax fpdy_dxmin ...
+                        fpdy_dymax fpdy_dymin];
+                end
+                
+                jacob_ie_d(:,:,i) = -jacob_iy_d(:,:,i);
+                % assumes Ess is 0.5*Ess
+                jacob_iess_d(:,:,i) = (e).*jacob_ie_d(:,:,i);
+            end
+            % 1 x p x n = n x p
+            tmpy = sum(jacob_iy_d);
+            tmpe = sum(jacob_ie_d);
+            tmpess = sum(jacob_iess_d);
+            for i = 1:n
+                jacoby(i,:) = tmpy(1,:,i);
+                jacobe(i,:) = tmpe(1,:,i);
+                jacobess(i,:) = tmpess(1,:,i);
             end
             
-        end
-               
-        if nargout > 4
-            jacoby = sum(jacob_iy_d,3);
-        end
-        
-        if nargout > 5
+            %n: p x p == n x p x p
             for i =1:n
                 hessy(i,:,:) = jacoby(i,:)'*jacoby(i,:);
+                hesse(i,:,:) = jacobe(i,:)'*jacobe(i,:);
+                hessess(i,:,:) = jacobess(i,:)'*jacobess(i,:);
             end
-        end    
-         
+            
+            % pacakage Jacobians and Hessians
+            JH.e = e;
+            JH.jacob_iy_d = jacob_iy_d;
+            JH.jacob_ie_d = jacob_ie_d;
+            JH.jacob_iess_d = jacob_iess_d;
+            JH.jacoby = jacoby;
+            JH.jacobe = jacobe;
+            JH.jacobess = jacobess;
+            JH.hessy = hessy;
+            JH.hesse = hesse;
+            JH.hessess = hessess;
+        end
+        
         % convert to column-vector: n*1,
         % if in row-vector form
         if isrow(y)
             y = y';
-            dy_dx = dy_dx';
         end
         
         

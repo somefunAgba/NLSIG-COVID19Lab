@@ -10,6 +10,8 @@ optsin.shape = shape;
 optsin.base = base;
 optsin.n = n_ips;
 
+optsin.p = 6;
+
 optsin.lambda = lambda;
 
 optsin.xmin = xmin;

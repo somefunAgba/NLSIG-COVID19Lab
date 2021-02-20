@@ -1,59 +1,91 @@
-
 function save_metrics(focus,new_rows,query_ccode,time_data)
-[this_filepath,this_filename,~]= fileparts(mfilename('fullpath')); %#ok<ASGLU>
-rootpath = strrep(this_filepath, [filesep 'cvmain' filesep 'cvcore'], '');
-cd(rootpath);
-old_dir = rootpath;
-thisfolder =  string(time_data(end));
+%SAVE_METRICS
+% private function
 
-if focus == 'i'
-    mkstore('measures');
-    cd('measures');
-    mkstore('infs');
-    cd('infs')
-    thisfolder =  string(time_data(end));
-    mkstore(thisfolder);
-    cd(thisfolder)
-    metricsfile = "imetrics_df.xlsx";
-elseif focus == 'd'
-    mkstore('measures');
-    cd('measures');
-    mkstore('dths');
-    cd('dths');
-    mkstore(thisfolder);
-    cd(thisfolder)
-    metricsfile = "dmetrics_df.xlsx";
+%% 1. Path operation
+if ~(ismcc || isdeployed)
+    [thisfp,thisfn,~]= fileparts(which('save_metrics.m'));
+    rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'cvcore'], '');
+    if isfile(fullfile(thisfp,thisfn+".m"))
+        cd(rootfp);
+        old_dir = rootfp;
+    end
+else
+    % we don't need to do anything
+    % since its a deployed code.
+end
+datefd =  string(time_data(end));
+
+%% 2. File name for metrics
+if ~(ismcc || isdeployed)
+    if focus == 'i'
+        try
+            cd(fullfile(rootfp,'measures','infs'))
+        catch
+            try
+                cd(fullfile(rootfp,'measures'))
+                mkstore("infs");
+                cd(fullfile(rootfp,'measures','infs'));               
+            catch
+                cd(fullfile(rootfp));
+                mkstore("measures");
+                cd(fullfile(rootfp,'measures'));
+                mkstore("infs");
+                cd(fullfile(rootfp,'measures','infs'));
+            end
+        end
+        mkstore(datefd);
+        metricsfile = fullfile(rootfp, 'measures', 'infs', ...
+            datefd,'imetrics_df.xlsx');
+    elseif focus == 'd'
+        try
+            cd(fullfile(rootfp,'measures','dths'))
+        catch
+            try
+                cd(fullfile(rootfp,'measures'))
+                mkstore("dths");
+                cd(fullfile(rootfp,'measures','dths'));               
+            catch
+                cd(fullfile(rootfp));
+                mkstore("measures");
+                cd(fullfile(rootfp,'measures'));
+                mkstore("dths");
+                cd(fullfile(rootfp,'measures','dths'));
+            end
+        end
+        mkstore(datefd);
+        metricsfile = fullfile(rootfp, 'measures', 'dths', ...
+            datefd,'dmetrics_df.xlsx');
+    end
+else
+    if focus == 'i'
+        metricsfile = fullfile(ctfroot, 'measures', 'infs', ...
+            datefd,'imetrics_df.xlsx');
+    elseif focus == 'd'
+        metricsfile = fullfile(ctfroot, 'measures', 'dths', ...
+            datefd,'dmetrics_df.xlsx');
+    end
+    
 end
 
+%% 3. Save metrics to metricfile
 % does file exist? if not, create it
 if ~isfile(metricsfile)
-    Tm = new_rows;
-    Tm.Properties.VariableNames = {'QueryDate','R2','XIR','XIRLB','XIRUB','YIR','YIRLB','YIRUB'};
-    writetable(Tm, metricsfile,"Sheet",query_ccode,"WriteMode","overwritesheet");
+    new_rows.Properties.VariableNames = {'QueryDate','R2','XIR','XIRLB','XIRUB','YIR','YIRLB','YIRUB'};
+    writetable(new_rows, metricsfile,'Sheet',query_ccode,'WriteMode','overwritesheet');
 else
     sheets = sheetnames(metricsfile);
     % check if the sheet for a country code exists
-    sheet_exists = any(strcmpi(query_ccode,sheets));
-    if sheet_exists
-        % write or append new data on new line
-        % if date-entry does overwrite with new data
-        
-        %     opts = detectImportOptions(metricsfile);
-        %     % selects ccode sheet
-        %     opts.Sheet = query_ccode;
-        %     % selects all variables
-        %     opts.SelectedVariableNames = 1:8;
-        %     meas_rows = readtable(metricsfile,opts);
-        new_rows.Properties.VariableNames = {'QueryDate','R2','XIR','XIRLB','XIRUB','YIR','YIRLB','YIRUB'};
-        writetable(new_rows, metricsfile,"Sheet",query_ccode,"WriteMode","overwritesheet");
-    else
-        % append ccode as new sheet in metricsfile
-        % write data on new line.
-        Tm = new_rows;
-        Tm.Properties.VariableNames =  {'QueryDate','R2','XIR','XIRLB','XIRUB','YIR','YIRLB','YIRUB'};
-        writetable(Tm, metricsfile,"Sheet",query_ccode,"WriteMode","overwritesheet");
-    end
+    sheet_exists = any(strcmpi(query_ccode,sheets)); %#ok<NASGU>
+    % write or overwrite sheet with new data
+    new_rows.Properties.VariableNames = {'QueryDate','R2','XIR','XIRLB','XIRUB','YIR','YIRLB','YIRUB'};
+    writetable(new_rows, metricsfile,'Sheet',query_ccode,'WriteMode','overwritesheet');
 end
-cd(old_dir);
+
+%% 4. End.
+if ~(ismcc || isdeployed)
+    cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+    cd(old_dir);
+end
 
 end

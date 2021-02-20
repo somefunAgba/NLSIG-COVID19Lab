@@ -31,29 +31,29 @@ if ~isempty(iplist_idx)
         else
             break;
         end
-    end  
-
+    end
+    
     if numel(iplist_idx) > 1 && numel(ips_valley) == numel(ips_peak) && count > 0
         ips_valley(end+1) = mkid;
         iplist_idx(end) = mkid;
-%         if ips_peak(end) >= mkid
-%             ips_peak(end) = round(0.5*(mkid + ips_valley(end-1)));
-%             iplist_idx(end-1) = ips_peak(end);
-%         end
+        %         if ips_peak(end) >= mkid
+        %             ips_peak(end) = round(0.5*(mkid + ips_valley(end-1)));
+        %             iplist_idx(end-1) = ips_peak(end);
+        %         end
     elseif numel(iplist_idx) > 1 && numel(ips_valley) > numel(ips_peak) && count > 0
         ips_valley(end) = mkid;
         iplist_idx(end) = mkid;
         
-%         ips_valley(end+1) = mkid;        
-%         ypk = 0.5*(y(ips_valley(end)) + y(ips_valley(end-1)));
-%         xdiff = (ips_valley(end) - ips_valley(end-1));
-%         ydiv = (ypk - y(ips_valley(end-1)) )/(  y(ips_valley(end))- y(ips_valley(end-1)) );        
-%         ips_peak(end+1) = round( ips_valley(end-1) + (xdiff*ydiv) );
-%         
-%         iplist_idx(end+1) = ips_peak(end);
-%         iplist_idx(end+1) = ips_valley(end);
+        %         ips_valley(end+1) = mkid;
+        %         ypk = 0.5*(y(ips_valley(end)) + y(ips_valley(end-1)));
+        %         xdiff = (ips_valley(end) - ips_valley(end-1));
+        %         ydiv = (ypk - y(ips_valley(end-1)) )/(  y(ips_valley(end))- y(ips_valley(end-1)) );
+        %         ips_peak(end+1) = round( ips_valley(end-1) + (xdiff*ydiv) );
+        %
+        %         iplist_idx(end+1) = ips_peak(end);
+        %         iplist_idx(end+1) = ips_valley(end);
     end
-        
+    
     
     % Estimate cummulative final phase detected in the data y
     phase = "pre-peak";
@@ -73,3 +73,6 @@ if ~isempty(iplist_idx)
         end
     end
 end
+
+end
+

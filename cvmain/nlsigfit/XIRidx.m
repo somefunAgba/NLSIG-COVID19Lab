@@ -41,6 +41,7 @@ xmin_i = sol.xmin;
 
 ips_id = x >= xmin_i';
 c = sum(ips_id,2);
+c(c==0) = 1;
 
 min = xmin_i(c);
 pks = xpks_i(c);

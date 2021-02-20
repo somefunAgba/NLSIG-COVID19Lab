@@ -1,14 +1,39 @@
-function [TT,status,ccs] = get_cdata_applet(app, search_ccode, update)
-%  GET_CDATA Get a country's COVID-19 data via its country code and specify whether to
-% update existing data, update = 1 or 0
-% Usecase:
-%   [TT,status,ccs] = get_cdata("NG",0);
-%   [TT,status,ccs] = get_cdata("US",1);
-%   [~,status,ccs] = get_cdata("ALL",1);
+function [TT,status] = get_cdata_applet(search_ccode, update, app)
+%GET_CDATA_APPLET Query a country-code's COVID-19 data
+%       Query WHO COVID-19 database of a specific 
+%       country with/ with no online update
 %
-% Copyright
+%INPUTS
+% (Required)
+% search_ccode : country code
+% update : update logic, 0 or 1
+% (Optional)
+% app : app handle
+%
+%OUTPUTS
+% TT: Table data-structure holding the country-code data
+% status : success or failure, 1 or 0
+%
+%Usecase: 
+%CMD
+%   [TT,status] = get_cdata_applet("NG",0); 
+%   TT = get_cdata_applet("US",1); 
+%   [~,status] = get_cdata_applet("ALL",1); 
+%APP
+%   [TT,status] = get_cdata_applet("NG",0,app); 
+%   TT = get_cdata_applet("US",1,app); 
+%   [~,status] = get_cdata_applet("ALL",1,app); 
+%
+%Copyright:
 % <mailto:oasomefun@futa.edu.ng |oasomefun@futa.edu.ng|>|, 2020.|
 
+assert(nargin<=3," Expected at most 3 arguments!")
+assert(update == 0 || update == 1, "update is either: 0 or 1!")
+
+is_app = true;
+if nargin < 3 % not an applet
+    is_app = false;
+end
 
 %% 1. ensure we are at the project's root
 if ~(ismcc || isdeployed)
@@ -37,29 +62,17 @@ assert(isstring(search_ccode), e_msg);
 
 
 %% 2. Call update on WHO's CV19 data
-upd_cdata_applet(app, update, search_ccode);
+if is_app == true
+    upd_cdata_applet(search_ccode, update, app);
+else
+    upd_cdata_applet(search_ccode, update);
+end
 
 e_msg = sprintf("Possible corrupted dir structure. local files missing.\n" + ...
         "you might have to re-download the local folder from source.");
     
-%% 3. Obtain available country codes and names
-% check if the 'ccn_file' exists in data folder, otherwise fallback to
-% local folder
-if ~(ismcc || isdeployed)
-    ccn_filed = fullfile(rootfp, "data", "country_code_name.xlsx");
-    ccn_filel = fullfile(rootfp, "local", "country_code_name.xlsx");
-else
-    ccn_filed = fullfile(ctfroot, "data", "country_code_name.xlsx");
-    ccn_filel = fullfile(ctfroot, "local", "country_code_name.xlsx");
-end
-state = isfile(ccn_filed);
-if ~state
-    state = isfile(ccn_filel);
-    assert(state==1, e_msg);
-end
-ccs = readtable(ccn_filel);
 
-%% 4. Check if the 'cbc_CV19datafile' exists in data folder
+%% 3. Check if the 'cbc_CV19datafile' exists in data folder
 %       else fallback to local folder
 if ~(ismcc || isdeployed)
     cbc_CV19datafiled = fullfile(rootfp, "data", "cbc_CV19_data.xlsx");
@@ -75,12 +88,14 @@ end
 state = isfile(cbc_CV19datafiled) && isfile(world_CV19datafiled);
 if ~state
     state = isfile(cbc_CV19datafilel) && isfile(world_CV19datafilel);
-    app.StatusLabel.Text = "Error: Directory Corrupted!";
-    app.StatusLabel.FontColor = [1,0, 0]; %red;
+    if is_app == true
+        app.StatusLabel.Text = "Error: Directory Corrupted!";
+        app.StatusLabel.FontColor = [1,0, 0]; %red;
+    end
     assert(state==1, e_msg);
 end
 
-%% 5. Obtain country code data
+%% 4. Obtain country code data
 status = 0;
 % in the world data file
 if search_ccode == "WD"
@@ -123,27 +138,34 @@ if ~strcmp(search_ccode, "WD") &&  ~strcmpi("ALL",search_ccode)
             TT = readtable(cbc_CV19datafilel,opts);
         end
         status = sheet_exists;
+        status = double(status);
     else
         warning("attempt to load a non-existent country code");
         e_msg = sprintf("Please check either of the files:\n"+ ...
             "'country_code_name.xlsx' or 'country_code_name.csv'\n"+ ...
             "for valid two-letter country codes.");
-        app.StatusLabel.Text = "Error: Directory Corrupted!";
-        app.StatusLabel.FontColor = [1, 0, 0]; % red
+        if is_app == true
+            app.StatusLabel.Text = "Error: Directory Corrupted!";
+            app.StatusLabel.FontColor = [1, 0, 0]; % red
+        end
         error(e_msg);
     end
     
 end
+
 if strcmpi("ALL",search_ccode)  
     TT = [];
     status = 1;
 end
 
-%% 6. End.
+%% 5. End.
 if ~(ismcc || isdeployed)
-    
-    app.StatusLabel.Text = "Query successful!";
-    app.StatusLabel.FontColor = [0.3, 0.5, 0.5];
+    if is_app == true
+        app.StatusLabel.Text = "Query successful!";
+        app.StatusLabel.FontColor = [0.3, 0.5, 0.5];
+    else
+        cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+    end
     cd(other_dir);
     
 end

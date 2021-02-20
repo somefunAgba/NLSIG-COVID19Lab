@@ -1,6 +1,6 @@
 
 %% Data
-clc;close all;
+% clc;close all;
 
 iopts.check_constraints = 0;
 iopts.shape = 's';

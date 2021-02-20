@@ -1,29 +1,48 @@
 function row_mets = ...
     get_metrics(query_ccode, time_query, focus, time_data)
-%  GET_METRICS 
+%GET_METRICS 
+% private function
 
 %% Copyright
 % <mailto:oasomefun@futa.edu.ng |oasomefun@futa.edu.ng|>|, 2020.|
 
-[this_filepath,this_filename,~]= fileparts(mfilename('fullpath')); %#ok<ASGLU>
-rootpath = strrep(this_filepath, [filesep 'cvmain' filesep 'cvcore'], '');
-cd(rootpath);
-old_dir = rootpath;
-thisfolder =  string(time_data(end));
 
-if focus == 'i'
-    cd('measures');
-    cd('infs')
-    cd(thisfolder)
-    metricsfile = "imetrics_df.xlsx";
-elseif focus == 'd'
-    cd('measures');
-    cd('dths');
-    cd(thisfolder)
-    metricsfile = "dmetrics_df.xlsx";
+
+%% 1. Path operation
+if ~(ismcc || isdeployed)
+    [thisfp,thisfn,~]= fileparts(which('save_metrics.m'));
+    rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'cvcore'], '');
+    if isfile(fullfile(thisfp,thisfn+".m"))
+        cd(rootfp);
+        old_dir = rootfp;
+    end
+else
+    % we don't need to do anything
+    % since its a deployed code.
+end
+datefd =  string(time_data(end));
+
+%% 2. Metrics File name
+if ~(ismcc || isdeployed)
+    if focus == 'i'
+        metricsfile = fullfile(rootfp, 'measures', 'infs', ...
+            datefd,'imetrics_df.xlsx');
+    elseif focus == 'd'
+        metricsfile = fullfile(rootfp, 'measures', 'dths', ...
+            datefd,'dmetrics_df.xlsx');
+    end
+else
+    if focus == 'i'
+        metricsfile = fullfile(ctfroot, 'measures', 'infs', ...
+            datefd,'imetrics_df.xlsx');
+    elseif focus == 'd'
+        metricsfile = fullfile(ctfroot, 'measures', 'dths', ...
+            datefd,'dmetrics_df.xlsx');
+    end
+    
 end
 
-
+%% 3. Get metrics from metricfile
 sheets = sheetnames(metricsfile);
 % check if the sheet for a country code exists
 sheet_exists = any(strcmpi(query_ccode,sheets));

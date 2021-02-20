@@ -287,7 +287,7 @@ fitstats = best_fit;
 %% Augment un-optimized parameters with the optimized solutions struct
 sol.check_constraints = 0;
 sol.n = n_ips;
-sol.shape = 's';
+sol.shape = 1;
 
 if len_sol == 2 || len_sol == 6
     sol.base = base;
@@ -300,6 +300,7 @@ if len_sol == 2 || len_sol == 3
     sol.ymax = ymax;
 end
 
+sol.p = 6;
 
 %% Plot Fitting Solution and 95% CIs
 % if nlsigfit_opts.plotfit == 1 
