@@ -13,8 +13,9 @@ if ~(ismcc || isdeployed)
     [thisfp,thisfn,~]= fileparts(which('save_metrics.m'));
     rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'cvcore'], '');
     if isfile(fullfile(thisfp,thisfn+".m"))
-        cd(rootfp);
-        old_dir = rootfp;
+        current_userfp = cd(rootfp);
+%         cd(rootfp);
+%         old_dir = rootfp;
     end
 else
     % we don't need to do anything
@@ -43,6 +44,7 @@ else
 end
 
 %% 3. Get metrics from metricfile
+try
 sheets = sheetnames(metricsfile);
 % check if the sheet for a country code exists
 sheet_exists = any(strcmpi(query_ccode,sheets));
@@ -61,7 +63,15 @@ if sheet_exists
     row_mets = table2array(row_mets);
     %'R2','XIR','XIRLB','XIRUB','YIR','YIRLB','YIRUB'
 end
+catch ME
+    if ~(ismcc || isdeployed)
+        cd(current_userfp);
+    end
+    rethrow(ME);    
+end
 
-cd(old_dir);
-cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+if ~(ismcc || isdeployed)
+    cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+    cd(current_userfp);
+end
 end

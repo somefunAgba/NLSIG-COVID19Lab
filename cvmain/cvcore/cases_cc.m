@@ -32,7 +32,7 @@ if nargin < 4 % not an applet
     is_app = false;
 end
 assert(update == 0 || update == 1, "update is either: 0 or 1!")
-assert(focus == "i" || focus == "d", "focus is either: 'i' or 'd'!")
+assert(focus == 'i' || focus == 'd', "focus is either: 'i' or 'd'!")
 
 %
 if is_app == true
@@ -42,10 +42,10 @@ else
 end
 
 %
-if focus == "i"
+if focus == 'i'
     y = TT.Cumulative_cases;
     dy = TT.New_cases;
-elseif focus == "d"
+elseif focus == 'd'
     y = TT.Cumulative_deaths;
     dy = TT.New_deaths;
 end

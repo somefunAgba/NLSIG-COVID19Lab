@@ -27,6 +27,10 @@ function [TT,status] = get_cdata_applet(search_ccode, update, app)
 %Copyright:
 % <mailto:oasomefun@futa.edu.ng |oasomefun@futa.edu.ng|>|, 2020.|
 
+if verLessThan('matlab', '9.7') % 9.7 = R2019b
+    error('NLSIG-COVID19Lab requires Matlab R2019b or later');
+end
+
 assert(nargin<=3," Expected at most 3 arguments!")
 assert(update == 0 || update == 1, "update is either: 0 or 1!")
 
@@ -40,7 +44,7 @@ if ~(ismcc || isdeployed)
     [thisfp,thisfn,~]= fileparts(which('get_cdata_applet.m'));
     rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'cvcore'], '');
     if isfile(fullfile(thisfp,thisfn+".m"))
-        other_dir = cd(rootfp);
+        current_userfp = cd(rootfp);
     end
 else
     % we don't need to do anything
@@ -166,7 +170,7 @@ if ~(ismcc || isdeployed)
     else
         cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
     end
-    cd(other_dir);
+    cd(current_userfp);
     
 end
 

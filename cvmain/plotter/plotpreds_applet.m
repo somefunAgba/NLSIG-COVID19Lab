@@ -16,10 +16,13 @@ end
 iplines = (ips_adata)'*ones(size(y_data))';
 tmsg = " \fontsize{10} \fontname{Consolas}"+country_code+": \color[rgb]{0.2 0.5 0.9} "...
     +string(time_data(1))+" \fontname{Arial}to \fontname{Consolas} "...
-    +string(time_data(end))+"\color{black} | \color{gray}\fontsize{10} Phase: "+phase;
+    +string(time_data(end))+"\color{black} | \color{gray}\fontsize{10} Phase: "+phase; %#ok<NASGU>
 
+app.fptime = time_data(1);
+app.lptime = time_data(end);
+app.ccphase = phase;
 
-title(app.UIAxes,tmsg);
+%title(app.UIAxes,tmsg);
 
 
 hold(app.UIAxes,'on');box on;
@@ -42,17 +45,17 @@ app.UIAxes.FontName = 'Consolas';
 app.UIAxes.FontSize = 8;
 axis(app.UIAxes,'tight')
 if focus == "i"
-    ylabel(app.UIAxes,'\fontsize{8} \fontname{Consolas} Infected')
+    ylabel(app.UIAxes,'\fontsize{9} \fontname{Consolas} Infected')
 elseif focus == "d"
-    ylabel(app.UIAxes,'\fontsize{8} \fontname{Consolas} Deaths')
+    ylabel(app.UIAxes,'\fontsize{9} \fontname{Consolas} Deaths')
 end
-xlabel(app.UIAxes,'\fontsize{8} \fontname{Consolas} Time (days (in months) since first reported case)')
+xlabel(app.UIAxes,'\fontsize{9} \fontname{Consolas} Time (days (in months) since first reported case)')
 hold(app.UIAxes,'off');
 
 % PLOT 2
 iplines = (ips_adata)'*ones(size(dy_data))';
 
-title(app.UIAxes2,tmsg);
+%title(app.UIAxes2,tmsg);
 hold(app.UIAxes2,'on');
 box(app.UIAxes2,'on');
 
@@ -68,14 +71,14 @@ plot(app.UIAxes2,x_data, dy_sol,'Color',red2,'LineWidth',1.2);
 
 
 app.UIAxes2.FontName = 'Consolas';
-app.UIAxes2.FontSize = 8;
+app.UIAxes2.FontSize = 9;
 axis(app.UIAxes2,'tight')
 if focus == "i"
-    ylabel(app.UIAxes2,'\fontsize{8} \fontname{Consolas} Infected per day')
+    ylabel(app.UIAxes2,'\fontsize{9} \fontname{Consolas} Infected per day')
 elseif focus == "d"
-    ylabel(app.UIAxes2,'\fontsize{8} \fontname{Consolas} Deaths per day')
+    ylabel(app.UIAxes2,'\fontsize{9} \fontname{Consolas} Deaths per day')
 end
-xlabel(app.UIAxes2,'\fontsize{8} \fontname{Consolas} Time (days since first reported case)')
+xlabel(app.UIAxes2,'\fontsize{9} \fontname{Consolas} Time (days since first reported case)')
 
 hold(app.UIAxes2,'off');
 

@@ -50,7 +50,7 @@ if smooth == true
 end
 
 assert(update == 0 || update == 1, "update is either: 0 or 1!")
-assert(focus == "i" || focus == "d", "focus is either: 'i' or 'd'!")
+assert(focus == 'i' || focus == 'd', "focus is either: 'i' or 'd'!")
 assert(nboot > 0, "number of boot should be positive integer!")
 nboot = ceil(nboot);
 
@@ -72,7 +72,7 @@ else
     [t,y,dy,~] = cases_cc(country_code,update,focus);
 end
 
-
+pause('on');
 % depreceated
 % for globaltrys=1:4
 % 
@@ -89,15 +89,23 @@ end
 % Smooth Data by Fitting Cubic Spline to Data
 % for kn = 8:16 % for least-squares regression 8,9,10,12,13,14,15
 % reduce knots to determine smaller sized waves.
-
-[xid,y,dys,d2ys] = zfs_diff(y,dy);
 % knots_val = 13;
 % [xid,ys,dys,d2ys] = smoothspline(smooth,y,dy,knots_val); %#ok<ASGLU>
 
+if is_app == true
+    app.StatusLabel.Text = "Searching i.ps ...";
+    app.StatusLabel.FontColor = [0.88,0.08,0.38];
+    pause(1);
+else
+    fprintf("Searching i.ps ...\n");
+end
+
+[xid,y,dys,d2ys] = zfs_diff(y,dy);
 
 % Find Peaks and Valleys (Inflection-Points)
 if smooth == false
-    cpt_dists = [7 25];
+%   cpt_dists = [7 25];   
+    cpt_dists = [1 7]; 
 end
 if smooth == true
     cpt_dists = [1 7]; 
@@ -112,6 +120,14 @@ end
 [x_data,y_data,ig_opts,ips_adata,ips_vdata,ips_pdata,time_data] = ...
     xy_ipsort(spass,xid,y,n_ips,iplist_idx,ips_valley,ips_peak,t);
 dy_data = dy(ips_valley(1):end);
+
+if is_app == true
+    app.StatusLabel.Text = "Search done! Optimizing ...";
+    app.StatusLabel.FontColor = [0.88,0.08,0.38];
+    pause(1);
+else
+    fprintf("Search done! Optimizing ...\n");
+end
 
 % depreceated
 % Optional Plot of Initial Guesses
@@ -170,13 +186,13 @@ gnewoptins = newoptins;
 %% Bootstrap uncertainty CI bounds on best fit solution
 if is_app == true
     if boots == true
-        [gy_sollb,gdy_sollb,gsol_lb,gy_solub,gdy_solub,gsol_ub,...
+        [app,gy_sollb,gdy_sollb,gsol_lb,gy_solub,gdy_solub,gsol_ub,...
             gbest_fitstatslb,gbest_fitstatsub] ...
             = nsligfp_bootstrap_applet(app,x_data,y_data,dy_data,gsol,gy_sol,gdy_sol,len_sol,...
             imposeconstr,chngsolver,nboot,gbest_fitstats,...
             gy_mdlfun,gdy_dx_mdlfun,gnlsigprob,gx0,gn_ips,gnewoptins); %#ok<ASGLU>
     else
-        [gy_sollb,gdy_sollb,gsol_lb,gy_solub,gdy_solub,gsol_ub,...
+        [app,gy_sollb,gdy_sollb,gsol_lb,gy_solub,gdy_solub,gsol_ub,...
             gbest_fitstatslb,gbest_fitstatsub] ...
             = nsligfp_dkw_applet(app,x_data,gy_sol,gdy_sol,fitstats,...
             fitopts,startingbounds,lubnds); %#ok<ASGLU>
@@ -196,10 +212,10 @@ else
     end
     
 end
-
+pause('on');
 %% Second-Pass 
 % Uses smoothed solution data to ensures metrics are correct
-if smooth == true
+while (smooth == true)
     spass = true;
     smooth  = false;
     
@@ -207,14 +223,11 @@ if smooth == true
         boldgreen = [0.5 0.9 0.5];
         app.StatusLabel.Text =  "Second Pass!";
         app.StatusLabel.FontColor = boldgreen;
+        pause(1);
     else
         boldgreen = '*[0.5 0.9 0.5]';
         cprintf(boldgreen,'Second Pass! ');
     end
-    
-%     if finer == false
-%         cpt_dists = [7 25];
-%     end
     
     [xid,~,dys,d2ys] = zfs_diff(gy_sol,gdy_sol);
     [iplist_idx] = findips(gy_sol,gdy_sol,dys,d2ys,cpt_dists,smooth);
@@ -237,13 +250,13 @@ if smooth == true
 
     if is_app == true
         if boots == true
-            [y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
+            [app,y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
                 best_fitstatslb,best_fitstatsub] ...
                 = nsligfp_bootstrap_applet(app,x_data,sy_data,sdy_data,sol,dy_sol,y_sol,len_sol,...
                 imposeconstr,chngsolver,nboot,best_fitstats,...
                 y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins); %#ok<ASGLU>
         else
-            [y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
+            [app,y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
                 best_fitstatslb,best_fitstatsub] ...
                 = nsligfp_dkw_applet(app,x_data,y_sol,dy_sol,gbest_fitstats,...
                 fitopts,startingbounds,lubnds); %#ok<ASGLU>
@@ -262,11 +275,11 @@ if smooth == true
                 = nsligfp_dkw(x_data,y_sol,dy_sol,gbest_fitstats,...
                 fitopts,startingbounds,lubnds); %#ok<ASGLU>
         end
-        
-        
+     
     end
+    
 end
-
+pause('on');
 %% NLSIG curve metrics
 if spass == false
     YIR = YIRidx(gy_sol,gsol.ymax,gsol.ymin);
@@ -330,7 +343,7 @@ if is_app == true
     % Export Graphics
     figsv = plotpreds(gcf,country_code,time_data,x_data,y_data,dy_data,...
         gy_sol,gy_sollb,gy_solub,gdy_sol,gdy_sollb,gdy_solub,...
-        focus,gips_adata,gips_vdata,gips_pdata,gphase);
+        focus,gips_adata,gips_vdata,gips_pdata,gphase,is_app);
     exportplots_applet(figsv,country_code,focus,time_data);
     close(figsv);
 else
@@ -338,13 +351,13 @@ else
     figsv = figure;
     figsv = plotpreds(figsv,country_code,time_data,x_data,y_data,dy_data,...
         gy_sol,gy_sollb,gy_solub,gdy_sol,gdy_sollb,gdy_solub,...
-        focus,gips_adata,gips_vdata,gips_pdata,gphase);
+        focus,gips_adata,gips_vdata,gips_pdata,gphase,is_app);
     
     % Export Graphics
     exportplots(figsv,country_code,focus,time_data);
     app = null(1);
     
 end
-
+pause('off');
 end
 %

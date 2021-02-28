@@ -1,7 +1,7 @@
 function [sol,fval,exitflag,output,fitstats,...
     y_mdlfun,dy_dx_mdlfun,nlsigprob,x0,n_ips,newoptins] ...
     = set_probopts(x_data, y_data, dy_data, nlsigfit_opts,sbounds,lubnds)
-%% custom options
+%SET_PROBOPTS: Setup Problem Optimization workflow
 
 % sbounds enforces starting min value constraint on the x-axis.
 

@@ -1,4 +1,4 @@
-function [y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
+function [app,y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
     fitstatslb,fitstatsub] ...
     = nsligfp_bootstrap_applet(app,x_data,y_data,dy_data,...
     sol,y_sol,dy_sol,len_sol,imposeconstr,chngsolver,nboot,...
@@ -55,12 +55,14 @@ fitstatsub = calc_stats(y_data,y_estub,dy_data,dy_dx_estub,len_sol,n_ips);
 % LB
 sol_lb.check_constraints = 0;
 sol_lb.n = n_ips;
-sol_lb.shape = 's';
+sol_lb.shape = 1;
+sol_lb.p = 6;
 
 % UB
 sol_ub.check_constraints = 0;
 sol_ub.n = n_ips;
-sol_ub.shape = 's';
+sol_ub.shape = 1; %'s'
+sol_ub.p = 6;
 
 if len_sol == 2 || len_sol == 6
     sol_lb.base = sol.base;
@@ -76,6 +78,7 @@ if len_sol == 2 || len_sol == 3
     sol_ub.xmax = sol.xmax;
     sol_ub.ymin = sol.ymin;
     sol_ub.ymax = sol.ymax;
+    
 end
 
 % Predict CIs

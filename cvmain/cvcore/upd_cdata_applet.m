@@ -1,8 +1,8 @@
 function status = upd_cdata_applet(search_ccode, update, app)
-%UPD_CDATA_APPLET Update COVID-19 WHO dataset 
+%UPD_CDATA_APPLET Update COVID-19 WHO dataset
 % Update and process country-code data.
 %
-% Uses last updated local dataset if not connected to the internet. 
+% Uses last updated local dataset if not connected to the internet.
 % This is a private function.
 %
 %INPUTS
@@ -33,6 +33,7 @@ function status = upd_cdata_applet(search_ccode, update, app)
 %Copyright
 % <mailto:oasomefun@futa.edu.ng |oasomefun@futa.edu.ng|>|, 2020.|
 
+
 assert(nargin<=3," Expected at most 3 arguments!")
 
 is_app = true;
@@ -44,7 +45,7 @@ if nargin < 3 % not an applet
 end
 assert(update == 0 || update == 1, "update is either: 0 or 1!")
 
- % default error state
+% default error state
 status = 0;
 
 % DB file names
@@ -58,7 +59,7 @@ if ~(ismcc || isdeployed)
     [thisfp,thisfn,~]= fileparts(which('upd_cdata_applet.m'));
     rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'cvcore'], '');
     if isfile(fullfile(thisfp,thisfn+".m"))
-        old_dir = cd(rootfp);
+        current_userfp = cd(rootfp);
     end
 else
     % we don't need to do anything
@@ -71,10 +72,10 @@ if ~(ismcc || isdeployed)
     if update == 0 && search_ccode == "ALL"
         e_msg = sprintf("Nothing to do.\n");
         cprintf('[0.5, 0.5, 0.5]',char(e_msg));
-        cd(old_dir);
+        cd(current_userfp);
         return
     end
-        
+    
     who_filel = fullfile(rootfp, "local", xlsx_file);
     cbc_filel = fullfile(rootfp, "local", cbc_CV19datafile);
     world_filel = fullfile(rootfp, "local", world_CV19datafile);
@@ -83,14 +84,15 @@ if ~(ismcc || isdeployed)
     who_filed = fullfile(rootfp, "data", xlsx_file);
     cbc_filed = fullfile(rootfp, "data", cbc_CV19datafile);
     world_filed = fullfile(rootfp, "data", world_CV19datafile);
-
-    % create data dir.
-    try
-        old_folder = cd('data');
-    catch
-        mkstore("data");
-        old_folder = cd("data");
-    end
+    
+    %     % create data dir.
+    %     try
+    %         old_folder = cd('data');
+    %     catch
+    %         mkstore("data");
+    %         old_folder = cd("data");
+    %     end
+    cd(current_userfp);
 else
     
     if update == 0 && search_ccode == "ALL"
@@ -98,7 +100,7 @@ else
         app.StatusLabel.Text = e_msg;
         app.StatusLabel.FontColor = [0.5, 0.5, 0.5];
         if ~(ismcc || isdeployed)
-            cd(old_dir);
+            cd(current_userfp);
         end
         return
     end
@@ -117,10 +119,11 @@ end
 % check if the 'xlsx_file' and'cbc_CV19datafile' exists in local folder
 state = isfile(cbc_filel) && isfile(who_filel) && isfile(world_filel);
 
+pause('on')
 %% import latest WHO COVID-19 data
 try
     if is_app == true
-        app.StatusLabel.Text = "Querying ...";
+        app.StatusLabel.Text = "Querying web ...";
         app.StatusLabel.FontColor = [0.9, 0.5, 0.5];
     end
     
@@ -138,8 +141,8 @@ try
             
             writetable(T,who_filed);
             % copy updated copy of "xlsx_file" in dir:data to dir:local
-            copyfile(who_filed, who_filel, 'f');      
-            webaccess = true;          
+            copyfile(who_filed, who_filel, 'f');
+            webaccess = true;
             status = 1; % webaccess
             
         catch ME
@@ -150,19 +153,21 @@ try
                 
                 skyblue = [0.5,0.7,0.9];
                 if is_app == true
-                    app.StatusLabel.Text = "Going Local: No Internet!";
+                    app.StatusLabel.Text = "Done. Use Local DB: No Internet!";
                     app.StatusLabel.FontColor = skyblue;
+                    pause(1);
                 else
                     e_msg = sprintf("Not connected to the internet! falling back to local copy.\n");
                     cprintf(skyblue,e_msg);
                 end
-                pause('on');
-                pause(0.1);
-                pause('off')
+                
+                %pause('off')
                 % copy local copy of "xlsx_file" in dir:local to
                 % dir:data
                 copyfile(who_filel, who_filed, 'f');
-                
+                if ~(ismcc || isdeployed)
+                    cd(current_userfp);
+                end
             else
                 if ~(ismcc || isdeployed)
                     red = [1 0.4 0.4];
@@ -176,22 +181,22 @@ try
                     fprintf("Error Message: %s\n",ME.message);
                     %fprintf("Error Cause: %s\n",ME.cause);
                     %fprintf("Error Trace: %s\n",ME.stack)
-                    
+                    cd(current_userfp);
                     error(e_msg);
                 end
                 status = 0; % err
             end
         end
         
-%         try
-%            repo = "csse_covid_19_data/csse_covid_19_time_series/...
-%            time_series_covid19_recovered_global.csv";
-%            url = https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv
-%         catch
-%         end
+        %         try
+        %            repo = "csse_covid_19_data/csse_covid_19_time_series/...
+        %            time_series_covid19_recovered_global.csv";
+        %            url = https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv
+        %         catch
+        %         end
         
         % Read country code and name from extracted WHO global data
-        if state 
+        if state
             T = readtable(who_filed);
             % get table column names
             T_colnames = string(T.Properties.VariableNames);
@@ -225,14 +230,20 @@ try
             if is_app == true
                 app.StatusLabel.Text =  "Busy. Processing ...";
                 app.StatusLabel.FontColor = [0.88,0.08,0.38];
+                pause(0.2);
             else
                 cprintf(boldgreen,'May take some minutes! ');
                 cprintf(skyblue,"Processing... ");
             end
             Tcol = T{:,ccode_idx};
             for id = 1:numel(ccode)
-                app.StatusLabel.Text =  sprintf("%d of %d.",id,numel(ccode));
-                app.StatusLabel.FontColor = skyblue;
+                if is_app == true
+                    app.StatusLabel.Text =  sprintf("%d of %d.",id,numel(ccode));
+                    app.StatusLabel.FontColor = skyblue;
+                    pause(0.2);
+                else
+                    fprintf("%d",id);
+                end
                 
                 % create country by country data
                 s_ccode = ccs{id,1};
@@ -245,7 +256,7 @@ try
                 writetable(cc_rowsT,cbc_filed,'Sheet',s_ccode,...
                     'WriteMode','overwritesheet');
                 
-                % create world data                
+                % create world data
                 maxh = max(maxh,height(cc_rowsT));
                 if id == 1
                     global_rowsT = cc_rowsT;
@@ -282,7 +293,13 @@ try
                     end
                     writetable(global_rowsT,world_filed,'Sheet','WD',...
                         'WriteMode','overwritesheet');
-                end    
+                end
+                if id ~= numel(ccode) && is_app == false
+                    % refresh rate (wait time ~ 30ms)
+                    % pause(0.01);
+                    fprintf(repmat('\b',1,length(num2str(id))));
+                end
+                
             end
             %
             if is_app == true
@@ -353,23 +370,23 @@ try
             
             status = 0; % err
             error(e_msg);
-           
+            
         end
     end
-
     
-% return back to root
-if ~(ismcc || isdeployed)
-    cd(old_folder);
-end
-
+    
+    % return back to root
+    if ~(ismcc || isdeployed)
+        cd(current_userfp);
+    end
+    
 catch ME
     boldred = [1 0.4 0.4];
     e_msg = sprintf("\nOops! Something went wrong. Beyond my control.\n");
     app.StatusLabel.Text = "Error: Oops. I'm Confused!";
-    app.StatusLabel.FontColor = boldred;  
+    app.StatusLabel.FontColor = boldred;
     if ~(ismcc || isdeployed)
-        cd(old_folder);
+        cd(current_userfp);
     end
     
     status = 0; % err
@@ -380,7 +397,7 @@ catch ME
     %fprintf("Error Trace: %s\n",ME.stack)
     
     
-     
+    
 end
 
 if status == 0

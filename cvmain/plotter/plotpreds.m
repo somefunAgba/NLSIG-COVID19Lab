@@ -1,6 +1,6 @@
 function fig = plotpreds(fig,country_code,time_data,x_data,y_data,dy_data,...
     y_sol,y_sollb,y_solub,dy_sol,dy_sollb,dy_solub,...
-    focus,ips_adata,ips_vdata,ips_pdata,phase)
+    focus,ips_adata,ips_vdata,ips_pdata,phase,is_app)
 %PLOTPREDS nlsig Predictions Plots
 
 try
@@ -24,7 +24,9 @@ tmsg = " \fontsize{8} \fontname{Consolas}"+country_code+": \color[rgb]{0.5 0.7 0
 
 
 fig = figure('Name','FitCmp','NumberTitle','off');
-% fig.Visible = 'off';
+if is_app == true
+fig.Visible = 'off';
+end
 fig.WindowState = 'minimized';
 t2 = tiledlayout(2,1);
 ax_t2 = nexttile(t2);

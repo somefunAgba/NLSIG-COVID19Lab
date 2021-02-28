@@ -1,4 +1,4 @@
-function [y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
+function [app,y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
     fitstatslb,fitstatsub] ...
     = nsligfp_dkw_applet(app,x_data,y_sol,dy_sol,fitstats,fitopts,sbounds,lubnds)
 %NLSIGFP_BOOTSTRAP Compute uncertainty on data to nlsig fit/prediction
@@ -6,8 +6,10 @@ function [y_sollb,dy_sollb,sol_lb,y_solub,dy_solub,sol_ub,...
 % display bootstrapping progress
 skyblue = [0.5,0.7,0.9];
 boldgreen = [0.5 0.9 0.5];
-app.StatusLabel.Text =  "DKWing!";
+
+app.StatusLabel.Text = "DKWing!";
 app.StatusLabel.FontColor = skyblue;
+pause(1);
 
 yref = y_sol;
 % yref = y_data;
