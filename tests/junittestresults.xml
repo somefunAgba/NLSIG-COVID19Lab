@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+   <testsuite errors="0" failures="0" name="testScriptGetData" skipped="0" tests="3"
+              time="14.9555">
+      <testcase classname="testScriptGetData" name="testViewCC1" time="7.1609"/>
+      <testcase classname="testScriptGetData" name="testViewCC2" time="1.2214"/>
+      <testcase classname="testScriptGetData" name="testViewCC3" time="6.5731"/>
+   </testsuite>
+   <testsuite errors="0" failures="0" name="testScriptUpdData" skipped="0" tests="2"
+              time="3089.7395">
+      <testcase classname="testScriptUpdData" name="testUpdDat1" time="3084.003"/>
+      <testcase classname="testScriptUpdData" name="testUpdDat2" time="5.7365"/>
+   </testsuite>
+   <testsuite errors="0" failures="0" name="testScriptQueryModel" skipped="0" tests="2"
+              time="570.6394">
+      <testcase classname="testScriptQueryModel" name="testQueryM1" time="228.2228"/>
+      <testcase classname="testScriptQueryModel" name="testQueryM2" time="342.4166"/>
+   </testsuite>
+</testsuites>
