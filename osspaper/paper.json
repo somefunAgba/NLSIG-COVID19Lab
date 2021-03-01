@@ -15,9 +15,9 @@
   "datePublished": "2020-12-8",
   "dateModified": "2020-12-16",
   "dateCreated": "2020-12-8",
-  "description": "A modern logistic-growth tool (nlogistic-sigmoid) for modelling the dynamics of the COVID-19 pandemic process",
+  "description": "A modern logistic-growth tool (nlogistic-sigmoid) for descriptively modelling the dynamics of the COVID-19 pandemic process",
   "keywords": "software, machine learning, neural-network, COVID-19",
   "license": "ISC",
   "title": "nlsig",
-  "version": "v1.1.0"
+  "version": "v2.0"
 }

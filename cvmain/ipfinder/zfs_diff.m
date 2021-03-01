@@ -28,14 +28,14 @@ dys = dy ; %fdiffdist(y);
 
 
 % difference fda (finer, close to exact)
-d2ys= fdiffdist(y);
-d2ys = fdiffdist(d2ys);
+% d2ys= fdiffdist(y);
+% d2ys = fdiffdist(d2ys);
 
 % d2ys = fdiffdist(dy);
 
 % gradient cda (smoother approximation)
-% d2ys= fgdiffdist(y);
-% d2ys = fgdiffdist(d2ys);
+d2ys= fgdiffdist(y);
+d2ys = fgdiffdist(d2ys);
 
 %d2ys = fgdiffdist(dy);
 

@@ -1,5 +1,5 @@
 ---
-title: '`NLSIG-COVID19Lab`: A modern logistic-growth tool (nlogistic-sigmoid) for modelling the dynamics of the COVID-19 pandemic process'
+title: '`NLSIG-COVID19Lab`: A modern logistic-growth tool (nlogistic-sigmoid) for descriptively modelling the dynamics of the COVID-19 pandemic process'
 tags:
   - Matlab
   - COVID-19
@@ -37,8 +37,8 @@ multiple peak inflection phases with respect to time. An idea that
 can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. A modern definition for the logistic-sigmoid growth which considers restricted growth from  a two-dimensional perspective is the nlogistic-sigmoid function (`NLSIG`) [@somefunLogisticsigmoidNlogisticsigmoidModelling2020] 
 or logistic neural-network (`LNN`) pipeline. 
 
-In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for modelling 
-the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
+In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for a descriptive modelling 
+of the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
 
 
 # Statement of need
@@ -81,15 +81,12 @@ complex to be encoded in current mathematical models [@christopoulosEfficientIde
  
 The user-client end (both user application scripts and graphical user interface) of the `NLSIG-COVID19Lab` 
 is designed to provide a friendly interface demonstrating the `NLSIG` modelling power for time-series growth processes from data. 
-In this case, the growth-process is the time-series COVID-19 pandemic growth from official datasets (see \autoref{fig:iwdcgui} and \autoref{fig:iwdigui}).
+In this case, the growth-process is the time-series COVID-19 pandemic growth from official datasets (see \autoref{fig:iwdcigui} and \autoref{fig:dwdcigui}).
 
-![GUI Layout showing the Total Cummulative COVID-19 Infections in the World. \label{fig:iwdcgui}](inf_wd_c_gui.png){ width=70% } 
+![GUI Layout showing the Total COVID-19 Infections in the World. \label{fig:iwdcigui}](inf_wd_ci_gui.png){ width=70% } 
 
-![GUI Layout showing the Total Incident COVID-19 Infections in the World. \label{fig:iwdigui}](inf_wd_i_gui.png){ width=70% }
+![GUI Layout showing the Total COVID-19 Deaths in the World. \label{fig:dwdcigui}](dth_wd_ci_gui.png){ width=70% } 
 
-![GUI Layout showing the Total Cummulative COVID-19 Deaths in the World. \label{fig:dwdcgui}](dth_wd_c_gui.png){ width=70% } 
-
-![GUI Layout showing the Total Incident COVID-19 Deaths in the World. \label{fig:dwdigui}](dth_wd_i_gui.png){ width=70% }
 
 ### Core Data Source
 As at the time of writing. The COVID-19 Database of `NLSIG-COVID19Lab` is sourced from the:

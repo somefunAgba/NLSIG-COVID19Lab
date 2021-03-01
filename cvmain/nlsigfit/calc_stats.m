@@ -103,17 +103,24 @@ C = exp(1);
 % one-sample Kolmogorov-Smirnov test for samples of size n
 % valE1 = sqrt((1/(2*Nres))*log(C/alphalvl));
 % two-sample Kolmogorov-Smirnov test for samples of size n
-valE2 = sqrt((1/(Nres))*log(C/alphalvl));
+valE2 = sqrt((1/(dft))*log(C/alphalvl));
 
-if normDc > valE2
+if valE2*normDc > valE2
     KSgof = alphalvl;
-elseif normDc <= valE2
+elseif valE2*normDc <= valE2
     KSgof = 1-alphalvl;
 end
 
 % Modified CI Constants
+% euclidean, 2-norm
+% change to 2;
 valEe = sqrt((1/(2))*log(C/alphalvl))*De;
-valEi = sqrt((1/(1))*log(C/alphalvl))*Dc;
+% valEi = sqrt((1/(1))*log(C/alphalvl))*Dc;
+% chebyschev, max-norm
+% change to 1;
+c =  1/32;
+valEi = sqrt((1/c)*log(C/alphalvl));
+valEi = valEi.*valE2.*Dc;
 % CI value for Y
 ciE = valEi;
 

@@ -38,9 +38,9 @@ World Health Organization
 ### GUI
 First, provided is a MATLAB APP to allow for easy use. See the screenshots below
 
-![GUI Layout showing the Total Cummulative COVID-19 Infections of the World. \label{fig:wdcgui}](osspaper/inf_wd_c_gui.png)
+![GUI Layout showing the Total COVID-19 Infections of the World. \label{fig:iwdcigui}](osspaper/inf_wd_ci_gui.png)
 
-![GUI Layout showing the Total Incident COVID-19 Infections of the World. \label{fig:wdigui}](osspaper/inf_wd_i_gui.png)
+![GUI Layout showing the Total COVID-19 Deaths of the World. \label{fig:dwdcigui}](osspaper/inf_wd_ci_gui.png)
 
 
 #### Metrics Interpretation: 
@@ -83,15 +83,14 @@ For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are
 
 For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period.
 
-### SCRIPT API 
-Although, uses the same source as the GUI, this is a script-based application-interface and entirely distinct from the MATLAB APP. Procedure for use are outlined as follows:
+### FRONTEND API 
+Examples of Frontend APIs available for this pacakage can be found in the:
 
-1. Run 'su.m' to add all the project folders and files to MATLAB's path
-   or type ``su`` in the command window
+1. ``examples_m_api`` folder and 
 
-2. Open the 'ui' folder to see possible user interaction with the lab's api.
+2. ``examples_mlx_api`` folder   
 
-	You should see:
+<!-- 	You should see:
 	'view_ccode.m'
 
 	'upd_all.m'
@@ -121,15 +120,13 @@ Although, uses the same source as the GUI, this is a script-based application-in
 	Query COVID-19 pandemic for a batch of selected country codes.
 
 	### 'query_all.m'
-	Query COVID-19 pandemic for all country codes.
+	Query COVID-19 pandemic for all country codes. -->
 
-
-3.	To view saved model fit results and logistic metrics for infections and deaths. 
-	Open the 'assets' folder and 'measures' folder
+### SAVED RESULTS
+Saved model fit results and logistic metrics for infections and deaths can be found in the 'assets' folder and 'measures' folder
 
 	### 'assets' folder
-	Stores all graphics for the model fit of infections and deaths in a folder 
-	named by the last date time-stamp in the data. 
+	Stores all graphics for the model fit of infections and deaths in a folder named by the last date time-stamp in the data. 
 	Graphics are individually saved using the country code. 
 
 	For example: 'WDi.pdf' and 'WDd.pdf' indicates the
@@ -142,11 +139,11 @@ Although, uses the same source as the GUI, this is a script-based application-in
 	subfolders respectively.
 	
 	
-#### Example
-Running 'query_single.m' with the search_code as ``WD``
-gave the following model fit for the ongoing COVID-19 pandemic with respect to the last updated date of the data.
+<!-- #### Example
+ --><!-- Running 'query_single.m' with the search_code as ``WD``
+gave the following model fit for the ongoing COVID-19 pandemic with respect to the last updated date of the data. -->
 
-**WORLD COVID-19 Infections**
+<!-- **WORLD COVID-19 Infections**
 <p align="center">
  <img alt="WDi" src="landing/WDi.png" width=500px/>
 </p>
@@ -186,7 +183,7 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 <p align="center">
 <img alt="CNd" src="landing/CNd.png" width=500px/>
 </p>
-
+ -->
 
 <!--#### Recovered-->
 
