@@ -20,6 +20,3 @@ steps:
       codeCoverageTool: Cobertura
       summaryFileLocation: code-coverage/coverage.xml
       
-      
-      
-%
