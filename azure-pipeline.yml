@@ -5,6 +5,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+  - task: InstallMATLAB@0
+    inputs:
+      release: R2020b
   - task: RunMATLABTests@0
     inputs:
       #sourceFolder: root;
