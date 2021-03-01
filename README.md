@@ -40,7 +40,7 @@ Provided is a MATLAB App to allow for easy use. See the screenshots below
 
 To **Start Modelling**: Click ![model](osspaper/play_24.png)
 
-To **Update the Local Database**: Click ![model](osspaper/Import_24.png)
+To **Update the Local Database**: Click ![model](osspaper/import_24.png)
 
 To View Available Country-Codes: Switch to the **List:Country-codes** Tab
 
