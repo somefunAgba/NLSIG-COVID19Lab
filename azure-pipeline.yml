@@ -1,4 +1,9 @@
-pool: myPool
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
 steps:
   - task: RunMATLABTests@0
     inputs:
