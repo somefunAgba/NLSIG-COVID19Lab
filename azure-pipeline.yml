@@ -10,7 +10,7 @@ steps:
     inputs:
       #sourceFolder: root;
       #sourceFolder: root/folderA; root/folderB
-      selectByFolder: 'tests'
+      #selectByFolder: 'tests'
       testResultsPDF: test-results/results.pdf
       testResultsJUnit: test-results/results.xml
       codeCoverageCobertura: code-coverage/coverage.xml
