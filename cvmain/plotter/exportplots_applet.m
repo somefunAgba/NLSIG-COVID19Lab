@@ -9,9 +9,9 @@ if ~(ismcc || isdeployed)
     rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'plotter'], '');
     if isfile(fullfile(thisfp,thisfn+".m"))
         try           
-        cd(fullfile(rootfp,'assets'));
+        current_userfp = cd(fullfile(rootfp,'assets'));
         catch
-            cd(fullfile(rootfp));
+            current_userfp = cd(fullfile(rootfp));
             mkstore("assets");
             cd(fullfile(rootfp,'assets'));
         end
@@ -38,8 +38,6 @@ end
 % end
 
 
-
-
 gfname = fullfile(ffname,country_code+focus+".pdf");
 exportgraphics(gcf, gfname,'Resolution',300)
 
@@ -51,7 +49,7 @@ exportgraphics(gcf, gfname,'Resolution',300)
 
 
 if ~(ismcc || isdeployed)
-    cd(rootfp);
+    cd(current_userfp);
 else
     % we don't need to do anything
     % since its a deployed code.

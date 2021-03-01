@@ -134,12 +134,12 @@ end
 % CHECK: if last detected point is a peak (means the value of k is odd), 
 % but the d2ys value at the end points is bigger.
 % ACTION: remove that peak point.
-if (mod(k,2)~=0) && ...
-        (mean(dy(J-2:J)) - dys(iplist_idx(k-1)) > 0)
-    k = k - 1;
-%     disp(num2str(iplist_idx(k)) + " point removed. Can't be a peak!");
-    iplist_idx(k) = [];
-end
+% if (mod(k,2)~=0) && ...
+%         (mean(dy(J-2:J)) - dys(iplist_idx(k-1)) > 0)
+%     k = k - 1;
+% %     disp(num2str(iplist_idx(k)) + " point removed. Can't be a peak!");
+%     iplist_idx(k) = [];
+% end
 
 if (mod(k,2)~=0) && ...
         (mean(dy(J-2:J)) - dys(iplist_idx(k-1)) > 0)

@@ -35,27 +35,43 @@ World Health Organization
 - None
 
 
-### GUI
-First, provided is a MATLAB APP to allow for easy use. See the screenshots below
+### MATLAB App
+Provided is a MATLAB App to allow for easy use. See the screenshots below
 
+To **Start Modelling**: Click ![model](osspaper/play_24.png)
+
+To **Update the Local Database**: Click ![model](osspaper/Import_24.png)
+
+To View Available Country-Codes: Switch to the **List:Country-codes** Tab
+
+To Set options for Modelling: Click on the **Options** Tab
+ 
 ![GUI Layout showing the Total COVID-19 Infections of the World. \label{fig:iwdcigui}](osspaper/inf_wd_ci_gui.png)
 
 ![GUI Layout showing the Total COVID-19 Deaths of the World. \label{fig:dwdcigui}](osspaper/inf_wd_ci_gui.png)
 
+#### Metrics Interpretation
+As at the 21st of February 2021:
 
-#### Metrics Interpretation: 
+*For infections*: 
 
-**R2GoF**
+**YIR = 0.822 [0.82, 0.843]** indicates that the numbers are past the peak; 
 
-R2 Goodness of Fit
+**XIR = 2.95 [2.88, 2.96]** indicates that this time is clearly a post-peak period. 
 
-**KSGoF**
+*For deaths*: 
 
-Kolmogorov-Smirnov Goodness of Fit 
+**YIR = 0.664 [0.61, 0.718]** indicates that the numbers are no longer increasing and are recently past the peak for this phase; 
 
-**KSdist**
+**XIR = 1.66 [1.41, 1.97]** indicates that this time is an early post-peak period. 
 
-Kolmogorov-Smirnov Distance Statistic
+### Metrics: 
+
+**R2GoF** R2 Goodness of Fit
+
+**KSGoF** Kolmogorov-Smirnov Goodness of Fit 
+
+**KSdist** Kolmogorov-Smirnov Distance Statistic
 
 **YIR**
 
@@ -77,13 +93,13 @@ Kolmogorov-Smirnov Distance Statistic
 
 `XIR ~= 0` indicates either a post-peak period or an early pre-peak. 
 
-**Toy Example**
+<!-- **Toy Example**
 
 For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are peaking and may start to decrease soon; the XIR = 0.9843 [0.9826, 1.0146] indicates that this time is close to a peak period. 
 
-For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period.
+For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period. -->
 
-### FRONTEND API 
+### Frontend API 
 Examples of Frontend APIs available for this pacakage can be found in the:
 
 1. ``examples_m_api`` folder and 
@@ -122,22 +138,23 @@ Examples of Frontend APIs available for this pacakage can be found in the:
 	### 'query_all.m'
 	Query COVID-19 pandemic for all country codes. -->
 
-### SAVED RESULTS
-Saved model fit results and logistic metrics for infections and deaths can be found in the 'assets' folder and 'measures' folder
+### Saved Results
+Saved model fit results and logistic metrics for infections and deaths can be found in the *assets* folder and *measures* folder
 
-	### 'assets' folder
-	Stores all graphics for the model fit of infections and deaths in a folder named by the last date time-stamp in the data. 
-	Graphics are individually saved using the country code. 
+#### *assets* folder
+Stores all graphics for the model fit of infections and deaths in a folder named by the last date time-stamp in the data. 
+Graphics are individually saved using the country code. 
 
-	For example: 'WDi.pdf' and 'WDd.pdf' indicates the
-	COVID-19 infections and deaths model fit graphics for the World 
-	to the last date time-stamp in the data.
+For example: ``WDi.pdf`` and ``WDd.pdf`` respectively indicates the
+saved graphics of the COVID-19 infections and deaths model fit for the World to the last date time-stamp in the data in pdf format.
 
-	### 'measures' folder
-	Stores all estimated logistic metrics for infections and deaths till 
-	the last date time-stamp in the data in the 'infs' and 'dths' 
-	subfolders respectively.
+#### *measures* folder
+Stores all estimated logistic metrics for infections and deaths till 
+the last date time-stamp in the data in the *infs* and *dths* 
+subfolders respectively.
 	
+### Automated Tests
+Automated Tests for the app and package functionalties can be found in the *tests* folder.
 	
 <!-- #### Example
  --><!-- Running 'query_single.m' with the search_code as ``WD``

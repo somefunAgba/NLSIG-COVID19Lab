@@ -88,7 +88,7 @@ if lubnds == true
     end
     for  i = n_ips:n_ips
         xpks.LowerBound(i) = 0.5*nlsigfit_opts.xpks(i);
-        xpks.UpperBound(i) = 1.2*nlsigfit_opts.xpks(i);
+        xpks.UpperBound(i) = 1.5*nlsigfit_opts.xpks(i);
     end
 end
 

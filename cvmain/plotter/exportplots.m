@@ -7,11 +7,11 @@ rootpath = strrep(this_filepath, [filesep 'cvmain' filesep 'plotter'], '');
 thisfolder =  string(time_data(end));
 
 try
-    old_dir = cd(rootpath+'/assets');
+    current_userfp = cd(rootpath+'/assets');
     mkstore(thisfolder);
     cd(thisfolder);
 catch
-    old_dir = cd(rootpath);
+    current_userfp = cd(rootpath);
     mkstore("assets");
     cd("assets");
     mkstore(thisfolder);
@@ -23,7 +23,7 @@ end
 exportgraphics(gcf, country_code+focus+".eps",'Resolution',300)
 exportgraphics(gcf, country_code+focus+".pdf",'Resolution',300)
 exportgraphics(gcf, country_code+focus+".png",'Resolution',300)
-cd(old_dir);
+cd(current_userfp);
 
 end
 

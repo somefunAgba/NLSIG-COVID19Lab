@@ -30,9 +30,6 @@ for id = 1:n_ips
     % CASE 1.
     xmins(id) = x(ips_valley(id));
     ymins(id) = y(ips_valley(id));        
-    if id == 1
-            ymins(id) = y(1);
-    end
     try
         xpks(id) = x(ips_peak(id));
         xmaxs(id) = x(ips_valley(id+1));
@@ -48,9 +45,12 @@ for id = 1:n_ips
             if isnan(xmaxs(id))
                 xmaxs(id) = x(end);
             end
-            if (ymaxs(id) == ymins(id))
+            if (ymaxs(id) == ymins(id) && id == n_ips)
                 ymaxs(id) = y(end);
             end
+%             if id == n_ips
+%                 ymaxs(id) = y(end);
+%             end
         catch
             % CASE 3.
             try
@@ -61,9 +61,9 @@ for id = 1:n_ips
                %  xmaxs(id) = xpks(id)*ymaxs(id)/(ypk);
                 xmaxs(id) =  xmins(id) + ...
                     ((xpks(id)-xmins(id))*(ymaxs(id)-ymins(id))/(ypk-ymins(id)));
-                if id == n_ips
-                    ymaxs(id) = y(end);
-                end
+%                 if id == n_ips
+%                     ymaxs(id) = y(end);
+%                 end
             catch
                 error("Bad...something wrong occured!")
             end

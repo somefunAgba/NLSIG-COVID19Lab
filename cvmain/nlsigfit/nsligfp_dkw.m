@@ -16,6 +16,7 @@ dyref = dy_sol;
 
 % LB
 y_lb = yref - fitstats.ciE;
+y_lb(1) = 0;
 dy_lb = dyref - fitstats.dciE;
 % bt_objsse = sum((y_mdlfun - y_lb).^2) + sum((dy_dx_mdlfun - dy_lb).^2);
 % nlsigprob.Objective = bt_objsse;
@@ -32,6 +33,7 @@ fitoptslb.ymax = fitopts.ymax - fitstats.ciE;
 
 % UB
 y_ub = yref + fitstats.ciE ;
+y_ub(1) = 0;
 dy_ub = dyref + fitstats.dciE;
 % bt_objsse = sum((y_mdlfun - y_ub).^2) + sum((dy_dx_mdlfun - dy_ub).^2);
 % nlsigprob.Objective = bt_objsse;

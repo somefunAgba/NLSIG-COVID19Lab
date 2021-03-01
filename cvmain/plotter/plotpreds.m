@@ -48,7 +48,12 @@ plot(time_data,y_sol,'Color',red2,'LineWidth',1.2);
 ax_t2.XTickLabelRotation = 60;
 ax_t2.FontName = 'Consolas';
 ax_t2.FontSize = 8;
+
+% xlim(ax_t2, [0, inf])
 axis(ax_t2,'tight')
+%ylim(ax_t2, [-0.5, inf])
+%axis 'auto x'
+
 if focus == "i"
     ylabel('\fontsize{8} \fontname{Consolas} Infected')
 elseif focus == "d"
@@ -74,7 +79,11 @@ plot(x_data, dy_solub,'-.','Color',khaki3,'LineWidth',1);
 plot(x_data, dy_sol,'Color',red2,'LineWidth',1.2);
 
 hold(ax_t2,'off');
-axis(ax_t2,'tight')
+
+% xlim(ax_t2, [0 inf])
+% axis(ax_t2,'tight')
+ylim(ax_t2, [-0.5 inf])
+axis 'auto x'
 
 if focus == "i"
     ylabel('\fontsize{8} \fontname{Consolas} Infected/day')
