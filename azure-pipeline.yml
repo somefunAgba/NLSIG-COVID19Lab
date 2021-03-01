@@ -1,0 +1,25 @@
+pool: myPool
+steps:
+  - task: RunMATLABTests@0
+    inputs:
+      #sourceFolder: root;
+      #sourceFolder: root/folderA; root/folderB
+      selectByFolder: tests
+      testResultsPDF: test-results/results.pdf
+      testResultsJUnit: test-results/results.xml
+      codeCoverageCobertura: code-coverage/coverage.xml
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: test-results/results.pdf
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFiles: test-results/results.xml
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: code-coverage/coverage.xml
+      
+      
+      
+%
