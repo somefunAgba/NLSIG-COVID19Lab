@@ -50,10 +50,10 @@ else
     % we don't need to do anything
     % since its a deployed code.
 end
-% e_msg = sprintf("Please check either of the files:\n"+ ...
-%     "'country_code_name.xlsx' or 'country_code_name.csv'\n"+ ...
-%     "for valid two-letter country codes.");
-% assert(isstring(search_ccode), e_msg);
+e_msg = sprintf("Please check either of the files:\n"+ ...
+    "'country_code_name.xlsx' or 'country_code_name.csv'\n"+ ...
+    "for valid two-letter country codes.");
+assert(isstring(search_ccode), e_msg);
 
 %clc;
 %add the root location of this file to matlab's path if not on matlab's path
