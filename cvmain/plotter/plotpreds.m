@@ -4,7 +4,7 @@ function fig = plotpreds(fig,country_code,time_data,x_data,y_data,dy_data,...
 %PLOTPREDS nlsig Predictions Plots
 
 try
-    opengl software; % safety  
+    % opengl software; % safety  
     pick_colours;
     chkfig = exist('fig','var');
     if chkfig==1 
