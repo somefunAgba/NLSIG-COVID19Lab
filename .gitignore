@@ -6,7 +6,7 @@
 /osspaper/n*.txt
 /osspaper/n*.md
 /applet/*.prj
-/applet/*.mlapp
+#/applet/*.mlapp
 /applet/nlsiglab
 /assets/*
 /measures/*

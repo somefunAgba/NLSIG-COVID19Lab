@@ -1,14 +1,11 @@
 trigger:
 - main
-
 pool:
   vmImage: ubuntu-latest
-
 steps:
-
   - task: InstallMATLAB@0
     inputs:
-      release: latest
+      release: R2020a
   - task: RunMATLABTests@0
     inputs:
       #sourceFolder: root;
