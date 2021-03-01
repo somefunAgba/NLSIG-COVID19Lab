@@ -5,7 +5,7 @@ pool:
 steps:
   - task: InstallMATLAB@0
     inputs:
-      release:  'R2020a'
+      release: 'R2020a'
   - task: RunMATLABTests@0
     inputs:
       #sourceFolder: root;
