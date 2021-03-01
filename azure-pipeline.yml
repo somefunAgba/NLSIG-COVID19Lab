@@ -5,14 +5,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
   - task: InstallMATLAB@0
     inputs:
-      release: R2020b
   - task: RunMATLABTests@0
     inputs:
       #sourceFolder: root;
       #sourceFolder: root/folderA; root/folderB
-      selectByFolder: tests
+      selectByFolder: 'tests'
       testResultsPDF: test-results/results.pdf
       testResultsJUnit: test-results/results.xml
       codeCoverageCobertura: code-coverage/coverage.xml
