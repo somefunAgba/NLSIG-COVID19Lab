@@ -48,7 +48,7 @@ To Set options for Modelling: Click on the **Options** Tab
  
 ![GUI Layout showing the Total COVID-19 Infections of the World. \label{fig:iwdcigui}](osspaper/inf_wd_ci_gui.png)
 
-![GUI Layout showing the Total COVID-19 Deaths of the World. \label{fig:dwdcigui}](osspaper/inf_wd_ci_gui.png)
+![GUI Layout showing the Total COVID-19 Deaths of the World. \label{fig:dwdcigui}](osspaper/dth_wd_ci_gui.png)
 
 #### Metrics Interpretation
 As at the 21st of February 2021:
