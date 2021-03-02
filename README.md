@@ -33,9 +33,7 @@ World Health Organization
 **External Dependencies**
 - None
 
-### Getting Started
-
-#### MATLAB App: Installation
+### MATLAB App: Installation
 Provided is a MATLAB App to allow for easy use. 
 
 1. In the *applet folder*, double-click or right-click on the App Installer: *NLSIG-COVID19Lab.mlappinstall*
@@ -56,7 +54,7 @@ Linux - ~/MATLAB/Add-Ons/Apps/NLSIGCOVID19Lab.
 
 Mac - ~/Library/Application Support/MathWorks/MATLAB/Add-Ons/Apps/NLSIGCOVID19Lab
 
-#### MATLAB App: Using
+### MATLAB App: Using
 
 Click the NLSIG-COVID19Lab App icon to start the App.
 
@@ -74,7 +72,7 @@ To Set options for Modelling: Click on the **Options** Tab
 
 ![GUI Layout showing the Total COVID-19 Deaths of the World. \label{fig:dwdcigui}](osspaper/dth_wd_ci_gui.png)
 
-#### Metrics Interpretation
+#### Metrics: Interpretation
 As at the 21st of February 2021:
 
 *For infections*: 
@@ -89,7 +87,7 @@ As at the 21st of February 2021:
 
 **XIR = 1.66 [1.41, 1.97]** indicates that this time is an early post-peak period. 
 
-### Metrics: 
+## Metrics
 
 **R2GoF** R2 Goodness of Fit
 
@@ -162,22 +160,22 @@ Examples of Frontend APIs available for this pacakage can be found in the:
 	### 'query_all.m'
 	Query COVID-19 pandemic for all country codes. -->
 
-### Saved Results
+## Saved Results
 Saved model fit results and logistic metrics for infections and deaths can be found in the *assets* folder and *measures* folder
 
-#### *assets* folder
+### *assets* folder
 Stores all graphics for the model fit of infections and deaths in a folder named by the last date time-stamp in the data. 
 Graphics are individually saved using the country code. 
 
 For example: ``WDi.pdf`` and ``WDd.pdf`` respectively indicates the
 saved graphics of the COVID-19 infections and deaths model fit for the World to the last date time-stamp in the data in pdf format.
 
-#### *measures* folder
+### *measures* folder
 Stores all estimated logistic metrics for infections and deaths till 
 the last date time-stamp in the data in the *infs* and *dths* 
 subfolders respectively.
 	
-### Automated Tests
+## Automated Tests
 Automated Tests for the app and package functionalties can be found in the *tests* folder.
 	
 <!-- #### Example
