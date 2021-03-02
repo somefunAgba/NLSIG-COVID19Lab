@@ -33,6 +33,9 @@ function status = upd_cdata_applet(search_ccode, update, app)
 %Copyright
 % <mailto:oasomefun@futa.edu.ng |oasomefun@futa.edu.ng|>|, 2020.|
 
+if verLessThan('matlab', '9.8') % 9.7 = R2019b
+    error('NLSIG-COVID19Lab requires Matlab R2020a or later');
+end
 
 assert(nargin<=3," Expected at most 3 arguments!")
 

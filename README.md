@@ -28,15 +28,39 @@ World Health Organization
 - Statistics and Machine Learning Toolbox
 
 **MATLAB Release Compatibility**
-- Created with R2020a
-- Compatible with R2019b and later releases
+- Compatible with R2020a and later releases
 
 **External Dependencies**
 - None
 
+### Getting Started
 
-### MATLAB App
-Provided is a MATLAB App to allow for easy use. See the screenshots below
+#### MATLAB App: Installation
+Provided is a MATLAB App to allow for easy use. 
+
+1. In the *applet folder*, double-click or right-click on the App Installer: *NLSIG-COVID19Lab.mlappinstall*
+
+2. A confirmation dialog **Install into My Apps** pops up. Select *Install*
+
+3. The App is then Installed, and can be accessed from the **MY APPS** section in the **APPS tab** on MATLAB's top panel or toolstrip.
+**Hover** on the NLSIG-COVID19Lab App icon to see the **App details** and **install location**.
+
+The default install location is in the Add-Ons location and is specific to the platform.
+This can be viewed from the Home tab's Environment section, click **Preferences > MATLAB > Add-Ons**.
+
+The install location then can be somewhere like this:
+
+Windows - C:\Users\username\Documents\MATLAB\Add-Ons\Apps\NLSIGCOVID19Lab
+
+Linux - ~/MATLAB/Add-Ons/Apps/NLSIGCOVID19Lab.
+
+Mac - ~/Library/Application Support/MathWorks/MATLAB/Add-Ons/Apps/NLSIGCOVID19Lab
+
+#### MATLAB App: Using
+
+Click the NLSIG-COVID19Lab App icon to start the App.
+
+See the screenshots below
 
 To **Start Modelling**: Click ![model](osspaper/play_24.png)
 

@@ -16,9 +16,9 @@ classdef testAppUpdnModel < matlab.uitest.TestCase
     
     methods (Test)
         function test_MVersion(testCase)
-            status = verLessThan('matlab', '9.7'); % 9.7 = R2019b
+            status = verLessThan('matlab', '9.8'); % 9.7 = R2019b
             testCase.assertFalse(status,...
-                'NLSIG-COVID19Lab requires Matlab R2019b or later');
+                'NLSIG-COVID19Lab requires Matlab R2020a or later');
         end
         
         function test_UpdButton(testCase)          
