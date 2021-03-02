@@ -5,9 +5,27 @@ classdef testAppUpdnModel < matlab.uitest.TestCase
         App
     end
     
+    
+    methods(TestClassSetup)
+        function addToPath(testCase)
+            p = path;
+            testCase.addTeardown(@path,p)
+            
+            [this_filepath,this_filename,~]= ...
+                fileparts(mfilename('fullpath')); %#ok<ASGLU>
+            %rootpath = this_filepath;
+            rootpath = strrep(this_filepath, [filesep 'utests'], '');
+            addpath(genpath(rootpath));
+            if isfolder(fullfile(rootpath,'bin'))
+                rmpath(fullfile(rootpath,"bin"))
+            end
+            
+        end
+    end
+    
     methods (TestMethodSetup)
         function launchApp(testCase)
-            import matlab.unittest.diagnostics.ScreenshotDiagnostic 
+            %import matlab.unittest.diagnostics.ScreenshotDiagnostic 
             testCase.onFailure(ScreenshotDiagnostic);
             testCase.App = covid19nlsigApp;
             testCase.addTeardown(@delete,testCase.App);

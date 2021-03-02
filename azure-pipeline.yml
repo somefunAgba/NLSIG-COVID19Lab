@@ -6,11 +6,13 @@ steps:
   - task: InstallMATLAB@0
     inputs:
       release: 
+# - powershell: Write-Host '##vso[task.prependpath]C:\Program Files\MATLAB\R2020b\bin'  # Windows agent
+# - bash: echo '##vso[task.prependpath]/usr/local/MATLAB/R2020b/bin'  # Linux agent
   - task: RunMATLABTests@0
     inputs:
       #sourceFolder: root;
       #sourceFolder: root/folderA; root/folderB
-      #selectByFolder: 'tests'
+      selectByFolder: 'tests'
       testResultsPDF: test-results/results.pdf
       testResultsJUnit: test-results/results.xml
       codeCoverageCobertura: code-coverage/coverage.xml

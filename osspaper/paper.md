@@ -71,7 +71,7 @@ illustrates the power of the nlogistic-sigmoid neural pipeline. `NLSIG-COVID19La
 or predictions on the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and 
 complex to be encoded in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], on the contrary, this software package makes projections by means of:
 
--  two-dimensional perspective metrics (YIR and XIR) for robust monitoring of the growth-process being modelled in an area or locale of interest. 
+- two-dimensional perspective metrics (YIR and XIR) for robust monitoring of the growth-process being modelled in an area or locale of interest. 
 
 - adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a non-parametric confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% probability ($\alpha=0.01$) by default. 
 
