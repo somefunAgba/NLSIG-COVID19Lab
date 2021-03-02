@@ -26,7 +26,7 @@ classdef testAppUpdnModel < matlab.uitest.TestCase
     methods (TestMethodSetup)
         function launchApp(testCase)
             %import matlab.unittest.diagnostics.ScreenshotDiagnostic 
-            testCase.onFailure(ScreenshotDiagnostic);
+            %testCase.onFailure(ScreenshotDiagnostic);
             testCase.App = covid19nlsigApp;
             testCase.addTeardown(@delete,testCase.App);
         end
