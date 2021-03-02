@@ -121,7 +121,7 @@ For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are
 
 For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period. -->
 
-### Frontend API 
+## Frontend API 
 Examples of Frontend APIs available for this pacakage can be found in the:
 
 1. ``examples_m_api`` folder and 
