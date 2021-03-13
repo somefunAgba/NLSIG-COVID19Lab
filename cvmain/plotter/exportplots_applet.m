@@ -17,6 +17,9 @@ if ~(ismcc || isdeployed)
         end
         mkstore(datefd);
         ffname = fullfile(rootfp,'assets',datefd);
+        
+        focusPath = ffname;
+        addpath(genpath(focusPath));
     end
 else
     % we don't need to do anything
@@ -49,6 +52,7 @@ exportgraphics(gcf, gfname,'Resolution',300)
 
 
 if ~(ismcc || isdeployed)
+    %rmpath(genpath(focusPath));
     cd(current_userfp);
 else
     % we don't need to do anything
