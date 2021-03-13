@@ -1,7 +1,6 @@
 # NLSIG-COVID19Lab
 
-[![Actions Status](https://github.com/somefunAgba/NLSIG-COVID19Lab/workflows/NLSIG-COVID19Lab%20%28main%29/badge.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/actions) 
-
+[![Actions Status](https://github.com/somefunAgba/NLSIG-COVID19Lab/actions/workflows/paper.yml/badge.svg)]
 
 [![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG-COVID19Lab)](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues)
 [![License: BSD-3-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE)
