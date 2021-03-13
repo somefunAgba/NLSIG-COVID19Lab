@@ -61,7 +61,7 @@ classdef testAppUpdnModel < matlab.uitest.TestCase
             testCase.verifyTrue(testCase.App.InfectionsButton.Value)
             
             % type/pick a stop-date
-            testCase.type(testCase.App.StopDateDatePicker,datetime(2020,09,01))
+            testCase.type(testCase.App.StopDateDatePicker,datetime(2020,05,01))
             testCase.verifyEqual(testCase.App.StopDateDatePicker.Value,datetime(2020,05,01))          
             
             % press and verify model button

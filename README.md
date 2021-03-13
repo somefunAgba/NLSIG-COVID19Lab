@@ -1,18 +1,21 @@
 # NLSIG-COVID19Lab
 
+[![Actions Status](https://github.com/somefunAgba/NLSIG-COVID19Lab/workflows/NLSIG-COVID19Lab%20%28main%29/badge.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/actions) 
+
+
 [![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG-COVID19Lab)](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues)
 [![License: BSD-3-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE)
 [![View NLSIG-COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
 
-A playground for descriptive modelling and monitoring the time-series COVID-19 pandemic growth with the nlogistic-sigmoid function
+A playground for descriptive modelling and monitoring of the time-series COVID-19 pandemic growth with the nlogistic-sigmoid function.
 
 <img alt="NLSIG_COVID19LAB" src="nlsig_avatar.png"/>
 
 nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes. It features two logistic metrics (YIR and XIR) for monitoring growth from a two-dimensional (x-y axis) perspective.
 
 ## Links
-* [NLSIG-COVID19Lab Paper Draft](osspaper/10.21105.joss.02913.pdf)
+* [NLSIG-COVID19Lab Paper Draft](osspaper/10.21105.joss.03002.pdf)
 
 * [NLSIG Conference Presentation Slides](nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
  
@@ -95,7 +98,7 @@ As at the 21st of February 2021:
 
 **KSdist** Kolmogorov-Smirnov Distance Statistic
 
-**YIR**
+**YIR** Y-to-Inflection Ratio (Here Y = Infections or Deaths)
 
 `YIR < 0.5` indicates generally increasing motion of growth
 
@@ -105,7 +108,7 @@ As at the 21st of February 2021:
 
 `YIR ~= 0` indicates either that the growth is flattening or could be increasing. 
 
-**XIR**
+**XIR** X-to-Inflection Ratio (Here X = Time in Days)
 
 `XIR < 1` indicates a pre-peak period
 
@@ -122,7 +125,7 @@ For infections: the YIR = 0.4916 [0.4908, 0.5063] indicates that the numbers are
 For deaths: the YIR = 0.4584 [0.4241, 0.5079] indicates that the numbers are still increasing but may likely peak soon; the XIR = 0.9266 [0.8634, 1.0245] indicates that this time is most-likely a peak period, close to a post-peak period. -->
 
 ## Frontend API 
-Examples of Frontend APIs available for this pacakage can be found in the:
+Examples of Frontend APIs available for this software package can be found in the:
 
 1. ``examples_m_api`` folder and 
 
@@ -227,9 +230,16 @@ gave the following model fit for the ongoing COVID-19 pandemic with respect to t
 <!--#### Recovered-->
 
  
-## Miscellanous
-If interested in dedicating the time to port to other languages, 
-please contact me, by creating a [new issue](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues/new/choose).
+## Contributions, Issues or Support
+If you are:
+
+- interested in dedicating the time to port to other languages or contribute to the software
+
+- want to report issues or problems with the software
+
+- seek miscellanous support
+
+Then, you may contact me, by creating a [new issue](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues/new/choose).
 
 ## License
 This work is free software under the [BSD 3-Clause "New" or "Revised" License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE) 

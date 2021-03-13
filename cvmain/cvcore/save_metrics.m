@@ -37,6 +37,8 @@ if ~(ismcc || isdeployed)
         mkstore(datefd);
         metricsfile = fullfile(rootfp, 'measures', 'infs', ...
             datefd,'imetrics_df.xlsx');
+        focusPath = fullfile(rootfp, 'measures', 'infs', datefd);
+        addpath(genpath(focusPath));
     elseif focus == 'd'
         try
             cd(fullfile(rootfp,'measures','dths'))
@@ -56,6 +58,8 @@ if ~(ismcc || isdeployed)
         mkstore(datefd);
         metricsfile = fullfile(rootfp, 'measures', 'dths', ...
             datefd,'dmetrics_df.xlsx');
+        focusPath = fullfile(rootfp, 'measures', 'dths', datefd);
+        addpath(genpath(focusPath));
     end
 else
     if focus == 'i'
@@ -64,9 +68,9 @@ else
     elseif focus == 'd'
         metricsfile = fullfile(ctfroot, 'measures', 'dths', ...
             datefd,'dmetrics_df.xlsx');
-    end
-    
+    end    
 end
+
 
 %% 3. Save metrics to metricfile
 % does file exist? if not, create it
@@ -92,6 +96,7 @@ end
 %% 4. End.
 if ~(ismcc || isdeployed)
     cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+    %rmpath(genpath(focusPath));
     cd(current_userfp);
 end
 
