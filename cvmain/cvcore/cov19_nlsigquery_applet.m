@@ -215,7 +215,6 @@ end
 pause('on');
 %% Second-Pass 
 % Uses smoothed solution data to ensures metrics are correct
-smooth = false;
 while (smooth == true)
     spass = true;
     smooth  = false;
@@ -281,7 +280,6 @@ while (smooth == true)
     
 end
 pause('on');
-
 %% NLSIG curve metrics
 if spass == false
     YIR = YIRidx(gy_sol,gsol.ymax,gsol.ymin);
