@@ -1,6 +1,6 @@
 function fig = plotpreds(fig,country_code,time_data,x_data,y_data,dy_data,...
     y_sol,y_sollb,y_solub,dy_sol,dy_sollb,dy_solub,...
-    focus,ips_adata,ips_vdata,ips_pdata,phase,is_app)
+    focus,ips_adata,ips_vdata,ips_pdata,phase,is_app) %#ok<INUSL>
 %PLOTPREDS nlsig Predictions Plots
 
 try
@@ -41,8 +41,8 @@ plot(time_data(ips_vdata),y_data(ips_vdata),'s')
 plot(time_data(ips_pdata),y_data(ips_pdata),'+')
 
 plot(time_data,y_data,'MarkerSize',3,'Color',lightgrey1,'LineWidth',0.5);
-plot(time_data,y_sollb,'-.','Color',khaki4,'LineWidth',1);
-plot(time_data,y_solub,'-.','Color',khaki3,'LineWidth',1);
+% plot(time_data,y_sollb,'-.','Color',khaki4,'LineWidth',1);
+% plot(time_data,y_solub,'-.','Color',khaki3,'LineWidth',1);
 plot(time_data,y_sol,'Color',red2,'LineWidth',1.2);
 
 ax_t2.XTickLabelRotation = 60;
@@ -74,8 +74,8 @@ bar(ax_t2, dy_data,0.5,'EdgeColor','none',...
 
 plot(iplines,dy_data,'LineWidth',0.1, 'Color',[0.9 0.9 0.9]);
 
-plot(x_data, dy_sollb,'-.','Color',khaki4,'LineWidth',1);
-plot(x_data, dy_solub,'-.','Color',khaki3,'LineWidth',1);
+% plot(x_data, dy_sollb,'-.','Color',khaki4,'LineWidth',1);
+% plot(x_data, dy_solub,'-.','Color',khaki3,'LineWidth',1);
 plot(x_data, dy_sol,'Color',red2,'LineWidth',1.2);
 
 hold(ax_t2,'off');
