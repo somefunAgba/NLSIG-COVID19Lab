@@ -213,6 +213,8 @@ else
     
 end
 pause('on');
+
+
 %% Second-Pass 
 % Uses smoothed solution data to ensures metrics are correct
 while (smooth == true)
