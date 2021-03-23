@@ -5,7 +5,7 @@ pool:
 steps:
   - task: InstallMATLAB@0
     inputs:
-      release: 
+      release: R2020b
   #- powershell: Write-Host '##vso[task.prependpath]C:\Program Files\MATLAB\R2020b\bin'  # Windows agent
   - bash: echo '##vso[task.prependpath]/usr/local/MATLAB/R2020b/bin'  # Linux agent
   - task: RunMATLABTests@0
