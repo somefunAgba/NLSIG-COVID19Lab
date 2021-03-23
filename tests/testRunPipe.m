@@ -13,7 +13,7 @@ import matlab.unittest.plugins.codecoverage.CoberturaFormat
 [this_filepath,this_filename,~]= ...
     fileparts(mfilename('fullpath'));
 %rootpath = this_filepath;
-rootpath = strrep(this_filepath, [filesep 'utests'], '');
+rootpath = strrep(this_filepath, [filesep 'tests'], '');
 oldPath = addpath(genpath(rootpath));
 if isfolder(fullfile(rootpath,'bin'))
     rmpath(fullfile(rootpath,"bin"))

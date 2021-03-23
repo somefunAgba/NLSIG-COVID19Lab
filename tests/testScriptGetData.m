@@ -1,6 +1,6 @@
 classdef testScriptGetData < matlab.unittest.TestCase
     % scriptGETDATA: Unit Test Suite.
-    %   Failure means something is wrong with local-database
+    %   Failure should mean something is wrong with local-database
     
     
     methods(TestClassSetup)
@@ -11,7 +11,7 @@ classdef testScriptGetData < matlab.unittest.TestCase
             [this_filepath,this_filename,~]= ...
                 fileparts(mfilename('fullpath')); %#ok<ASGLU>
             %rootpath = this_filepath;
-            rootpath = strrep(this_filepath, [filesep 'utests'], '');
+            rootpath = strrep(this_filepath, [filesep 'tests'], '');
             addpath(genpath(rootpath));
             if isfolder(fullfile(rootpath,'bin'))
                 rmpath(fullfile(rootpath,"bin"))
@@ -29,7 +29,7 @@ classdef testScriptGetData < matlab.unittest.TestCase
             %   without update of local-database
             
             % 1.
-            [~,status] = get_cdata_applet("ALL",0);
+            [~,status] = get_cdata_applet('ALL',0);
             ccs = get_cc;
             empty = isempty(ccs);
             % test if status is 1
