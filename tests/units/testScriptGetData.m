@@ -11,7 +11,7 @@ classdef testScriptGetData < matlab.unittest.TestCase
             [this_filepath,this_filename,~]= ...
                 fileparts(mfilename('fullpath')); %#ok<ASGLU>
             %rootpath = this_filepath;
-            rootpath = strrep(this_filepath, [filesep 'tests'], '');
+            rootpath = strrep(this_filepath, [filesep 'tests' filesep 'units'], '');
             addpath(genpath(rootpath));
             if isfolder(fullfile(rootpath,'bin'))
                 rmpath(fullfile(rootpath,"bin"))
@@ -20,7 +20,7 @@ classdef testScriptGetData < matlab.unittest.TestCase
         end
     end
     
-    methods(Test)
+    methods(Test, TestTags = {'Unit'})
         % unit-test functions
         
         function testViewCC1(testCase)

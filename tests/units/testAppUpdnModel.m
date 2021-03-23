@@ -16,7 +16,7 @@ classdef testAppUpdnModel < matlab.uitest.TestCase
             [this_filepath,this_filename,~]= ...
                 fileparts(mfilename('fullpath')); %#ok<ASGLU>
             %rootpath = this_filepath;
-            rootpath = strrep(this_filepath, [filesep 'tests'], '');
+            rootpath = strrep(this_filepath, [filesep 'tests' filesep 'units'], '');
             addpath(genpath(rootpath));
             if isfolder(fullfile(rootpath,'bin'))
                 rmpath(fullfile(rootpath,"bin"))
@@ -38,7 +38,7 @@ classdef testAppUpdnModel < matlab.uitest.TestCase
         end
     end
     
-    methods (Test)
+    methods (Test, TestTags = {'Unit'})
         function test_MVersion(testCase)
             status = verLessThan('matlab', '9.8'); % 9.7 = R2019b
             testCase.assertFalse(status,...
