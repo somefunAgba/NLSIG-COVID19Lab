@@ -71,9 +71,9 @@ illustrates the power of the nlogistic-sigmoid neural pipeline. \linebreak `NLSI
 or predictions on the cumulative growth of an ongoing growth phenomena, whose source is both uncertain and 
 complex to encode in current mathematical models [@christopoulosEfficientIdentificationInflection2016;@matthewWhyModelingSpread2020], this software package makes projections by means of:
 
-- two-dimensional perspective metrics: Y-to-Inflection Ratio (YIR, here Y = Infections or Deaths); X-to-Inflection Ratio (XIR, here X = Time in Days) for robust monitoring of the growth-process being modelled in an area or locale of interest. 
+- two-dimensional perspective metrics: Y-to-Inflection Ratio (YIR, here Y = Infections or Deaths); X-to-Inflection Ratio (XIR, here X = Time in Days) for robust monitoring of the growth-process being modelled in an area or locale of interest, and
 
-- adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a non-parametric confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% probability ($\alpha=0.01$) by default. 
+- an adaptation of the Dvoretzky–Kiefer–Wolfowitz (DKW) inequality for the Kolmogorov–Smirnov (KS) test to construct a non-parametric confidence interval of uncertainty on the nlogistic-sigmoid model with a 99% probability ($\alpha=0.01$) by default. 
 
 `NLSIG-COVID19Lab` is useful as a quick real-time monitoring tool for the COVID-19 pandemic. It was designed to be used by humans: both researchers and non-researchers. 
 
