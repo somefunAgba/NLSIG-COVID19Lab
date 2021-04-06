@@ -55,8 +55,8 @@ status = 0;
 xlsx_file = "globalCV19_data.xlsx";
 cbc_CV19datafile = "cbc_CV19_data.xlsx";
 world_CV19datafile = "world_CV19_data.xlsx";
-iso_file = "iso_regions.xlsx";
-csse_CV19datafile = "csse_CV19_data.xlsx";
+%iso_file = "iso_regions.xlsx";
+%csse_CV19datafile = "csse_CV19_data.xlsx";
 
 %% 1. ensure we are at the project's root
 if ~(ismcc || isdeployed)
@@ -93,8 +93,8 @@ if ~(ismcc || isdeployed)
     who_filed = fullfile(rootfp, "data", xlsx_file);
     cbc_filed = fullfile(rootfp, "data", cbc_CV19datafile);
     world_filed = fullfile(rootfp, "data", world_CV19datafile);
-    iso_filel = fullfile(rootfp, "local", iso_file);
-    csse_filel = fullfile(rootfp, "local",csse_CV19_data);
+    %iso_filel = fullfile(rootfp, "local", iso_file);
+    %csse_filel = fullfile(rootfp, "local",csse_CV19_data);
     
     %     % create data dir.
     %     try
@@ -125,8 +125,8 @@ else
     who_filed = fullfile(ctfroot, "data", xlsx_file);
     cbc_filed = fullfile(ctfroot, "data", cbc_CV19datafile);
     world_filed = fullfile(ctfroot, "data", world_CV19datafile);
-    iso_filel = fullfile(rootfp, "local", iso_file);
-    csse_filel = fullfile(rootfp, "local",csse_CV19_data);
+    %iso_filel = fullfile(rootfp, "local", iso_file);
+    %csse_filel = fullfile(rootfp, "local",csse_CV19_data);
 end
 
 % check if the 'xlsx_file' and'cbc_CV19datafile' exists in local folder
@@ -146,13 +146,13 @@ try
         url="https://covid19.who.int/WHO-COVID-19-global-data.csv";
         fileurlwho = fullfile(rootfp, "local",'tmp.csv');
         % JHU
-        urljhu = strcat("https://raw.githubusercontent.com/",...
-            "CSSEGISandData/COVID-19/master/");
-        urljhu = strcat(urljhu,...
-            "csse_covid_19_data/csse_covid_19_time_series/");
-        urljhu = strcat(urljhu,...
-             "time_series_covid19_recovered_global.csv");
-        fileurljhu = fullfile(rootfp, "local",'rectmp.csv');
+%         urljhu = strcat("https://raw.githubusercontent.com/",...
+%             "CSSEGISandData/COVID-19/master/");
+%         urljhu = strcat(urljhu,...
+%             "csse_covid_19_data/csse_covid_19_time_series/");
+%         urljhu = strcat(urljhu,...
+%              "time_series_covid19_recovered_global.csv");
+%         fileurljhu = fullfile(rootfp, "local",'rectmp.csv');
         % 
         try
            
@@ -163,8 +163,8 @@ try
             % convert xlsx to table
             T = readtable(fileurlwho,'ReadVariableNames',true,...
                 'PreserveVariableNames',true,'TextType','string');
-            T0_jhu = readtable(fileurljhu,'ReadVariableNames',true,...
-                'PreserveVariableNames',true,'TextType','string');
+            %T0_jhu = readtable(fileurljhu,'ReadVariableNames',true,...
+             %   'PreserveVariableNames',true,'TextType','string');
             
             % write the table to file
             writetable(T,who_filed);
