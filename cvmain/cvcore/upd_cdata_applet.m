@@ -55,7 +55,8 @@ status = 0;
 xlsx_file = "globalCV19_data.xlsx";
 cbc_CV19datafile = "cbc_CV19_data.xlsx";
 world_CV19datafile = "world_CV19_data.xlsx";
-
+iso_file = "iso_regions.xlsx";
+csse_CV19datafile = "csse_CV19_data.xlsx";
 
 %% 1. ensure we are at the project's root
 if ~(ismcc || isdeployed)
@@ -67,6 +68,11 @@ if ~(ismcc || isdeployed)
 else
     % we don't need to do anything
     % since its a deployed code.
+    rootfp = ctfroot;
+    
+    % file in folder in the archive root
+%     file_name = fullfile(ctfroot, "local", xlsx_file); 
+%     save(file_name, 'imagexlsx');
 end
 
 if ~(ismcc || isdeployed)
@@ -87,6 +93,8 @@ if ~(ismcc || isdeployed)
     who_filed = fullfile(rootfp, "data", xlsx_file);
     cbc_filed = fullfile(rootfp, "data", cbc_CV19datafile);
     world_filed = fullfile(rootfp, "data", world_CV19datafile);
+    iso_filel = fullfile(rootfp, "local", iso_file);
+    csse_filel = fullfile(rootfp, "local",csse_CV19_data);
     
     %     % create data dir.
     %     try
@@ -111,12 +119,14 @@ else
     
     who_filel = fullfile(ctfroot, "local", xlsx_file);
     cbc_filel = fullfile(ctfroot, "local", cbc_CV19datafile);
-    world_filel = fullfile(ctfroot, "local", world_CV19datafile);
+    world_filel = fullfile(ctfroot, "local", world_CV19datafile);    
+    cc_filecsv = fullfile(ctfroot, "local", "country_code_name.csv");
+    cc_filexlsx = fullfile(ctfroot, "local", "country_code_name.xlsx");
     who_filed = fullfile(ctfroot, "data", xlsx_file);
     cbc_filed = fullfile(ctfroot, "data", cbc_CV19datafile);
     world_filed = fullfile(ctfroot, "data", world_CV19datafile);
-    cc_filecsv = fullfile(ctfroot, "local", "country_code_name.csv");
-    cc_filexlsx = fullfile(ctfroot, "local", "country_code_name.xlsx");
+    iso_filel = fullfile(rootfp, "local", iso_file);
+    csse_filel = fullfile(rootfp, "local",csse_CV19_data);
 end
 
 % check if the 'xlsx_file' and'cbc_CV19datafile' exists in local folder
@@ -132,16 +142,31 @@ try
     
     if update == 1
         % Go online or fall back to last local copy.
+        % WHO
         url="https://covid19.who.int/WHO-COVID-19-global-data.csv";
-        
+        fileurlwho = fullfile(rootfp, "local",'tmp.csv');
+        % JHU
+        urljhu = strcat("https://raw.githubusercontent.com/",...
+            "CSSEGISandData/COVID-19/master/");
+        urljhu = strcat(urljhu,...
+            "csse_covid_19_data/csse_covid_19_time_series/");
+        urljhu = strcat(urljhu,...
+             "time_series_covid19_recovered_global.csv");
+        fileurljhu = fullfile(rootfp, "local",'rectmp.csv');
+        % 
         try
-            websave('tmp.csv',url);
+           
+            websave(fileurlwho,url);
+            websave(fileurljhu,urljhu)
             % convert csv file to table structure,
             % convert table structure to a excel's xlsx file
             % convert xlsx to table
-            T = readtable('tmp.csv','ReadVariableNames',true,...
+            T = readtable(fileurlwho,'ReadVariableNames',true,...
+                'PreserveVariableNames',true,'TextType','string');
+            T0_jhu = readtable(fileurljhu,'ReadVariableNames',true,...
                 'PreserveVariableNames',true,'TextType','string');
             
+            % write the table to file
             writetable(T,who_filed);
             % copy updated copy of "xlsx_file" in dir:data to dir:local
             copyfile(who_filed, who_filel, 'f');
@@ -191,12 +216,6 @@ try
             end
         end
         
-        %         try
-        %            repo = "csse_covid_19_data/csse_covid_19_time_series/...
-        %            time_series_covid19_recovered_global.csv";
-        %            url = https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv
-        %         catch
-        %         end
         
         % Read country code and name from extracted WHO global data
         if state

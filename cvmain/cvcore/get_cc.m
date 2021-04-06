@@ -10,7 +10,7 @@ function [ccs,status] = get_cc(app)
 % status : success or failure, 1 or 0
 % ccs : Table list of available country-codes
 %
-%Usecase: 
+%Usecase:
 %CMD
 %   [ccs,status] = get_cc;
 %   ccs = get_cc;
@@ -32,7 +32,7 @@ end
 
 %% 1. ensure we are at the project's root
 if ~(ismcc || isdeployed)
-    [thisfp,thisfn,~]= fileparts(which('get_cdata_applet.m'));
+    [thisfp,thisfn,~]= fileparts(which('get_cc.m'));
     rootfp = strrep(thisfp, [filesep 'cvmain' filesep 'cvcore'], '');
     if isfile(fullfile(thisfp,thisfn+".m"))
         other_dir = cd(rootfp);
@@ -42,36 +42,32 @@ else
     % since its a deployed code.
 end
 e_msg = sprintf("Possible corrupted dir structure. local files missing.\n" + ...
-        "you might have to re-download the local folder from source.");
-    
+    "you might have to re-download the local folder from source.");
+
 %% 2. Obtain available country codes and names
 % check if the 'ccn_file' exists in data folder, otherwise fallback to
 % local folder
 try
-if ~(ismcc || isdeployed)
-    ccn_filed = fullfile(rootfp, "data", "country_code_name.xlsx");
-    ccn_filel = fullfile(rootfp, "local", "country_code_name.xlsx");
-else
-    ccn_filed = fullfile(ctfroot, "data", "country_code_name.xlsx");
-    ccn_filel = fullfile(ctfroot, "local", "country_code_name.xlsx");
-end
-state = isfile(ccn_filed);
-if ~state
+    if ~(ismcc || isdeployed)
+        ccn_filel = fullfile(rootfp, "local", "country_code_name.xlsx");
+    else
+        ccn_filel = fullfile(ctfroot, "local", "country_code_name.xlsx");
+    end
     state = isfile(ccn_filel);
     assert(state==1, e_msg);
-end
-ccs = readtable(ccn_filel);
-status = 1; %success
-if ~(ismcc || isdeployed)
-    if is_app == true
-        app.StatusLabel.Text = "Query successful!";
-        app.StatusLabel.FontColor = [0.3, 0.5, 0.5];
-    else
-        cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+    ccs = readtable(ccn_filel);
+    
+    status = 1; %success
+    if ~(ismcc || isdeployed)
+        if is_app == true
+            app.StatusLabel.Text = "Query successful!";
+            app.StatusLabel.FontColor = [0.3, 0.5, 0.5];
+        else
+            cprintf('[0.3, 0.5, 0.5]','Query successful!\n');
+        end
+        cd(other_dir);
     end
-    cd(other_dir);    
-end
-
+    
 catch ME
     status = 0; % err
     % ME
