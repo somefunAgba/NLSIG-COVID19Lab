@@ -26,19 +26,19 @@ bibliography: paper.bib
 
 # Summary
 
-The growth (flow or trend) dynamics in any direction for most natural phenomena such as: epidemic spreads, population growths, 
-adoption of new ideas, and many more, can be approximately modelled by the logistic-sigmoid curve. 
+The growth (flow or trend) dynamics in any direction for most natural phenomena such as epidemic spread, population growth, 
+adoption of new ideas, and many more, can be approximately modeled by the logistic-sigmoid curve. 
 In particular, the logistic-sigmoid function with time-varying parameters is the core trend 
 model in Facebook's Prophet model for time-series growth-forecasting 
 at scale [@taylorForecastingScale2018] on big data. 
 The scientific basis for this prevalence is given in [@bejanConstructalLawOrigin2011]. 
-Such growth-processes can be viewed as complex input--output systems that involve 
+Such growth processes can be viewed as complex input--output systems that involve 
 multiple peak inflection phases with respect to time, an idea that 
-can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. A modern definition for the logistic-sigmoid growth which considers restricted growth from  a two-dimensional perspective is the nlogistic-sigmoid function (`NLSIG`) [@somefunLogisticsigmoidNlogisticsigmoidModelling2020] 
+can be traced back in the crudest sense to [@reedSummationLogisticCurves1927]. A modern definition for the logistic-sigmoid growth, which considers restricted growth from  a two-dimensional perspective, is the nlogistic-sigmoid function (`NLSIG`) [@somefunLogisticsigmoidNlogisticsigmoidModelling2020] 
 or logistic neural-network (`LNN`) pipeline. 
 
-In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for a descriptive modelling 
-of the COVID-19 epidemic growth in each affected country of the world and the world as a whole. 
+In this context, `NLSIG-COVID19Lab` functions as a `NLSIG` playground for descriptive modelling 
+of the COVID-19 epidemic growth in each affected country of the world and in the world as a whole. 
 
 
 # Statement of need
@@ -48,13 +48,13 @@ Epidemiological models such as the SEIRD variants
 [@christopoulosNovelApproachEstimating2020] that the SEIRD-variant models yield largely exaggerated forecasts. 
 Observing the current state of the COVID-19 pandemic, this is concern is borne out, in 
 the results of various applications of logistic modelling [@batistaEstimationStateCorona2020;@wuGeneralizedLogisticGrowth2020]
-which have largely led to erroneous assessments of the epidemic's progress and its future projection, leading policymakers astray [@matthewWhyModelingSpread2020]. 
+that have largely led to erroneous assessments of the epidemic's progress and its future projection, leading policymakers astray [@matthewWhyModelingSpread2020]. 
 
 Notably, two recurring limitations of the logistic definitions in the literature and other software packages exist. These two limitations are trends that have persisted since the first introduction of the logistic-sigmoid function [@bacaerVerhulstLogisticEquation2011]. 
 
-First is that, the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. 
-Second is that, during optimization, estimation of the logistic hyper-parameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum is computed separately, instead of as a unified function. The effect of this, is that, as the number of logistic-sigmoids 
-considered in the sum increases, regression analysis becomes more cumbersome and complicated as can be observed in a number of works [@leeEstimationCOVID19Spread2020;@batistaEstimationStateCorona2020;
+The first is that the co-domain of logistic function is assumed to be infinite. This assumption violates the natural principle of finite growth. 
+The second is that during optimization, estimation of the logistic hyperparameters  for the individual logistic-sigmoids that make the multiple logistic-sigmoid sum are computed separately, instead of as a unified function. The effect of this is that as the number of logistic-sigmoids 
+considered in the sum increases, regression analysis becomes more cumbersome and complicated, as can be observed in a number of works [@leeEstimationCOVID19Spread2020;@batistaEstimationStateCorona2020;
 @hsiehRealtimeForecastMultiphase2006;@wuGeneralizedLogisticGrowth2020;
 @chowellNovelSubepidemicModeling2019;@taylorForecastingScale2018]. 
 
