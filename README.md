@@ -1,5 +1,6 @@
 # NLSIG-COVID19Lab
 
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.03002/status.svg)](https://doi.org/10.21105/joss.03002)
 ![Actions Status](https://github.com/somefunAgba/NLSIG-COVID19Lab/actions/workflows/paper.yml/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG-COVID19Lab)](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues)
 [![License: BSD-3-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE)
