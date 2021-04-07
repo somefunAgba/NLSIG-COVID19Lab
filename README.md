@@ -1,8 +1,9 @@
 # NLSIG-COVID19Lab
 
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.03002/status.svg)](https://doi.org/10.21105/joss.03002)
+
 ![Actions Status](https://github.com/somefunAgba/NLSIG-COVID19Lab/actions/workflows/paper.yml/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/somefunAgba/NLSIG-COVID19Lab)](https://github.com/somefunAgba/NLSIG-COVID19Lab/issues)
+
 [![License: BSD-3-License](https://img.shields.io/badge/License-BSD%203--Clause-success.svg)](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE)
 [![View NLSIG-COVID19Lab on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/84043-nlsig_covid19lab)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/the-nlogistic-sigmoid-function/covid-19-modelling-on-who)](https://paperswithcode.com/sota/covid-19-modelling-on-who?p=the-nlogistic-sigmoid-function)
@@ -14,7 +15,7 @@ A playground for descriptive modelling and monitoring of the time-series COVID-1
 nlogistic-sigmoid function (NLSIG) is a modern logistic-sigmoid function definition for modelling growth (or decay) processes. It features two logistic metrics (YIR and XIR) for monitoring growth from a two-dimensional (x-y axis) perspective.
 
 ## Papers (Links)
-* [NLSIG-COVID19Lab Paper](https://doi.org/10.21105/joss.03002)
+* [![DOI](https://joss.theoj.org/papers/10.21105/joss.03002/status.svg)](https://doi.org/10.21105/joss.03002)
 
 * [NLSIG Conference Presentation Slides](nlsigcv19_confslide.pdf) *Best Student Paper* at the **2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop December 3-4, 2020**.
  
@@ -243,12 +244,5 @@ Then, you may contact me, by creating a [new issue](https://github.com/somefunAg
 ## License
 This work is free software under the [BSD 3-Clause "New" or "Revised" License](https://github.com/somefunAgba/NLSIG-COVID19Lab/blob/main/LICENSE) 
 
-## (Optional) Citation Details
-*Author*: Oluwasegun Somefun, Kayode F. Akingbade and Folasade M. Dahunsi
-
-*Title*: On the nlogistic-sigmoid modelling for complex growth processes: in application to the COVID-19 pandemic
-
-*Conference*: 2nd African Symposium on Big Data, Analytics and Machine Intelligence and 6th TYAN International Thematic Workshop on Data Science for Solution-driven and Sustainable Response to current developing world challenges.
-
-*Date*: December 3, 2020
-
+## Citation Details
+Somefun et al., (2021). NLSIG-COVID19Lab: A modern logistic-growth tool (nlogistic-sigmoid) for descriptively modelling the dynamics of the COVID-19 pandemic process. Journal of Open Source Software, 6(60), 3002, https://doi.org/10.21105/joss.03002
